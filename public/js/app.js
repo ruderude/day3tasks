@@ -1973,6 +1973,163 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37851,24 +38008,263 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {}, [
-    _vm._v("\n    I'm an タスク履歴 component.\n    "),
-    _c("br"),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.hello()
-          }
-        }
-      },
-      [_vm._v("hello")]
-    )
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "accordion accordion-flush text-center",
+        attrs: { id: "accordionFlushExample" }
+      },
+      [
+        _c("div", { staticClass: "accordion-item" }, [
+          _c(
+            "h2",
+            {
+              staticClass: "accordion-header",
+              attrs: { id: "flush-headingOne" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "accordion-button collapsed",
+                  attrs: {
+                    type: "button",
+                    "data-mdb-toggle": "collapse",
+                    "data-mdb-target": "#flush-collapseOne",
+                    "aria-expanded": "false",
+                    "aria-controls": "flush-collapseOne"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-arrow-circle-right" }),
+                  _vm._v("\n                2021-06-25\n            ")
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "accordion-collapse collapse",
+              attrs: {
+                id: "flush-collapseOne",
+                "aria-labelledby": "flush-headingOne",
+                "data-mdb-parent": "#accordionFlushExample"
+              }
+            },
+            [
+              _c("div", { staticClass: "accordion-body" }, [
+                _vm._v(
+                  "\n            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry\n            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor\n            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,\n            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch\n            et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n            sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n            craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't\n            heard of them accusamus labore sustainable VHS.\n        "
+                )
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "accordion-item" }, [
+          _c(
+            "h2",
+            {
+              staticClass: "accordion-header",
+              attrs: { id: "flush-headingTwo" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "accordion-button collapsed",
+                  attrs: {
+                    type: "button",
+                    "data-mdb-toggle": "collapse",
+                    "data-mdb-target": "#flush-collapseTwo",
+                    "aria-expanded": "false",
+                    "aria-controls": "flush-collapseTwo"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-arrow-circle-right" }),
+                  _vm._v("\n                2021-06-24\n            ")
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "accordion-collapse collapse",
+              attrs: {
+                id: "flush-collapseTwo",
+                "aria-labelledby": "flush-headingTwo",
+                "data-mdb-parent": "#accordionFlushExample"
+              }
+            },
+            [
+              _c("div", { staticClass: "accordion-body" }, [
+                _vm._v(
+                  "\n                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry\n                richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor\n                brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,\n                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch\n                et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n                craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't\n                heard of them accusamus labore sustainable VHS.\n            "
+                )
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "accordion-item" }, [
+          _c(
+            "h2",
+            {
+              staticClass: "accordion-header",
+              attrs: { id: "flush-headingThree" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "accordion-button collapsed",
+                  attrs: {
+                    type: "button",
+                    "data-mdb-toggle": "collapse",
+                    "data-mdb-target": "#flush-collapseThree",
+                    "aria-expanded": "false",
+                    "aria-controls": "flush-collapseThree"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-arrow-circle-right" }),
+                  _vm._v("\n                2021-06-23\n            ")
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "accordion-collapse collapse",
+              attrs: {
+                id: "flush-collapseThree",
+                "aria-labelledby": "flush-headingThree",
+                "data-mdb-parent": "#accordionFlushExample"
+              }
+            },
+            [
+              _c("div", { staticClass: "accordion-body" }, [
+                _vm._v(
+                  "\n                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry\n                richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor\n                brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,\n                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch\n                et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n                craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't\n                heard of them accusamus labore sustainable VHS.\n            "
+                )
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "accordion-item" }, [
+          _c(
+            "h2",
+            {
+              staticClass: "accordion-header",
+              attrs: { id: "flush-headingThree" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "accordion-button collapsed",
+                  attrs: {
+                    type: "button",
+                    "data-mdb-toggle": "collapse",
+                    "data-mdb-target": "#flush-collapseThree",
+                    "aria-expanded": "false",
+                    "aria-controls": "flush-collapseThree"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-arrow-circle-right" }),
+                  _vm._v("\n                2021-06-22\n            ")
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "accordion-collapse collapse",
+              attrs: {
+                id: "flush-collapseThree",
+                "aria-labelledby": "flush-headingThree",
+                "data-mdb-parent": "#accordionFlushExample"
+              }
+            },
+            [
+              _c("div", { staticClass: "accordion-body" }, [
+                _vm._v(
+                  "\n                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry\n                richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor\n                brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,\n                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch\n                et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n                craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't\n                heard of them accusamus labore sustainable VHS.\n            "
+                )
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "accordion-item" }, [
+          _c(
+            "h2",
+            {
+              staticClass: "accordion-header",
+              attrs: { id: "flush-headingThree" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "accordion-button collapsed",
+                  attrs: {
+                    type: "button",
+                    "data-mdb-toggle": "collapse",
+                    "data-mdb-target": "#flush-collapseThree",
+                    "aria-expanded": "false",
+                    "aria-controls": "flush-collapseThree"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-arrow-circle-right" }),
+                  _vm._v("\n                2021-06-21\n            ")
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "accordion-collapse collapse",
+              attrs: {
+                id: "flush-collapseThree",
+                "aria-labelledby": "flush-headingThree",
+                "data-mdb-parent": "#accordionFlushExample"
+              }
+            },
+            [
+              _c("div", { staticClass: "accordion-body" }, [
+                _vm._v(
+                  "\n                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry\n                richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor\n                brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,\n                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch\n                et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n                craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't\n                heard of them accusamus labore sustainable VHS.\n            "
+                )
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
