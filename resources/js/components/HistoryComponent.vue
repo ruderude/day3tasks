@@ -1,174 +1,85 @@
 <template>
-    <div class="accordion accordion-flush text-center" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-                <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#flush-collapseOne"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseOne"
+    <v-app>
+        <v-card
+            class="mx-auto"
+        >
+            <v-list>
+                <v-list-group
+                    v-for="item in items"
+                    :key="item.title"
+                    v-model="item.active"
+                    :prepend-icon="item.action"
+                    no-action
                 >
-                    <i class="fas fa-arrow-circle-right"></i>
-                    2021-06-25
-                </button>
-            </h2>
-            <div
-            id="flush-collapseOne"
-            class="accordion-collapse collapse"
-            aria-labelledby="flush-headingOne"
-            data-mdb-parent="#accordionFlushExample"
-            >
-            <div class="accordion-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-                et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                heard of them accusamus labore sustainable VHS.
-            </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-                <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#flush-collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseTwo"
-                >
-                    <i class="fas fa-arrow-circle-right"></i>
-                    2021-06-24
-                </button>
-            </h2>
-            <div
-            id="flush-collapseTwo"
-            class="accordion-collapse collapse"
-            aria-labelledby="flush-headingTwo"
-            data-mdb-parent="#accordionFlushExample"
-            >
-                <div class="accordion-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                    brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                    sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-                    et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                    heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-                <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#flush-collapseThree"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseThree"
-                >
-                    <i class="fas fa-arrow-circle-right"></i>
-                    2021-06-23
-                </button>
-            </h2>
-            <div
-            id="flush-collapseThree"
-            class="accordion-collapse collapse"
-            aria-labelledby="flush-headingThree"
-            data-mdb-parent="#accordionFlushExample"
-            >
-                <div class="accordion-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                    brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                    sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-                    et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                    heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-                <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#flush-collapseThree"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseThree"
-                >
-                    <i class="fas fa-arrow-circle-right"></i>
-                    2021-06-22
-                </button>
-            </h2>
-            <div
-            id="flush-collapseThree"
-            class="accordion-collapse collapse"
-            aria-labelledby="flush-headingThree"
-            data-mdb-parent="#accordionFlushExample"
-            >
-                <div class="accordion-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                    brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                    sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-                    et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                    heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-                <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#flush-collapseThree"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseThree"
-                >
-                    <i class="fas fa-arrow-circle-right"></i>
-                    2021-06-21
-                </button>
-            </h2>
-            <div
-            id="flush-collapseThree"
-            class="accordion-collapse collapse"
-            aria-labelledby="flush-headingThree"
-            data-mdb-parent="#accordionFlushExample"
-            >
-                <div class="accordion-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                    brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                    sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-                    et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                    heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-        </div>
-    </div>
+                    <template v-slot:activator>
+                        <v-list-item-content>
+                            <v-list-item-title v-text="item.title"></v-list-item-title>
+                        </v-list-item-content>
+                    </template>
+
+                    <v-list-item
+                    v-for="child in item.items"
+                    :key="child.title"
+                    >
+                        <v-list-item-content>
+                            <v-list-item-title v-text="child.title"></v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-group>
+            </v-list>
+        </v-card>
+    </v-app>
 </template>
 
 <script>
     export default {
         data () {
             return {
-                number: 0,
-                messege: "はろーー！",
+                items: [
+                    {
+                    action: 'mdi-arrow-right-circle',
+                    items: [{ title: 'List Item' }],
+                    title: '2021-06-25',
+                    },
+                    {
+                    action: 'mdi-arrow-right-circle',
+                    items: [
+                        { title: 'Breakfast & brunch' },
+                        { title: 'New American' },
+                        { title: 'Sushi' },
+                    ],
+                    title: '2021-06-24',
+                    },
+                    {
+                    action: 'mdi-arrow-right-circle',
+                    items: [{ title: 'List Item' }],
+                    title: '2021-06-23',
+                    },
+                    {
+                    action: 'mdi-arrow-right-circle',
+                    items: [
+                        { title: 'Breakfast & brunch' },
+                        { title: 'New American' },
+                        { title: 'Sushi' },
+                    ],
+                    title: '2021-06-22',
+                    },
+                    {
+                    action: 'mdi-arrow-right-circle',
+                    items: [{ title: 'List Item' }],
+                    title: '2021-06-21',
+                    },
+                    {
+                    action: 'mdi-arrow-right-circle',
+                    items: [{ title: 'List Item' }],
+                    title: '2021-06-20',
+                    },
+                    {
+                    action: 'mdi-arrow-right-circle',
+                    items: [{ title: 'List Item' }],
+                    title: '2021-06-19',
+                    },
+                ],
             }
         },
         computed: {

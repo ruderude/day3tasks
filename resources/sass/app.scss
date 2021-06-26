@@ -5,6 +5,8 @@
 @import 'variables';
 
 // Bootstrap
-// @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
 
-@import '~mdb-ui-kit/css/mdb.min.css';
+@import '~vuetify/dist/vuetify.min.css';
+
+@import '~@mdi/font/css/materialdesignicons.min.css';

@@ -33,6 +33,10 @@
 
 import './bootstrap'
 import Vue from 'vue'
+import Vuetify from 'vuetify';
+import '@mdi/font/css/materialdesignicons.css'
+Vue.use(Vuetify);
+
 import Start from './components/StartComponent'
 import List from './components/ListComponent'
 import History from './components/HistoryComponent'
@@ -41,6 +45,12 @@ import Example from './components/ExampleComponent'
 
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify({
+        iconfont: 'mdi',
+    }),
+    icons: {
+        iconfont: 'mdi', // default - only for display purposes
+    },
     components: {
         Start,
         List,
