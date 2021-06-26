@@ -2083,6 +2083,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2235,6 +2245,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38660,77 +38681,109 @@ var render = function() {
     "v-app",
     [
       _c(
-        "v-card",
-        { staticClass: "mx-auto" },
+        "v-app-bar",
+        { attrs: { app: "", dense: "", color: "orange darken-1" } },
+        [
+          _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
+            _vm._v("タスクの履歴")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-main",
         [
           _c(
-            "v-list",
-            _vm._l(_vm.items, function(item) {
-              return _c(
-                "v-list-group",
-                {
-                  key: item.title,
-                  attrs: { "prepend-icon": item.action, "no-action": "" },
-                  scopedSlots: _vm._u(
-                    [
-                      {
-                        key: "activator",
-                        fn: function() {
-                          return [
-                            _c(
-                              "v-list-item-content",
+            "v-container",
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-list",
+                    { attrs: { dense: "" } },
+                    _vm._l(_vm.items, function(item) {
+                      return _c(
+                        "v-list-group",
+                        {
+                          key: item.title,
+                          attrs: {
+                            "prepend-icon": item.action,
+                            color: "orange lighten-1",
+                            "no-action": ""
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function() {
+                                  return [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", {
+                                          domProps: {
+                                            textContent: _vm._s(item.title)
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            true
+                          ),
+                          model: {
+                            value: item.active,
+                            callback: function($$v) {
+                              _vm.$set(item, "active", $$v)
+                            },
+                            expression: "item.active"
+                          }
+                        },
+                        [
+                          _vm._v(" "),
+                          _vm._l(item.items, function(child) {
+                            return _c(
+                              "v-list-item",
+                              { key: child.title },
                               [
-                                _c("v-list-item-title", {
-                                  domProps: { textContent: _vm._s(item.title) }
-                                })
+                                _c(
+                                  "v-list-item-content",
+                                  [
+                                    _c("v-list-item-title", {
+                                      domProps: {
+                                        textContent: _vm._s(child.title)
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
                               ],
                               1
                             )
-                          ]
-                        },
-                        proxy: true
-                      }
-                    ],
-                    null,
-                    true
-                  ),
-                  model: {
-                    value: item.active,
-                    callback: function($$v) {
-                      _vm.$set(item, "active", $$v)
-                    },
-                    expression: "item.active"
-                  }
-                },
-                [
-                  _vm._v(" "),
-                  _vm._l(item.items, function(child) {
-                    return _c(
-                      "v-list-item",
-                      { key: child.title },
-                      [
-                        _c(
-                          "v-list-item-content",
-                          [
-                            _c("v-list-item-title", {
-                              domProps: { textContent: _vm._s(child.title) }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  })
+                          })
+                        ],
+                        2
+                      )
+                    }),
+                    1
+                  )
                 ],
-                2
+                1
               )
-            }),
+            ],
             1
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("v-footer")
     ],
     1
   )
@@ -38861,43 +38914,96 @@ var render = function() {
     "v-app",
     [
       _c(
-        "v-form",
+        "v-app-bar",
+        { attrs: { app: "", dense: "", color: "orange darken-1" } },
+        [
+          _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
+            _vm._v("今日の三項目")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-main",
         [
           _c(
             "v-container",
             [
               _c(
-                "v-row",
+                "v-form",
                 [
                   _c(
-                    "v-col",
-                    { attrs: { cols: "12" } },
+                    "v-row",
                     [
-                      _c("v-text-field", {
-                        attrs: { label: "Outlined", outlined: "", dense: "" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12" } },
-                    [
-                      _c("v-text-field", {
-                        attrs: { label: "Outlined", outlined: "", dense: "" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12" } },
-                    [
-                      _c("v-text-field", {
-                        attrs: { label: "Outlined", outlined: "", dense: "" }
-                      })
+                      _c(
+                        "v-col",
+                        { staticClass: "mx-auto", attrs: { cols: "10" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "今日のやること１",
+                              outlined: "",
+                              color: "orange lighten-1",
+                              dense: ""
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "mx-auto", attrs: { cols: "10" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "今日のやること２",
+                              outlined: "",
+                              color: "orange lighten-1",
+                              dense: ""
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "mx-auto", attrs: { cols: "10" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "今日のやること３",
+                              outlined: "",
+                              color: "orange lighten-1",
+                              dense: ""
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "mx-auto", attrs: { cols: "12" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                color: "text-white orange darken-1",
+                                block: ""
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            決定!!\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -38909,7 +39015,9 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("v-footer")
     ],
     1
   )

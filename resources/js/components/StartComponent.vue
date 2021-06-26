@@ -1,41 +1,52 @@
 <template>
     <v-app>
-        <v-form>
+        <v-app-bar app dense color="orange darken-1">
+            <div class="text-white text-h4 mx-auto">今日の三項目</div>
+        </v-app-bar>
+        
+        <v-main>
             <v-container>
-                <v-row>
-                    <v-col
-                    cols="12"
-                    >
-                    <v-text-field
-                        label="Outlined"
-                        outlined
-                        dense
-                    ></v-text-field>
-                    </v-col>
+                <v-form>
+                    <v-row>
+                        <v-col class="mx-auto" cols="10">
+                            <v-text-field
+                                label="今日のやること１"
+                                outlined
+                                color="orange lighten-1"
+                                dense 
+                            ></v-text-field>
+                        </v-col>
 
-                    <v-col
-                    cols="12"
-                    >
-                    <v-text-field
-                        label="Outlined"
-                        outlined
-                        dense
-                    ></v-text-field>
-                    </v-col>
+                        <v-col class="mx-auto" cols="10">
+                            <v-text-field
+                                label="今日のやること２"
+                                outlined
+                                color="orange lighten-1"
+                                dense 
+                            ></v-text-field>
+                        </v-col>
 
-                    <v-col
-                    cols="12"
-                    >
-                    <v-text-field
-                        label="Outlined"
-                        outlined
-                        dense
-                    ></v-text-field>
-                    </v-col>
+                        <v-col class="mx-auto" cols="10">
+                            <v-text-field
+                                label="今日のやること３"
+                                outlined
+                                color="orange lighten-1"
+                                dense 
+                            ></v-text-field>
+                        </v-col>
 
-                </v-row>
+                        <v-col class="mx-auto" cols="12">
+                            <v-btn color="text-white orange darken-1" block>
+                                決定!!
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-form>
             </v-container>
-        </v-form>
+        </v-main>
+        
+        <v-footer>
+        </v-footer>
     </v-app>
 </template>
 

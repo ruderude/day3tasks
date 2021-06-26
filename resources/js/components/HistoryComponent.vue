@@ -1,33 +1,43 @@
 <template>
     <v-app>
-        <v-card
-            class="mx-auto"
-        >
-            <v-list>
-                <v-list-group
-                    v-for="item in items"
-                    :key="item.title"
-                    v-model="item.active"
-                    :prepend-icon="item.action"
-                    no-action
-                >
-                    <template v-slot:activator>
-                        <v-list-item-content>
-                            <v-list-item-title v-text="item.title"></v-list-item-title>
-                        </v-list-item-content>
-                    </template>
+        <v-app-bar app dense color="orange darken-1">
+            <div class="text-white text-h4 mx-auto">タスクの履歴</div>
+        </v-app-bar>
+        
+        <v-main>
+            <v-container>
+                <v-card>
+                    <v-list dense>
+                        <v-list-group
+                            v-for="item in items"
+                            :key="item.title"
+                            v-model="item.active"
+                            :prepend-icon="item.action"
+                            color="orange lighten-1"
+                            no-action
+                        >
+                            <template v-slot:activator>
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                                </v-list-item-content>
+                            </template>
 
-                    <v-list-item
-                    v-for="child in item.items"
-                    :key="child.title"
-                    >
-                        <v-list-item-content>
-                            <v-list-item-title v-text="child.title"></v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list-group>
-            </v-list>
-        </v-card>
+                            <v-list-item
+                            v-for="child in item.items"
+                            :key="child.title"
+                            >
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="child.title"></v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list-group>
+                    </v-list>
+                </v-card>
+            </v-container>
+        </v-main>
+        
+        <v-footer>
+        </v-footer>
     </v-app>
 </template>
 
