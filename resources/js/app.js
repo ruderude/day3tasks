@@ -33,13 +33,17 @@
 
 import './bootstrap'
 import Vue from 'vue'
+import Start from './components/StartComponent'
 import List from './components/ListComponent'
+import History from './components/HistoryComponent'
 import Example from './components/ExampleComponent'
 
 const app = new Vue({
     el: '#app',
     components: {
+        Start,
         List,
+        History,
         Example,
     },
 })

@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">タスクの履歴</div>
+                <div class="card-header">今日のタスク（スタート）</div>
 
                 <div class="card-body">
-                    <History></History>
+                    <Start></Start>
                 </div>
             </div>
         </div>

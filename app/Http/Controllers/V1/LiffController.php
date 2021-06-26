@@ -10,7 +10,8 @@ class LiffController extends Controller
 {
     public function today(): View
     {
-        return view('liff.today');
+        return view('liff.start');
+        // return view('liff.today');
     }
 
     public function history(): View
