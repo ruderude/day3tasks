@@ -20,6 +20,7 @@ class LineController extends Controller
 
     public function entry(): Response
     {
+        Log::debug('エントリー');
         $json = json_decode(file_get_contents("php://input"), true);
         if ($json == null) {
             return response("NOT FOUND", 404);
@@ -30,6 +31,8 @@ class LineController extends Controller
         }
 
         Log::debug(print_r($json,true));
+
+        exit;
 
         $event = $json["events"][0];
         $mid = $event["source"]["userId"];
