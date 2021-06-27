@@ -2328,13 +2328,12 @@ __webpack_require__.r(__webpack_exports__);
     cloneForm: function cloneForm() {
       var num = this.tasks.length + 1;
       console.log(num);
-      this.tasks.push([{
+      this.tasks.push({
         id: num,
         label: '今日のやること' + num,
         title: '',
         comment: ''
-      }]);
-      console.log(this.tasks);
+      }); // console.log(this.tasks)
     },
     submitForm: function submitForm() {
       // axios.defaults.headers.common = {
