@@ -2372,18 +2372,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this = this;
-
-    console.log('created');
-    liff.init({
-      liffId: this.liff_id
-    }).then(function () {
-      _this.loggedIn = liff.isLoggedIn();
-      alert(_this.loggedIn);
-    });
+    alert(liff); // liff.init({
+    //     liffId: this.liff_id
+    // })
+    //     .then(() => {
+    //         this.loggedIn = liff.isLoggedIn();
+    //         alert(this.loggedIn)
+    //     })
   },
-  mounted: function mounted() {
-    alert(liff.getDecodedIDToken());
+  mounted: function mounted() {// alert(liff.getDecodedIDToken())
   }
 });
 

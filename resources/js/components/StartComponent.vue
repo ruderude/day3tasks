@@ -125,17 +125,17 @@ export default {
         },
     },
     created : function(){
-        console.log('created')
-        liff.init({
-            liffId: this.liff_id
-        })
-            .then(() => {
-                this.loggedIn = liff.isLoggedIn();
-                alert(this.loggedIn)
-            })
+        alert(liff)
+        // liff.init({
+        //     liffId: this.liff_id
+        // })
+        //     .then(() => {
+        //         this.loggedIn = liff.isLoggedIn();
+        //         alert(this.loggedIn)
+        //     })
     },
     mounted : function(){
-        alert(liff.getDecodedIDToken())
+        // alert(liff.getDecodedIDToken())
     }
 }
 </script>
