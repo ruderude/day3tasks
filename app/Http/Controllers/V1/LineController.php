@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\V1;
 
-// use App\Services\V1\LineService;
-use App\Services\V1\TestService;
+use App\Services\V1\LineService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,7 +13,7 @@ class LineController extends Controller
 {
     private $service;
 
-    public function __construct(TestService $service)
+    public function __construct(LineService $service)
     {
         $this->service = $service;
     }
@@ -30,10 +29,7 @@ class LineController extends Controller
             return response("", 200);
         }
 
-        Log::debug($this->service->test());
-        // Log::debug(print_r($json,true));
-
-        exit;
+        Log::debug(print_r($json,true));
 
         $event = $json["events"][0];
         $mid = $event["source"]["userId"];
