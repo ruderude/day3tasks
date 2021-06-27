@@ -2295,6 +2295,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
   props: {
@@ -2325,7 +2336,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {},
   methods: {
-    cloneForm: function cloneForm() {
+    addForm: function addForm() {
       var num = this.tasks.length + 1;
       console.log(num);
       this.tasks.push({
@@ -2334,6 +2345,10 @@ __webpack_require__.r(__webpack_exports__);
         title: '',
         comment: ''
       }); // console.log(this.tasks)
+    },
+    removeForm: function removeForm() {
+      var num = this.tasks.length - 1;
+      this.tasks.splice(num, 1); // console.log(this.tasks)
     },
     submitForm: function submitForm() {
       // axios.defaults.headers.common = {
@@ -39025,13 +39040,44 @@ var render = function() {
                                   attrs: { dark: "" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.cloneForm()
+                                      return _vm.addForm()
                                     }
                                   }
                                 },
                                 [
                                   _vm._v(
                                     "\n                                mdi-plus\n                            "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "float-right mr-3",
+                              attrs: {
+                                fab: "",
+                                dark: "",
+                                color: "teal accent-3"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-icon",
+                                {
+                                  attrs: { dark: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.removeForm()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                mdi-minus\n                            "
                                   )
                                 ]
                               )

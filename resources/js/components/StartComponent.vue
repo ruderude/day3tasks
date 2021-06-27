@@ -26,8 +26,19 @@
                                 dark
                                 color="teal accent-3"
                             >
-                                <v-icon @click="cloneForm()" dark>
+                                <v-icon @click="addForm()" dark>
                                     mdi-plus
+                                </v-icon>
+                            </v-btn>
+
+                            <v-btn
+                                class="float-right mr-3"
+                                fab
+                                dark
+                                color="teal accent-3"
+                            >
+                                <v-icon @click="removeForm()" dark>
+                                    mdi-minus
                                 </v-icon>
                             </v-btn>
                         </v-col>
@@ -85,8 +96,8 @@ export default {
 
     },
     methods: {
-        cloneForm: function () {
-            const num = this.tasks.length + 1;
+        addForm: function () {
+            const num = this.tasks.length + 1
             console.log(num)
             this.tasks.push({
                 id: num,
@@ -94,6 +105,11 @@ export default {
                 title: '',
                 comment: '',
             })
+            // console.log(this.tasks)
+        },
+        removeForm: function () {
+            const num = this.tasks.length - 1
+            this.tasks.splice(num, 1)
             // console.log(this.tasks)
         },
         submitForm: function () {
