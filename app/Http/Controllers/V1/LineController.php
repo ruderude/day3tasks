@@ -32,8 +32,6 @@ class LineController extends Controller
 
         Log::debug(print_r($json,true));
 
-        exit;
-
         $event = $json["events"][0];
         $mid = $event["source"]["userId"];
         $type = $event["message"]["type"] ?? $event["type"];
