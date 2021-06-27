@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Log;
 
 class TaskService
 {
-    private $service;
+    private $repository;
 
-    public function __construct(TaskService $service)
+    public function __construct(TaskRepository $repository)
     {
-        $this->service = $service;
+        $this->repository = $repository;
     }
 
     /**

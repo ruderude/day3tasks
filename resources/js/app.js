@@ -34,6 +34,7 @@
 import './bootstrap'
 import Vue from 'vue'
 import Vuetify from 'vuetify';
+import "@line/liff";
 import '@mdi/font/css/materialdesignicons.css'
 Vue.use(Vuetify);
 
@@ -57,4 +58,5 @@ const app = new Vue({
         History,
         Example,
     },
+    
 })

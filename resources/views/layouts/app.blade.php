@@ -19,6 +19,7 @@
         </main>
     </div>
 
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src=" {{ mix('js/app.js') }} "></script>
 </body>
 </html>

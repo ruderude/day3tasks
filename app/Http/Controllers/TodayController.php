@@ -24,15 +24,12 @@ class TodayController extends Controller
     */
     public function store(Request $request): array
     {
-        // Log::debug(print_r($request->all(), true));
+        Log::debug(print_r($request->all(), true));
+
         $tasks = $this->service->trim($request);
         Log::debug(print_r($tasks, true));
-        $data = [
-            "test1" => "tteesstt1",
-            "test2" => "tteesstt2",
-            "test3" => "tteesstt3",
-        ];
-        return $data;
+
+        return $tasks;
     }
     
 }

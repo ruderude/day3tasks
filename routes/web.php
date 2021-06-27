@@ -27,5 +27,4 @@ Route::post("/v1/line/entry", "V1\\LineController@entry")->name("line.entry");
 Route::get("/v1/liff/today", "V1\\LiffController@today")->name("liff.today");
 Route::get("/v1/liff/history", "V1\\LiffController@history")->name("liff.history");
 
-
 Route::post('/today', 'TodayController@store')->name('today.store');

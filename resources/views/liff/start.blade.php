@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="">
-    <Start :csrf="{{json_encode(csrf_token())}}"></Start>
+    <Start liff_id="{{env('VUE_APP_LIFF_ID')}}"></Start>
 </div>
 @endsection

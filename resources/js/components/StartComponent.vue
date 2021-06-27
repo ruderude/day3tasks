@@ -7,7 +7,6 @@
         <v-main>
             <v-container class="mt-5">
                 <v-form>
-                    <input type="hidden" name="_token" v-bind:value="csrf">
                     <v-row>
                         <v-col v-for="task in tasks" :key="task.id" class="mx-auto tasks" cols="10">
                             <v-text-field
@@ -62,14 +61,15 @@
 <script>
 export default {
     name: "Start",
-    props:  {
-        csrf: {
+    props: {
+        liff_id: {
             type: String,
             required: true,
         }
     },
     data () {
         return {
+            loggedIn: false,
             tasks: [
                 {
                     id: 1,
@@ -113,10 +113,10 @@ export default {
             // console.log(this.tasks)
         },
         submitForm: function () {
-            // axios.defaults.headers.common = {
-            //     'X-Requested-With': 'XMLHttpRequest',
-            //     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            // };
+            axios.defaults.headers.common = {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            };
             axios.post('/today', this.tasks)
                 .then((res) => {
                     console.log(res)
@@ -126,9 +126,16 @@ export default {
     },
     created : function(){
         console.log('created')
+        liff.init({
+            liffId: this.liff_id
+        })
+            .then(() => {
+                this.loggedIn = liff.isLoggedIn();
+                alert(this.loggedIn)
+            })
     },
     mounted : function(){
-        console.log('mounted')
+        alert(liff.getDecodedIDToken())
     }
 }
 </script>
