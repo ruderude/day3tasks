@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="">
-    <Start></Start>
+    <Start :csrf="{{json_encode(csrf_token())}}"></Start>
 </div>
 @endsection

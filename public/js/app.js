@@ -2295,20 +2295,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
+  props: {
+    csrf: {
+      type: String,
+      required: true
+    }
+  },
   data: function data() {
     return {
-      number: 0,
-      messege: "はろーー！"
+      tasks: [{
+        id: 1,
+        label: '今日のやること１',
+        title: '',
+        comment: ''
+      }, {
+        id: 2,
+        label: '今日のやること２',
+        title: '',
+        comment: ''
+      }, {
+        id: 3,
+        label: '今日のやること３',
+        title: '',
+        comment: ''
+      }]
     };
   },
   computed: {},
   methods: {
-    countDown: function countDown() {
-      console.log('hello down'); // this.number--
+    cloneForm: function cloneForm() {
+      var num = this.tasks.length + 1;
+      console.log(num);
+      this.tasks.push([{
+        id: num,
+        label: '今日のやること' + num,
+        title: '',
+        comment: ''
+      }]);
+      console.log(this.tasks);
+    },
+    submitForm: function submitForm() {
+      // axios.defaults.headers.common = {
+      //     'X-Requested-With': 'XMLHttpRequest',
+      //     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      // };
+      axios.post('/today', this.tasks).then(function (res) {
+        console.log(res);
+      });
     }
   },
   created: function created() {
@@ -38928,57 +38963,82 @@ var render = function() {
         [
           _c(
             "v-container",
+            { staticClass: "mt-5" },
             [
               _c(
                 "v-form",
                 [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "v-row",
                     [
-                      _c(
-                        "v-col",
-                        { staticClass: "mx-auto", attrs: { cols: "10" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "今日のやること１",
-                              outlined: "",
-                              color: "orange lighten-1",
-                              dense: ""
-                            }
-                          })
-                        ],
-                        1
-                      ),
+                      _vm._l(_vm.tasks, function(task) {
+                        return _c(
+                          "v-col",
+                          {
+                            key: task.id,
+                            staticClass: "mx-auto tasks",
+                            attrs: { cols: "10" }
+                          },
+                          [
+                            _c("v-text-field", {
+                              attrs: {
+                                label: task.label,
+                                outlined: "",
+                                color: "orange lighten-1",
+                                dense: ""
+                              },
+                              model: {
+                                value: task.title,
+                                callback: function($$v) {
+                                  _vm.$set(task, "title", $$v)
+                                },
+                                expression: "task.title"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      }),
                       _vm._v(" "),
                       _c(
                         "v-col",
                         { staticClass: "mx-auto", attrs: { cols: "10" } },
                         [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "今日のやること２",
-                              outlined: "",
-                              color: "orange lighten-1",
-                              dense: ""
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { staticClass: "mx-auto", attrs: { cols: "10" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "今日のやること３",
-                              outlined: "",
-                              color: "orange lighten-1",
-                              dense: ""
-                            }
-                          })
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "float-right",
+                              attrs: {
+                                fab: "",
+                                dark: "",
+                                color: "teal accent-3"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-icon",
+                                {
+                                  attrs: { dark: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.cloneForm()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                mdi-plus\n                            "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       ),
@@ -38993,6 +39053,11 @@ var render = function() {
                               attrs: {
                                 color: "text-white orange darken-1",
                                 block: ""
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.submitForm()
+                                }
                               }
                             },
                             [
@@ -39005,7 +39070,7 @@ var render = function() {
                         1
                       )
                     ],
-                    1
+                    2
                   )
                 ],
                 1
