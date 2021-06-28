@@ -53,7 +53,7 @@
 
                         <v-col class="mx-auto" cols="12">
                             <v-btn @click="submitForm()" color="text-white orange darken-1" block>
-                                決定!!
+                                決定!!!!!!!!!!!
                             </v-btn>
                         </v-col>
                     </v-row>
