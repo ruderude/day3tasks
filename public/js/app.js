@@ -2400,17 +2400,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {// alert(liff)
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    // alert(liff.getDecodedIDToken())
-    if (!this.canUseLIFF()) {
-      return;
-    }
-
-    window.liff.init(function (data) {
-      _this.lineId = data.context.userId || null;
-    });
+  mounted: function mounted() {// alert(liff.getDecodedIDToken())
+    // if (!this.canUseLIFF()) {
+    //     return
+    // }
+    // window.liff.init(data => {
+    //     this.lineId = data.context.userId || null
+    // })
   }
 });
 
@@ -38780,7 +38776,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("タスクの履歴")
+            _vm._v("タスクの履歴zzz")
           ])
         ]
       ),
