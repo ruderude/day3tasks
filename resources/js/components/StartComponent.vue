@@ -54,6 +54,16 @@
         </v-main>
         
         <v-footer>
+        <section class="container">
+            <p class="line-id">LINE ID：{{ lineId }}</p>
+            <div class="form">
+                <div class="control">
+                    <input class="input" type="text" placeholder="お名前" v-model="formData.name">
+                </div>
+                <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
+                <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
+            </div>
+        </section>
         </v-footer>
     </v-app>
 </template>
@@ -69,7 +79,10 @@ export default {
     },
     data () {
         return {
-            loggedIn: false,
+            formData: {
+                name: ''
+            },
+            lineId: null,
             tasks: [
                 {
                     id: 1,
@@ -123,19 +136,51 @@ export default {
                 })
             
         },
+        onSubmit: function () {
+            if (!this.canUseLIFF()) {
+                return
+        }
+
+        window.liff
+            .sendMessages([
+            {
+                type: 'text',
+                text: `お名前：\n${this.formData.name}`
+            },
+            {
+                type: 'text',
+                text: '送信が完了しました'
+            }
+            ])
+                .then(() => {
+                window.liff.closeWindow()
+            })
+                .catch(e => {
+                window.alert('Error sending message: ' + e)
+            })
+        },
+        handleCancel: function () {
+            if (!this.canUseLIFF()) {
+                return
+            }
+            window.liff.closeWindow()
+        },
+        canUseLIFF: function () {
+            return navigator.userAgent.indexOf('Line') !== -1 && window.liff
+        }
     },
-    created : function(){
-        alert(liff)
-        // liff.init({
-        //     liffId: this.liff_id
-        // })
-        //     .then(() => {
-        //         this.loggedIn = liff.isLoggedIn();
-        //         alert(this.loggedIn)
-        //     })
+    created: function(){
+        // alert(liff)
     },
-    mounted : function(){
+    mounted: function(){
         // alert(liff.getDecodedIDToken())
+        if (!this.canUseLIFF()) {
+            return
+        }
+
+        window.liff.init(data => {
+            this.lineId = data.context.userId || null
+        })
     }
 }
 </script>
