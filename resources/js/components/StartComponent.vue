@@ -50,20 +50,18 @@
                         </v-col>
                     </v-row>
                 </v-form>
+                <p class="line-id">LINE ID：{{ lineId }}</p>
+                <div class="form">
+                    <div class="control">
+                        <input class="input" type="text" placeholder="お名前" v-model="formData.name">
+                    </div>
+                    <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
+                    <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
+                </div>
             </v-container>
         </v-main>
         
         <v-footer>
-        <section class="container">
-            <p class="line-id">LINE ID：{{ lineId }}</p>
-            <div class="form">
-                <div class="control">
-                    <input class="input" type="text" placeholder="お名前" v-model="formData.name">
-                </div>
-                <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
-                <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
-            </div>
-        </section>
         </v-footer>
     </v-app>
 </template>
