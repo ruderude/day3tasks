@@ -3,6 +3,15 @@
         <v-app-bar app dense color="orange darken-1">
             <div class="text-white text-h4 mx-auto">今日の三項目</div>
         </v-app-bar>
+
+        <p class="line-id">LINE ID：{{ lineId }}</p>
+        <div class="form">
+            <div class="control">
+                <input class="input" type="text" placeholder="お名前" v-model="formData.name">
+            </div>
+            <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
+            <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
+        </div>
         
         <v-main>
             <v-container class="mt-5">
@@ -50,14 +59,6 @@
                         </v-col>
                     </v-row>
                 </v-form>
-                <p class="line-id">LINE ID：{{ lineId }}</p>
-                <div class="form">
-                    <div class="control">
-                        <input class="input" type="text" placeholder="お名前" v-model="formData.name">
-                    </div>
-                    <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
-                    <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
-                </div>
             </v-container>
         </v-main>
         
