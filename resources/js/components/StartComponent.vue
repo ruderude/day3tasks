@@ -172,13 +172,13 @@ export default {
     },
     mounted: function(){
         // alert(liff.getDecodedIDToken())
-        if (!this.canUseLIFF()) {
-            return
-        }
+        // if (!this.canUseLIFF()) {
+        //     return
+        // }
 
-        window.liff.init(data => {
-            this.lineId = data.context.userId || null
-        })
+        // window.liff.init(data => {
+        //     this.lineId = data.context.userId || null
+        // })
     }
 }
 </script>

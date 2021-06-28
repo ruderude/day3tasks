@@ -9,7 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- LIFF CDN -->
-    <script charset="utf-8" src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script charset="utf-8" src="https://d.line-scdn.net/liff/2.1/sdk.js"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
