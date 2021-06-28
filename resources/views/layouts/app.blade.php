@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- LIFF CDN -->
-    <!-- <script charset="utf-8" src="https://d.line-scdn.net/liff/2.1/sdk.js"></script> -->
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.4.1/sdk.js"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
@@ -22,7 +21,6 @@
         </main>
     </div>
 
-    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src=" {{ mix('js/app.js') }} "></script>
 </body>
 </html>
