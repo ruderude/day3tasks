@@ -2400,13 +2400,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {// alert(liff)
   },
-  mounted: function mounted() {// alert(liff.getDecodedIDToken())
-    // if (!this.canUseLIFF()) {
-    //     return
-    // }
-    // window.liff.init(data => {
-    //     this.lineId = data.context.userId || null
-    // })
+  mounted: function mounted() {
+    var _this = this;
+
+    // alert(liff.getDecodedIDToken())
+    if (!this.canUseLIFF()) {
+      return;
+    }
+
+    window.liff.init(function (data) {
+      _this.lineId = data.context.userId || null;
+    });
   }
 });
 
@@ -38776,7 +38780,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("タスクの履歴zzz")
+            _vm._v("タスクの履歴")
           ])
         ]
       ),
@@ -39009,63 +39013,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目zzz")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "line-id" }, [
-            _vm._v("LINE ID：" + _vm._s(_vm.lineId))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form" }, [
-            _c("div", { staticClass: "control" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.formData.name,
-                    expression: "formData.name"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text", placeholder: "お名前" },
-                domProps: { value: _vm.formData.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.formData, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "button is-info is-fullwidth",
-                on: {
-                  click: function($event) {
-                    return _vm.onSubmit()
-                  }
-                }
-              },
-              [_vm._v("送信する")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "button is-light is-fullwidth",
-                on: {
-                  click: function($event) {
-                    return _vm.handleCancel()
-                  }
-                }
-              },
-              [_vm._v("キャンセル")]
-            )
+            _vm._v("今日の三項目")
           ])
         ]
       ),
@@ -39200,7 +39148,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            決定!!!!!!!!!!!\n                        "
+                                "\n                            決定!\n                        "
                               )
                             ]
                           )
@@ -39220,7 +39168,63 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-footer")
+      _c("v-footer", [
+        _c("p", { staticClass: "line-id" }, [
+          _vm._v("LINE ID：" + _vm._s(_vm.lineId))
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form" }, [
+          _c("div", { staticClass: "control" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.name,
+                  expression: "formData.name"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", placeholder: "お名前" },
+              domProps: { value: _vm.formData.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-info is-fullwidth",
+              on: {
+                click: function($event) {
+                  return _vm.onSubmit()
+                }
+              }
+            },
+            [_vm._v("送信する")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-light is-fullwidth",
+              on: {
+                click: function($event) {
+                  return _vm.handleCancel()
+                }
+              }
+            },
+            [_vm._v("キャンセル")]
+          )
+        ])
+      ])
     ],
     1
   )

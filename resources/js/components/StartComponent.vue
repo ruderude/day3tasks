@@ -1,15 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">今日の三項目zzz</div>
-            <p class="line-id">LINE ID：{{ lineId }}</p>
-            <div class="form">
-                <div class="control">
-                    <input class="input" type="text" placeholder="お名前" v-model="formData.name">
-                </div>
-                <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
-                <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
-            </div>
+            <div class="text-white text-h4 mx-auto">今日の三項目</div>
         </v-app-bar>
         
         <v-main>
@@ -53,7 +45,7 @@
 
                         <v-col class="mx-auto" cols="12">
                             <v-btn @click="submitForm()" color="text-white orange darken-1" block>
-                                決定!!!!!!!!!!!
+                                決定!
                             </v-btn>
                         </v-col>
                     </v-row>
@@ -62,6 +54,14 @@
         </v-main>
         
         <v-footer>
+            <p class="line-id">LINE ID：{{ lineId }}</p>
+            <div class="form">
+                <div class="control">
+                    <input class="input" type="text" placeholder="お名前" v-model="formData.name">
+                </div>
+                <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
+                <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
+            </div>
         </v-footer>
     </v-app>
 </template>
@@ -172,13 +172,13 @@ export default {
     },
     mounted: function(){
         // alert(liff.getDecodedIDToken())
-        // if (!this.canUseLIFF()) {
-        //     return
-        // }
+        if (!this.canUseLIFF()) {
+            return
+        }
 
-        // window.liff.init(data => {
-        //     this.lineId = data.context.userId || null
-        // })
+        window.liff.init(data => {
+            this.lineId = data.context.userId || null
+        })
     }
 }
 </script>
