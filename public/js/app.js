@@ -2313,8 +2313,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
   props: {
@@ -39015,7 +39013,63 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目")
+            _vm._v("今日の三項目zzz")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "line-id" }, [
+            _vm._v("LINE ID：" + _vm._s(_vm.lineId))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form" }, [
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.formData.name,
+                    expression: "formData.name"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text", placeholder: "お名前" },
+                domProps: { value: _vm.formData.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.formData, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "button is-info is-fullwidth",
+                on: {
+                  click: function($event) {
+                    return _vm.onSubmit()
+                  }
+                }
+              },
+              [_vm._v("送信する")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "button is-light is-fullwidth",
+                on: {
+                  click: function($event) {
+                    return _vm.handleCancel()
+                  }
+                }
+              },
+              [_vm._v("キャンセル")]
+            )
           ])
         ]
       ),
@@ -39170,65 +39224,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-footer", [
-        _c("section", { staticClass: "container" }, [
-          _c("p", { staticClass: "line-id" }, [
-            _vm._v("LINE ID：" + _vm._s(_vm.lineId))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form" }, [
-            _c("div", { staticClass: "control" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.formData.name,
-                    expression: "formData.name"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text", placeholder: "お名前" },
-                domProps: { value: _vm.formData.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.formData, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "button is-info is-fullwidth",
-                on: {
-                  click: function($event) {
-                    return _vm.onSubmit()
-                  }
-                }
-              },
-              [_vm._v("送信する")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "button is-light is-fullwidth",
-                on: {
-                  click: function($event) {
-                    return _vm.handleCancel()
-                  }
-                }
-              },
-              [_vm._v("キャンセル")]
-            )
-          ])
-        ])
-      ])
+      _c("v-footer")
     ],
     1
   )
