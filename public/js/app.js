@@ -2314,6 +2314,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
   props: {
@@ -39154,63 +39155,63 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "liff_id" } }, [
+            _vm._v("LIFF ID：" + _vm._s(_vm.liffId))
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "line_id" } }, [
+            _vm._v("LINE ID：" + _vm._s(_vm.lineId))
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "access_token" } }, [
+            _vm._v("access_token：" + _vm._s(_vm.accessToken))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form" }, [
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.formData.name,
+                    expression: "formData.name"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text", placeholder: "お名前" },
+                domProps: { value: _vm.formData.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.formData, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "button is-info is-fullwidth",
+                on: {
+                  click: function($event) {
+                    return _vm.onSubmit()
+                  }
+                }
+              },
+              [_vm._v("送信する")]
+            )
+          ])
         ],
         1
       ),
       _vm._v(" "),
-      _c("v-footer", [
-        _c("div", { attrs: { id: "liff_id" } }, [
-          _vm._v("LIFF ID：" + _vm._s(_vm.liffId))
-        ]),
-        _vm._v(" "),
-        _c("div", { attrs: { id: "line_id" } }, [
-          _vm._v("LINE ID：" + _vm._s(_vm.lineId))
-        ]),
-        _vm._v(" "),
-        _c("div", { attrs: { id: "access_token" } }, [
-          _vm._v("access_token：" + _vm._s(_vm.accessToken))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form" }, [
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.formData.name,
-                  expression: "formData.name"
-                }
-              ],
-              staticClass: "input",
-              attrs: { type: "text", placeholder: "お名前" },
-              domProps: { value: _vm.formData.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.formData, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-info is-fullwidth",
-              on: {
-                click: function($event) {
-                  return _vm.onSubmit()
-                }
-              }
-            },
-            [_vm._v("送信する")]
-          )
-        ])
-      ])
+      _c("v-footer")
     ],
     1
   )

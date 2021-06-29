@@ -51,9 +51,6 @@
                     </v-row>
                 </v-form>
             </v-container>
-        </v-main>
-        
-        <v-footer>
             <div id="liff_id">LIFF ID：{{ liffId }}</div>
             <div id="line_id">LINE ID：{{ lineId }}</div>
             <div id="access_token">access_token：{{ accessToken }}</div>
@@ -63,6 +60,10 @@
                 </div>
                 <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
             </div>
+        </v-main>
+        
+        <v-footer>
+            
         </v-footer>
     </v-app>
 </template>
