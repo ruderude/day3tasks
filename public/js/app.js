@@ -2398,8 +2398,7 @@ __webpack_require__.r(__webpack_exports__);
       liffId: this.liffId
     }).then(function () {
       // start to use LIFF's api
-      _this.accessToken = liff.getAccessToken();
-      alert(_this.accessToken);
+      _this.accessToken = liff.getAccessToken(); // alert(this.accessToken)
     })["catch"](function (err) {
       alert(err);
     });
@@ -39005,7 +39004,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目")
+            _vm._v("今日の三項目zzz")
           ])
         ]
       ),

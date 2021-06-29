@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">今日の三項目</div>
+            <div class="text-white text-h4 mx-auto">今日の三項目zzz</div>
         </v-app-bar>
         
         <v-main>
@@ -169,7 +169,7 @@ export default {
         .then(() => {
             // start to use LIFF's api
             this.accessToken = liff.getAccessToken();
-            alert(this.accessToken)
+            // alert(this.accessToken)
         })
         .catch((err) => {
             alert(err)
