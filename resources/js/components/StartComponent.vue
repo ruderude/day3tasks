@@ -160,19 +160,19 @@ export default {
         // alert(liff)
     },
     mounted: function(){
-        alert(this.liffId)
-        // alert(liff.getDecodedIDToken())
-        // liff.init({
-        //         liffId: this.liff_id
-        // })
-        // .then(() => {
-        //     // start to use LIFF's api
-        //     this.accessToken = liff.getAccessToken();
-        //     alert(this.accessToken)
-        // })
-        // .catch((err) => {
-        //     alert(err)
-        // });
+        // alert(this.liffId)
+        alert(liff.getDecodedIDToken())
+        liff.init({
+                liffId: this.liff_id
+        })
+        .then(() => {
+            // start to use LIFF's api
+            this.accessToken = liff.getAccessToken();
+            alert(this.accessToken)
+        })
+        .catch((err) => {
+            alert(err)
+        });
     }
 }
 </script>

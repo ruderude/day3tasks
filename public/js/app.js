@@ -2389,18 +2389,19 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {// alert(liff)
   },
   mounted: function mounted() {
-    alert(this.liffId); // alert(liff.getDecodedIDToken())
-    // liff.init({
-    //         liffId: this.liff_id
-    // })
-    // .then(() => {
-    //     // start to use LIFF's api
-    //     this.accessToken = liff.getAccessToken();
-    //     alert(this.accessToken)
-    // })
-    // .catch((err) => {
-    //     alert(err)
-    // });
+    var _this = this;
+
+    // alert(this.liffId)
+    alert(liff.getDecodedIDToken());
+    liff.init({
+      liffId: this.liff_id
+    }).then(function () {
+      // start to use LIFF's api
+      _this.accessToken = liff.getAccessToken();
+      alert(_this.accessToken);
+    })["catch"](function (err) {
+      alert(err);
+    });
   }
 });
 
