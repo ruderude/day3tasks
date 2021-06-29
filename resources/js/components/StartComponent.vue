@@ -54,8 +54,8 @@
         </v-main>
         
         <v-footer>
-            <p id="liff_id">LIFF ID：{{ liff_id }}</p>
-            <p id="line-id">LINE ID：{{ lineId }}</p>
+            <p id="liff_id">LIFF ID：{{ liffId }}</p>
+            <p id="line_id">LINE ID：{{ lineId }}</p>
             <p id="access_token">access_token：{{ accessToken }}</p>
             <div class="form">
                 <div class="control">
