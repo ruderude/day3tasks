@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">今日の三項目</div>
+            <div class="text-white text-h4 mx-auto">今日の三項目qqq</div>
         </v-app-bar>
         
         <v-main>
@@ -69,6 +69,17 @@
 </template>
 
 <script>
+import Bugsnag from '@bugsnag/js'
+import BugsnagPluginVue from '@bugsnag/plugin-vue'
+
+Bugsnag.start({
+    apiKey: 'd96162df63a8803bcee425928dcd0f36',
+    plugins: [new BugsnagPluginVue()]
+})
+
+const bugsnagVue = Bugsnag.getPlugin('vue')
+bugsnagVue.installVueErrorHandler(Vue)
+
 export default {
     name: "Start",
     props: {
@@ -159,6 +170,7 @@ export default {
     },
     created: function(){
         // alert(liff)
+        Bugsnag.notify(new Error('Test error'))
     },
     mounted: function(){
         // alert(this.liffId)

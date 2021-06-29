@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@bugsnag/js": "^7.10.4",
+        "@bugsnag/plugin-vue": "^7.10.0",
         "@line/liff": "^2.11.1",
         "vuetify": "^2.5.5"
     }
