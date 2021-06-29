@@ -54,9 +54,9 @@
         </v-main>
         
         <v-footer>
-            <p id="liff_id">LIFF ID：{{ liffId }}</p>
-            <p id="line_id">LINE ID：{{ lineId }}</p>
-            <p id="access_token">access_token：{{ accessToken }}</p>
+            <div id="liff_id">LIFF ID：{{ liffId }}</div>
+            <div id="line_id">LINE ID：{{ lineId }}</div>
+            <div id="access_token">access_token：{{ accessToken }}</div>
             <div class="form">
                 <div class="control">
                     <input class="input" type="text" placeholder="お名前" v-model="formData.name">
