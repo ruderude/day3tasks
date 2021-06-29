@@ -42639,7 +42639,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目qqq")
+            _vm._v("今日の三項目")
           ])
         ]
       ),

@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">今日の三項目qqq</div>
+            <div class="text-white text-h4 mx-auto">今日の三項目</div>
         </v-app-bar>
         
         <v-main>
