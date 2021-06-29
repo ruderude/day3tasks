@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">今日の三項目</div>
+            <div class="text-white text-h4 mx-auto">今日の三項目q</div>
         </v-app-bar>
         
         <v-main>
@@ -54,13 +54,14 @@
         </v-main>
         
         <v-footer>
-            <p class="line-id">LINE ID：{{ lineId }}</p>
+            <p id="liff_id">LIFF ID：{{ liff_id }}</p>
+            <p id="line-id">LINE ID：{{ lineId }}</p>
+            <p id="access_token">access_token：{{ accessToken }}</p>
             <div class="form">
                 <div class="control">
                     <input class="input" type="text" placeholder="お名前" v-model="formData.name">
                 </div>
                 <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
-                <button class="button is-light is-fullwidth" @click="handleCancel()">キャンセル</button>
             </div>
         </v-footer>
     </v-app>
@@ -70,7 +71,7 @@
 export default {
     name: "Start",
     props: {
-        liff_id: {
+        liffId: {
             type: String,
             required: true,
         }
@@ -81,6 +82,7 @@ export default {
                 name: ''
             },
             lineId: null,
+            accessToken: null,
             tasks: [
                 {
                     id: 1,
@@ -135,50 +137,41 @@ export default {
             
         },
         onSubmit: function () {
-            if (!this.canUseLIFF()) {
-                return
-        }
-
-        window.liff
-            .sendMessages([
-            {
-                type: 'text',
-                text: `お名前：\n${this.formData.name}`
-            },
-            {
-                type: 'text',
-                text: '送信が完了しました'
-            }
-            ])
-                .then(() => {
-                window.liff.closeWindow()
-            })
-                .catch(e => {
-                window.alert('Error sending message: ' + e)
-            })
+            window.liff
+                .sendMessages([
+                {
+                    type: 'text',
+                    text: `お名前：\n${this.formData.name}`
+                },
+                {
+                    type: 'text',
+                    text: '送信が完了しました'
+                }
+                ])
+                    .then(() => {
+                    window.liff.closeWindow()
+                })
+                    .catch(e => {
+                    window.alert('Error sending message: ' + e)
+                })
         },
-        handleCancel: function () {
-            if (!this.canUseLIFF()) {
-                return
-            }
-            window.liff.closeWindow()
-        },
-        canUseLIFF: function () {
-            return navigator.userAgent.indexOf('Line') !== -1 && window.liff
-        }
     },
     created: function(){
         // alert(liff)
     },
     mounted: function(){
         // alert(liff.getDecodedIDToken())
-        if (!this.canUseLIFF()) {
-            return
-        }
-
-        window.liff.init(data => {
-            this.lineId = data.context.userId || null
+        liff.init({
+                liffId: this.liff_id
         })
+        .then(() => {
+            // start to use LIFF's api
+            this.accessToken = liff.getAccessToken();
+            alert(this.accessToken)
+        })
+        .catch((err) => {
+            alert(err)
+        });
     }
 }
 </script>

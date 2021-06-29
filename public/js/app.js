@@ -2313,10 +2313,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
   props: {
-    liff_id: {
+    liffId: {
       type: String,
       required: true
     }
@@ -2327,6 +2328,7 @@ __webpack_require__.r(__webpack_exports__);
         name: ''
       },
       lineId: null,
+      accessToken: null,
       tasks: [{
         id: 1,
         label: '今日のやること１',
@@ -2371,10 +2373,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onSubmit: function onSubmit() {
-      if (!this.canUseLIFF()) {
-        return;
-      }
-
       window.liff.sendMessages([{
         type: 'text',
         text: "\u304A\u540D\u524D\uFF1A\n".concat(this.formData.name)
@@ -2386,16 +2384,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         window.alert('Error sending message: ' + e);
       });
-    },
-    handleCancel: function handleCancel() {
-      if (!this.canUseLIFF()) {
-        return;
-      }
-
-      window.liff.closeWindow();
-    },
-    canUseLIFF: function canUseLIFF() {
-      return navigator.userAgent.indexOf('Line') !== -1 && window.liff;
     }
   },
   created: function created() {// alert(liff)
@@ -2404,12 +2392,14 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     // alert(liff.getDecodedIDToken())
-    if (!this.canUseLIFF()) {
-      return;
-    }
-
-    window.liff.init(function (data) {
-      _this.lineId = data.context.userId || null;
+    liff.init({
+      liffId: this.liff_id
+    }).then(function () {
+      // start to use LIFF's api
+      _this.accessToken = liff.getAccessToken();
+      alert(_this.accessToken);
+    })["catch"](function (err) {
+      alert(err);
     });
   }
 });
@@ -39013,7 +39003,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目")
+            _vm._v("今日の三項目q")
           ])
         ]
       ),
@@ -39169,8 +39159,16 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("v-footer", [
-        _c("p", { staticClass: "line-id" }, [
+        _c("p", { attrs: { id: "liff_id" } }, [
+          _vm._v("LIFF ID：" + _vm._s(_vm.liff_id))
+        ]),
+        _vm._v(" "),
+        _c("p", { attrs: { id: "line-id" } }, [
           _vm._v("LINE ID：" + _vm._s(_vm.lineId))
+        ]),
+        _vm._v(" "),
+        _c("p", { attrs: { id: "access_token" } }, [
+          _vm._v("access_token：" + _vm._s(_vm.accessToken))
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form" }, [
@@ -39209,19 +39207,6 @@ var render = function() {
               }
             },
             [_vm._v("送信する")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-light is-fullwidth",
-              on: {
-                click: function($event) {
-                  return _vm.handleCancel()
-                }
-              }
-            },
-            [_vm._v("キャンセル")]
           )
         ])
       ])
