@@ -168,25 +168,28 @@ export default {
                     window.alert('Error sending message: ' + e)
                 })
         },
+        liffInit: function (liffId) {
+            liff.init({
+                liffId: liffId
+            })
+            .then(() => {
+                // start to use LIFF's api
+                this.accessToken = liff.getAccessToken();
+                // alert(this.accessToken)
+            })
+            .catch((err) => {
+                // alert(err)
+            });
+        },
     },
     created: function(){
         // alert(liff)
-        Bugsnag.notify(new Error('Test error'))
+        // Bugsnag.notify(new Error('Test error'))
     },
     mounted: function(){
         // alert(this.liffId)
-        alert(liff.getDecodedIDToken())
-        liff.init({
-                liffId: this.liffId
-        })
-        .then(() => {
-            // start to use LIFF's api
-            this.accessToken = liff.getAccessToken();
-            // alert(this.accessToken)
-        })
-        .catch((err) => {
-            alert(err)
-        });
+        this.liffInit(this.liffId)
+        
     }
 }
 </script>

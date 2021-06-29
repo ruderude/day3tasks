@@ -6018,25 +6018,25 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       })["catch"](function (e) {
         window.alert('Error sending message: ' + e);
       });
+    },
+    liffInit: function liffInit(liffId) {
+      var _this = this;
+
+      liff.init({
+        liffId: liffId
+      }).then(function () {
+        // start to use LIFF's api
+        _this.accessToken = liff.getAccessToken(); // alert(this.accessToken)
+      })["catch"](function (err) {// alert(err)
+      });
     }
   },
-  created: function created() {
-    // alert(liff)
-    _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error('Test error'));
+  created: function created() {// alert(liff)
+    // Bugsnag.notify(new Error('Test error'))
   },
   mounted: function mounted() {
-    var _this = this;
-
     // alert(this.liffId)
-    alert(liff.getDecodedIDToken());
-    liff.init({
-      liffId: this.liffId
-    }).then(function () {
-      // start to use LIFF's api
-      _this.accessToken = liff.getAccessToken(); // alert(this.accessToken)
-    })["catch"](function (err) {
-      alert(err);
-    });
+    this.liffInit(this.liffId);
   }
 });
 
