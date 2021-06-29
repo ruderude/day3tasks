@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
 
