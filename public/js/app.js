@@ -2394,7 +2394,7 @@ __webpack_require__.r(__webpack_exports__);
     // alert(this.liffId)
     alert(liff.getDecodedIDToken());
     liff.init({
-      liffId: this.liff_id
+      liffId: this.liffId
     }).then(function () {
       // start to use LIFF's api
       _this.accessToken = liff.getAccessToken();

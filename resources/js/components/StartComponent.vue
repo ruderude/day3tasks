@@ -163,7 +163,7 @@ export default {
         // alert(this.liffId)
         alert(liff.getDecodedIDToken())
         liff.init({
-                liffId: this.liff_id
+                liffId: this.liffId
         })
         .then(() => {
             // start to use LIFF's api
