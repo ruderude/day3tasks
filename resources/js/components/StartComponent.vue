@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">今日の三項目</div>
+            <div class="text-white text-h4 mx-auto">今日の三項目qqq</div>
         </v-app-bar>
         
         <v-main>
@@ -176,14 +176,6 @@ export default {
                 // start to use LIFF's api
                 this.accessToken = liff.getAccessToken();
                 // alert(this.accessToken)
-                liff.sendMessages([{
-                    'type': 'text',
-                    'text': "Hello, World!" + this.accessToken
-                }]).then(function() {
-                    window.alert('Message sent');
-                }).catch(function(error) {
-                    window.alert('Error sending message: ' + error);
-                });
             })
             .catch((err) => {
                 // alert(err)
@@ -196,7 +188,7 @@ export default {
     },
     mounted: function(){
         // alert(this.liffId)
-        this.liffInit(this.liffId)
+        // this.liffInit(this.liffId)
         
     }
 }
