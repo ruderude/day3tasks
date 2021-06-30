@@ -6034,8 +6034,12 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       });
     }
   },
-  created: function created() {// alert(liff)
+  created: function created() {
+    // alert(liff)
     // Bugsnag.notify(new Error('Test error'))
+    axios.post('/v1/liff/getAccessToken', 'あくせすとーくん').then(function (res) {
+      console.log(res);
+    });
   },
   mounted: function mounted() {
     // alert(this.liffId)
@@ -42642,7 +42646,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目qqq")
+            _vm._v("今日の三項目")
           ])
         ]
       ),
