@@ -20,7 +20,7 @@ class LiffController extends Controller
         return view('liff.history');
     }
 
-    public function getAccessToken($accessToken)
+    public function getAccessToken($accessToken = 'でふぉ')
     {
         Log::debug('アクセストークン：' . $accessToken);
         exit;

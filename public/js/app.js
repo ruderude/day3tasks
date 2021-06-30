@@ -5775,6 +5775,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     console.log('created');
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
     axios.post('/v1/liff/getAccessToken', {
       text: 'ヒストリーテストだよー'
     }).then(function (response) {
