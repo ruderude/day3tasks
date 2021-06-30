@@ -23,6 +23,6 @@ class LiffController extends Controller
     public function getAccessToken($accessToken = 'でふぉ')
     {
         Log::debug('アクセストークン：' . $accessToken);
-        exit;
+        return $accessToken;
     }
 }
