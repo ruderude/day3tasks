@@ -6027,6 +6027,15 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       }).then(function () {
         // start to use LIFF's api
         _this.accessToken = liff.getAccessToken(); // alert(this.accessToken)
+
+        liff.sendMessages([{
+          'type': 'text',
+          'text': "Hello, World!" + _this.accessToken
+        }]).then(function () {
+          window.alert('Message sent');
+        })["catch"](function (error) {
+          window.alert('Error sending message: ' + error);
+        });
       })["catch"](function (err) {// alert(err)
       });
     }

@@ -176,6 +176,14 @@ export default {
                 // start to use LIFF's api
                 this.accessToken = liff.getAccessToken();
                 // alert(this.accessToken)
+                liff.sendMessages([{
+                    'type': 'text',
+                    'text': "Hello, World!" + this.accessToken
+                }]).then(function() {
+                    window.alert('Message sent');
+                }).catch(function(error) {
+                    window.alert('Error sending message: ' + error);
+                });
             })
             .catch((err) => {
                 // alert(err)
