@@ -175,6 +175,10 @@ export default {
             .then(() => {
                 // start to use LIFF's api
                 this.accessToken = liff.getAccessToken();
+                axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
+                .then((res) => {
+                    console.log(res)
+                })
                 // alert(this.accessToken)
             })
             .catch((err) => {
@@ -189,7 +193,6 @@ export default {
     mounted: function(){
         // alert(this.liffId)
         this.liffInit(this.liffId)
-        liff.closeWindow();
         
     }
 }

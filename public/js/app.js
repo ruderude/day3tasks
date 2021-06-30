@@ -6026,7 +6026,10 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
         liffId: liffId
       }).then(function () {
         // start to use LIFF's api
-        _this.accessToken = liff.getAccessToken(); // alert(this.accessToken)
+        _this.accessToken = liff.getAccessToken();
+        axios.post('/v1/liff/getAccessToken', liff.getAccessToken()).then(function (res) {
+          console.log(res);
+        }); // alert(this.accessToken)
       })["catch"](function (err) {// alert(err)
       });
     }
@@ -6037,7 +6040,6 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   mounted: function mounted() {
     // alert(this.liffId)
     this.liffInit(this.liffId);
-    liff.closeWindow();
   }
 });
 
