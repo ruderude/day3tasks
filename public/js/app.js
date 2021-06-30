@@ -42423,7 +42423,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("タスクの履歴")
+            _vm._v("タスクの履歴q")
           ])
         ]
       ),
