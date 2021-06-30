@@ -5668,6 +5668,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bugsnag_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @bugsnag/js */ "./node_modules/@bugsnag/js/browser/notifier.js");
+/* harmony import */ var _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_bugsnag_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @bugsnag/plugin-vue */ "./node_modules/@bugsnag/plugin-vue/dist/bugsnag-vue.js");
+/* harmony import */ var _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -5711,6 +5717,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
+
+_bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
+  apiKey: 'd96162df63a8803bcee425928dcd0f36',
+  plugins: [new _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default.a()]
+});
+var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('vue');
+bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
