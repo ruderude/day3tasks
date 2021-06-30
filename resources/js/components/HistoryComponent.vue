@@ -102,7 +102,16 @@
         },
         created : function(){
             console.log('created')
-        },
+            let params = new URLSearchParams();
+            params.append('text', 'ヒストリーテストだよー');
+
+            axios.post('/v1/liff/getAccessToken', params)
+                .then(response => {
+                    console.log('送信したテキスト: ' + response.data.text);
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
         mounted : function(){
             console.log('mounted')
         }
