@@ -6034,8 +6034,10 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   created: function created() {// alert(liff)
     // Bugsnag.notify(new Error('Test error'))
   },
-  mounted: function mounted() {// alert(this.liffId)
-    // this.liffInit(this.liffId)
+  mounted: function mounted() {
+    // alert(this.liffId)
+    this.liffInit(this.liffId);
+    liff.closeWindow();
   }
 });
 

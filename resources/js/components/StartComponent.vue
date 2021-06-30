@@ -188,7 +188,8 @@ export default {
     },
     mounted: function(){
         // alert(this.liffId)
-        // this.liffInit(this.liffId)
+        this.liffInit(this.liffId)
+        liff.closeWindow();
         
     }
 }
