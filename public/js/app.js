@@ -6020,16 +6020,15 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       });
     },
     liffInit: function liffInit(liffId) {
-      var _this = this;
-
       liff.init({
         liffId: liffId
-      }).then(function () {
-        // start to use LIFF's api
-        _this.accessToken = liff.getAccessToken();
-        axios.post('/v1/liff/getAccessToken', liff.getAccessToken()).then(function (res) {
-          console.log(res);
-        }); // alert(this.accessToken)
+      }).then(function () {// start to use LIFF's api
+        // this.accessToken = liff.getAccessToken();
+        // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
+        // .then((res) => {
+        //     console.log(res)
+        // })
+        // alert(this.accessToken)
       })["catch"](function (err) {// alert(err)
       });
     }
@@ -6037,8 +6036,12 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   created: function created() {
     // alert(liff)
     // Bugsnag.notify(new Error('Test error'))
-    axios.post('/v1/liff/getAccessToken', 'あくせすとーくん').then(function (res) {
-      console.log(res);
+    var params = new URLSearchParams();
+    params.append('text', 'テストだよー');
+    axios.post('/v1/liff/getAccessToken', params).then(function (response) {
+      console.log('送信したテキスト: ' + response.data.text);
+    })["catch"](function (error) {
+      console.log(error);
     });
   },
   mounted: function mounted() {

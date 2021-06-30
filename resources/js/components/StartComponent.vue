@@ -174,11 +174,11 @@ export default {
             })
             .then(() => {
                 // start to use LIFF's api
-                this.accessToken = liff.getAccessToken();
-                axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
-                .then((res) => {
-                    console.log(res)
-                })
+                // this.accessToken = liff.getAccessToken();
+                // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
+                // .then((res) => {
+                //     console.log(res)
+                // })
                 // alert(this.accessToken)
             })
             .catch((err) => {
@@ -189,10 +189,15 @@ export default {
     created: function(){
         // alert(liff)
         // Bugsnag.notify(new Error('Test error'))
-        axios.post('/v1/liff/getAccessToken', 'あくせすとーくん')
-            .then((res) => {
-                console.log(res)
-            })
+        let params = new URLSearchParams();
+        params.append('text', 'テストだよー');
+
+        axios.post('/v1/liff/getAccessToken', params)
+            .then(response => {
+                console.log('送信したテキスト: ' + response.data.text);
+            }).catch(error => {
+                console.log(error);
+            });
     },
     mounted: function(){
         // alert(this.liffId)
