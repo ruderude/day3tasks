@@ -32,6 +32,8 @@
                             </v-list-item>
                         </v-list-group>
                     </v-list>
+                    <v-btn @click="getAccess()">GET</v-btn>
+                    <v-btn @click="postAccess()">POST</v-btn>
                 </v-card>
             </v-container>
         </v-main>
@@ -55,6 +57,7 @@ const bugsnagVue = Bugsnag.getPlugin('vue')
 bugsnagVue.installVueErrorHandler(Vue)
 
 export default {
+    name: "History",
     data () {
         return {
             items: [
@@ -110,22 +113,43 @@ export default {
     methods: {
         hello: function() {
             console.log('hello hello')
+        },
+        getAccess: function() {
+            console.log('GET')
+            axios.get('getAccessToken?text=テキストテスト')
+                .then(response => {
+                    console.log('送信したテキスト: ' + response.data.message);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+        },
+        postAccess: function() {
+            console.log('POST')
+            axios.post('getAccessToken', {
+                text: 'postヒストリーテストだよー'
+            })
+                .then(response => {
+                    console.log('送信したテキスト: ' + response.data.message);
+                }).catch(error => {
+                    console.log(error);
+                });
         }
     },
     created : function(){
         console.log('created')
-        axios.defaults.headers.common = {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        };
-        axios.post('/v1/liff/getAccessToken', {
-            text: 'ヒストリーテストだよー'
-        })
-            .then(response => {
-                console.log('送信したテキスト: ' + response.data.text);
-            }).catch(error => {
-                console.log(error);
-            });
+        // axios.defaults.headers.common = {
+        //     'X-Requested-With': 'XMLHttpRequest',
+        //     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        // };
+        // axios.post('/v1/liff/getAccessToken', {
+        //     text: 'ヒストリーテストだよー'
+        // })
+        //     .then(response => {
+        //         console.log('送信したテキスト: ' + response.data.text);
+        //     }).catch(error => {
+        //         console.log(error);
+        //     });
         },
     mounted : function(){
         console.log('mounted')

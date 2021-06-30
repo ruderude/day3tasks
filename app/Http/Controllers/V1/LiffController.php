@@ -20,9 +20,23 @@ class LiffController extends Controller
         return view('liff.history');
     }
 
-    public function getAccessToken($accessToken = 'でふぉ')
+    public function getAccessTokenget(Request $request)
     {
-        Log::debug('アクセストークン：' . $accessToken);
-        return $accessToken;
+        Log::debug('ゲット：' . print_r($request->all(), true));
+        $data = [
+            "message" => $request->text
+        ];
+        // Log::debug('データ：' . print_r($data, true));
+        return $data;
+    }
+
+    public function getAccessTokenpost(Request $request)
+    {
+        Log::debug('ポスト：' . print_r($request->all(), true));
+        $data = [
+            "message" => $request->text
+        ];
+        // Log::debug('データ：' . print_r($data, true));
+        return $data;
     }
 }

@@ -5717,6 +5717,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -5727,6 +5729,7 @@ _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
 var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('vue');
 bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "History",
   data: function data() {
     return {
       items: [{
@@ -5786,21 +5789,39 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   methods: {
     hello: function hello() {
       console.log('hello hello');
+    },
+    getAccess: function getAccess() {
+      console.log('GET');
+      axios.get('getAccessToken?text=テキストテスト').then(function (response) {
+        console.log('送信したテキスト: ' + response.data.message);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    postAccess: function postAccess() {
+      console.log('POST');
+      axios.post('getAccessToken', {
+        text: 'postヒストリーテストだよー'
+      }).then(function (response) {
+        console.log('送信したテキスト: ' + response.data.message);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   created: function created() {
-    console.log('created');
-    axios.defaults.headers.common = {
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    };
-    axios.post('/v1/liff/getAccessToken', {
-      text: 'ヒストリーテストだよー'
-    }).then(function (response) {
-      console.log('送信したテキスト: ' + response.data.text);
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    console.log('created'); // axios.defaults.headers.common = {
+    //     'X-Requested-With': 'XMLHttpRequest',
+    //     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    // };
+    // axios.post('/v1/liff/getAccessToken', {
+    //     text: 'ヒストリーテストだよー'
+    // })
+    //     .then(response => {
+    //         console.log('送信したテキスト: ' + response.data.text);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
   },
   mounted: function mounted() {
     console.log('mounted');
@@ -42529,6 +42550,30 @@ var render = function() {
                       )
                     }),
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.getAccess()
+                        }
+                      }
+                    },
+                    [_vm._v("GET")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.postAccess()
+                        }
+                      }
+                    },
+                    [_vm._v("POST")]
                   )
                 ],
                 1
