@@ -5775,9 +5775,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     console.log('created');
-    var params = new URLSearchParams();
-    params.append('text', 'ヒストリーテストだよー');
-    axios.post('/v1/liff/getAccessToken', params).then(function (response) {
+    axios.post('/v1/liff/getAccessToken', {
+      text: 'ヒストリーテストだよー'
+    }).then(function (response) {
       console.log('送信したテキスト: ' + response.data.text);
     })["catch"](function (error) {
       console.log(error);

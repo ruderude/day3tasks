@@ -102,10 +102,9 @@
         },
         created : function(){
             console.log('created')
-            let params = new URLSearchParams();
-            params.append('text', 'ヒストリーテストだよー');
-
-            axios.post('/v1/liff/getAccessToken', params)
+            axios.post('/v1/liff/getAccessToken', {
+                text: 'ヒストリーテストだよー'
+            })
                 .then(response => {
                     console.log('送信したテキスト: ' + response.data.text);
                 }).catch(error => {
