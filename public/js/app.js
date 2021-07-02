@@ -6116,7 +6116,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   mounted: function mounted() {
     // alert(this.liffId)
     // this.liffInit(this.liffId)
-    _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(window.liff)); // window.liff.init({
+    _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(this.liffId)); // window.liff.init({
     //         liffId: this.liffId
     //     })
     //     .then(() => {

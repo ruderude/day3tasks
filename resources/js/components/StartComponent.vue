@@ -225,7 +225,7 @@ export default {
     mounted: function(){
         // alert(this.liffId)
         // this.liffInit(this.liffId)
-        Bugsnag.notify(new Error(window.liff))
+        Bugsnag.notify(new Error(this.liffId))
         // window.liff.init({
         //         liffId: this.liffId
         //     })
