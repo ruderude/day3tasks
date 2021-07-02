@@ -224,7 +224,23 @@ export default {
     },
     mounted: function(){
         // alert(this.liffId)
-        this.liffInit(this.liffId)
+        // this.liffInit(this.liffId)
+        window.liff.init({
+                liffId: liffId
+            })
+            .then(() => {
+                Bugsnag.notify(new Error(window.liff))
+                // start to use LIFF's api
+                this.accessToken = window.liff.getAccessToken();
+                // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
+                // .then((res) => {
+                //     console.log(res)
+                // })
+                // alert(this.accessToken)
+            })
+            .catch((err) => {
+                // alert(err)
+            });
     }
 }
 </script>
