@@ -200,7 +200,7 @@ export default {
         postAccess: function() {
             console.log('POST')
             axios.post('getAccessToken', {
-                text: 'postヒストリーテストだよー',
+                text: 'postテストだよー',
                 token: this.accessToken
             })
                 .then(response => {
@@ -212,7 +212,7 @@ export default {
     },
     created: function(){
         // alert(liff)
-        // Bugsnag.notify(new Error('Test error'))
+        Bugsnag.notify(new Error('Test error'))
 
         // axios.post('/v1/liff/getAccessToken', params)
         //     .then(response => {

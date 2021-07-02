@@ -6094,7 +6094,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
     postAccess: function postAccess() {
       console.log('POST');
       axios.post('getAccessToken', {
-        text: 'postヒストリーテストだよー',
+        text: 'postテストだよー',
         token: this.accessToken
       }).then(function (response) {
         console.log('送信したテキスト: ' + response.data.message);
@@ -6103,9 +6103,9 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       });
     }
   },
-  created: function created() {// alert(liff)
-    // Bugsnag.notify(new Error('Test error'))
-    // axios.post('/v1/liff/getAccessToken', params)
+  created: function created() {
+    // alert(liff)
+    _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error('Test error')); // axios.post('/v1/liff/getAccessToken', params)
     //     .then(response => {
     //         console.log('送信したテキスト: ' + response.data.text);
     //     }).catch(error => {
