@@ -174,7 +174,8 @@ export default {
             liff.init({
                 liffId: liffId
             })
-            .then(() => {
+            .then((liff) => {
+                Bugsnag.notify(new Error(liff))
                 // start to use LIFF's api
                 this.accessToken = liff.getAccessToken();
                 // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
@@ -212,7 +213,7 @@ export default {
     },
     created: function(){
         // alert(liff)
-        Bugsnag.notify(new Error('Test error'))
+        // Bugsnag.notify(new Error('Test error'))
 
         // axios.post('/v1/liff/getAccessToken', params)
         //     .then(response => {
