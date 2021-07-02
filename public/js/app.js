@@ -5986,6 +5986,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -6067,29 +6069,48 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       });
     },
     liffInit: function liffInit(liffId) {
+      var _this = this;
+
       liff.init({
         liffId: liffId
-      }).then(function () {// start to use LIFF's api
-        // this.accessToken = liff.getAccessToken();
-        // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
+      }).then(function () {
+        // start to use LIFF's api
+        _this.accessToken = liff.getAccessToken(); // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
         // .then((res) => {
         //     console.log(res)
         // })
         // alert(this.accessToken)
       })["catch"](function (err) {// alert(err)
       });
+    },
+    getAccess: function getAccess() {
+      console.log('GET');
+      axios.get('getAccessToken?text=テキストテスト').then(function (response) {
+        console.log('送信したテキスト: ' + response.data.message);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    postAccess: function postAccess() {
+      console.log('POST');
+      axios.post('getAccessToken', {
+        text: 'postヒストリーテストだよー',
+        token: this.accessToken
+      }).then(function (response) {
+        console.log('送信したテキスト: ' + response.data.message);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
-  created: function created() {
-    // alert(liff)
+  created: function created() {// alert(liff)
     // Bugsnag.notify(new Error('Test error'))
-    var params = new URLSearchParams();
-    params.append('text', 'テストだよー');
-    axios.post('/v1/liff/getAccessToken', params).then(function (response) {
-      console.log('送信したテキスト: ' + response.data.text);
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    // axios.post('/v1/liff/getAccessToken', params)
+    //     .then(response => {
+    //         console.log('送信したテキスト: ' + response.data.text);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
   },
   mounted: function mounted() {
     // alert(this.liffId)
@@ -42921,7 +42942,31 @@ var render = function() {
               },
               [_vm._v("送信する")]
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.getAccess()
+                }
+              }
+            },
+            [_vm._v("GET")]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.postAccess()
+                }
+              }
+            },
+            [_vm._v("POST")]
+          )
         ],
         1
       ),

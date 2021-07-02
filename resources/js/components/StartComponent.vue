@@ -60,6 +60,8 @@
                 </div>
                 <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
             </div>
+            <v-btn @click="getAccess()">GET</v-btn>
+            <v-btn @click="postAccess()">POST</v-btn>
         </v-main>
         
         <v-footer>
@@ -174,7 +176,7 @@ export default {
             })
             .then(() => {
                 // start to use LIFF's api
-                // this.accessToken = liff.getAccessToken();
+                this.accessToken = liff.getAccessToken();
                 // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
                 // .then((res) => {
                 //     console.log(res)
@@ -185,24 +187,43 @@ export default {
                 // alert(err)
             });
         },
+        getAccess: function() {
+            console.log('GET')
+            axios.get('getAccessToken?text=テキストテスト')
+                .then(response => {
+                    console.log('送信したテキスト: ' + response.data.message);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+        },
+        postAccess: function() {
+            console.log('POST')
+            axios.post('getAccessToken', {
+                text: 'postヒストリーテストだよー',
+                token: this.accessToken
+            })
+                .then(response => {
+                    console.log('送信したテキスト: ' + response.data.message);
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
     },
     created: function(){
         // alert(liff)
         // Bugsnag.notify(new Error('Test error'))
-        let params = new URLSearchParams();
-        params.append('text', 'テストだよー');
 
-        axios.post('/v1/liff/getAccessToken', params)
-            .then(response => {
-                console.log('送信したテキスト: ' + response.data.text);
-            }).catch(error => {
-                console.log(error);
-            });
+        // axios.post('/v1/liff/getAccessToken', params)
+        //     .then(response => {
+        //         console.log('送信したテキスト: ' + response.data.text);
+        //     }).catch(error => {
+        //         console.log(error);
+        //     });
     },
     mounted: function(){
         // alert(this.liffId)
         this.liffInit(this.liffId)
-        
     }
 }
 </script>

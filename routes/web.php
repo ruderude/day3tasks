@@ -26,6 +26,7 @@ Route::post("/v1/line/entry", "V1\\LineController@entry")->name("line.entry");
 // LINE LIFF
 Route::get("/v1/liff/today", "V1\LiffController@today")->name("liff.today");
 Route::get("/v1/liff/history", "V1\LiffController@history")->name("liff.history");
+
 Route::get("/v1/liff/getAccessToken", "V1\LiffController@getAccessTokenget")->name("liff.getAccessToken");
 Route::post("/v1/liff/getAccessToken", "V1\LiffController@getAccessTokenpost")->name("liff.postAccessToken");
 
