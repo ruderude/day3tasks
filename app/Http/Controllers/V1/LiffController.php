@@ -43,5 +43,7 @@ class LiffController extends Controller
     public function getUser(Request $request)
     {
         Log::debug('アクセストークン：' . print_r($request->all(), true));
+
+        return $request->all();
     }
 }
