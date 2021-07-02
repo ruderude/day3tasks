@@ -74,6 +74,7 @@
 import Vue from 'vue'
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
+import liff from '@line/liff';
 
 Bugsnag.start({
     apiKey: 'd96162df63a8803bcee425928dcd0f36',
@@ -225,23 +226,24 @@ export default {
     mounted: function(){
         // alert(this.liffId)
         // this.liffInit(this.liffId)
-        Bugsnag.notify(new Error(this.liffId))
-        // window.liff.init({
-        //         liffId: this.liffId
-        //     })
-        //     .then(() => {
-        //         Bugsnag.notify(new Error(window.liff))
-        //         // start to use LIFF's api
-        //         this.accessToken = window.liff.getAccessToken();
-        //         // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
-        //         // .then((res) => {
-        //         //     console.log(res)
-        //         // })
-        //         // alert(this.accessToken)
-        //     })
-        //     .catch((err) => {
-        //         // alert(err)
-        //     });
+        // Bugsnag.notify(new Error(this.liffId))
+        liff.init({
+                liffId: this.liffId
+            })
+            .then(() => {
+                // Bugsnag.notify(new Error(window.liff))
+                // start to use LIFF's api
+                this.accessToken = liff.getAccessToken();
+                Bugsnag.notify(new Error(this.accessToken))
+                // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
+                // .then((res) => {
+                //     console.log(res)
+                // })
+                // alert(this.accessToken)
+            })
+            .catch((err) => {
+                // alert(err)
+            });
     }
 }
 </script>
