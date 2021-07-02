@@ -6114,22 +6114,24 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
     //     });
   },
   mounted: function mounted() {
-    var _this2 = this;
-
     // alert(this.liffId)
     // this.liffInit(this.liffId)
-    window.liff.init({
-      liffId: this.liffId
-    }).then(function () {
-      _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(window.liff)); // start to use LIFF's api
-
-      _this2.accessToken = window.liff.getAccessToken(); // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
-      // .then((res) => {
-      //     console.log(res)
-      // })
-      // alert(this.accessToken)
-    })["catch"](function (err) {// alert(err)
-    });
+    _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(window.liff)); // window.liff.init({
+    //         liffId: this.liffId
+    //     })
+    //     .then(() => {
+    //         Bugsnag.notify(new Error(window.liff))
+    //         // start to use LIFF's api
+    //         this.accessToken = window.liff.getAccessToken();
+    //         // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
+    //         // .then((res) => {
+    //         //     console.log(res)
+    //         // })
+    //         // alert(this.accessToken)
+    //     })
+    //     .catch((err) => {
+    //         // alert(err)
+    //     });
   }
 });
 
