@@ -6130,21 +6130,20 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   mounted: function mounted() {
     var _this2 = this;
 
-    // alert(this.liffId)
-    // this.liffInit(this.liffId)
-    // Bugsnag.notify(new Error(this.liffId))
     _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
       liffId: this.liffId
     }).then(function () {
-      // Bugsnag.notify(new Error(window.liff))
-      // start to use LIFF's api
-      _this2.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken();
-      _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(_this2.accessToken)); // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
-      // .then((res) => {
-      //     console.log(res)
-      // })
-      // alert(this.accessToken)
-    })["catch"](function (err) {// alert(err)
+      _this2.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
+
+      axios.post('/v1/liff/getUser', {
+        accessToken: _this2.accessToken
+      }).then(function (response) {
+        console.log('ユーザー情報：' + response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    })["catch"](function (err) {
+      _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
     });
   }
 });

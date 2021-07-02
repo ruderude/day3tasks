@@ -224,25 +224,23 @@ export default {
         //     });
     },
     mounted: function(){
-        // alert(this.liffId)
-        // this.liffInit(this.liffId)
-        // Bugsnag.notify(new Error(this.liffId))
         liff.init({
                 liffId: this.liffId
             })
             .then(() => {
-                // Bugsnag.notify(new Error(window.liff))
-                // start to use LIFF's api
                 this.accessToken = liff.getAccessToken();
-                Bugsnag.notify(new Error(this.accessToken))
-                // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
-                // .then((res) => {
-                //     console.log(res)
-                // })
-                // alert(this.accessToken)
+                // Bugsnag.notify(new Error(this.accessToken))
+                axios.post('/v1/liff/getUser', {
+                    accessToken: this.accessToken
+                })
+                    .then(response => {
+                        console.log('ユーザー情報：' + response.data);
+                    }).catch(error => {
+                        console.log(error);
+                    });
             })
             .catch((err) => {
-                // alert(err)
+                Bugsnag.notify(new Error(err))
             });
     }
 }
