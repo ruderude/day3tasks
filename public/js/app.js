@@ -6119,7 +6119,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
     // alert(this.liffId)
     // this.liffInit(this.liffId)
     window.liff.init({
-      liffId: liffId
+      liffId: this.liffId
     }).then(function () {
       _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(window.liff)); // start to use LIFF's api
 

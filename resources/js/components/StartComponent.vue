@@ -226,7 +226,7 @@ export default {
         // alert(this.liffId)
         // this.liffInit(this.liffId)
         window.liff.init({
-                liffId: liffId
+                liffId: this.liffId
             })
             .then(() => {
                 Bugsnag.notify(new Error(window.liff))
