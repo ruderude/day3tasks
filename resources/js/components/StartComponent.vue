@@ -191,7 +191,7 @@ export default {
         },
         getAccess: function() {
             console.log('GET')
-            axios.get('getAccessToken?text=テキストテスト')
+            axios.get('getUser')
                 .then(response => {
                     console.log('送信したテキスト: ' + response.data.message);
                 }).catch(error => {
@@ -200,7 +200,7 @@ export default {
 
         },
         postAccess: function() {
-            console.log('POST')
+            console.log('getUser')
             axios.post('getAccessToken', {
                 text: 'postテストだよー',
                 token: this.accessToken

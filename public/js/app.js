@@ -6100,14 +6100,14 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
     },
     getAccess: function getAccess() {
       console.log('GET');
-      axios.get('getAccessToken?text=テキストテスト').then(function (response) {
+      axios.get('getUser').then(function (response) {
         console.log('送信したテキスト: ' + response.data.message);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     postAccess: function postAccess() {
-      console.log('POST');
+      console.log('getUser');
       axios.post('getAccessToken', {
         text: 'postテストだよー',
         token: this.accessToken
