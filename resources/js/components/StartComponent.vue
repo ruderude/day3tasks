@@ -206,8 +206,12 @@ export default {
             axios
                 .post("/today", data)
                 .then(response => {
-                    // console.log(res)
-                    this.setTasks(response.data);
+                    const tasks = response.data
+                    if (tasks.length <= 0) {
+                        this.taskInit()
+                    } else {
+                        this.setTasks(tasks)
+                    }
                     this.overlay = false
                 })
                 .catch(err => {
@@ -227,39 +231,39 @@ export default {
                     this.error = err
                 });
         },
-        setTasks: function(tasks) {
-            if (tasks.length > 0) {
-                this.tasks = tasks;
-                this.isTasks = true;
-                this.forms.splice(-this.forms.length)
-                this.forms.push({
+        taskInit: function() {
+            this.forms.splice(-this.forms.length)
+            this.forms.push(
+                {
                     id: 1,
-                    label: "やること追加1",
+                    label: "今日のやること１",
                     title: "",
                     comment: ""
-                });
-            } else {
-                this.forms.push(
-                    {
-                        id: 1,
-                        label: "今日のやること１",
-                        title: "",
-                        comment: ""
-                    },
-                    {
-                        id: 2,
-                        label: "今日のやること２",
-                        title: "",
-                        comment: ""
-                    },
-                    {
-                        id: 3,
-                        label: "今日のやること３",
-                        title: "",
-                        comment: ""
-                    }
-                );
-            }
+                },
+                {
+                    id: 2,
+                    label: "今日のやること２",
+                    title: "",
+                    comment: ""
+                },
+                {
+                    id: 3,
+                    label: "今日のやること３",
+                    title: "",
+                    comment: ""
+                }
+            );
+        },
+        setTasks: function(tasks) {
+            this.tasks = tasks;
+            this.isTasks = true;
+            this.forms.splice(-this.forms.length)
+            this.forms.push({
+                id: 1,
+                label: "やること追加1",
+                title: "",
+                comment: ""
+            });
         }
     },
     created: function() {
@@ -281,7 +285,12 @@ export default {
                     .then(response => {
                         // Bugsnag.notify(new Error(response.data))
                         // タスクセット
-                        this.setTasks(response.data);
+                        const tasks = response.data
+                        if (tasks.length <= 0) {
+                            this.taskInit()
+                        } else {
+                            this.setTasks(tasks)
+                        }
                         this.overlay = false
                     })
                     .catch(err => {

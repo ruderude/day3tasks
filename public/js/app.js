@@ -6129,8 +6129,13 @@ axios.defaults.headers.common = {
         access_token: this.accessToken
       };
       axios.post("/today", data).then(function (response) {
-        // console.log(res)
-        _this.setTasks(response.data);
+        var tasks = response.data;
+
+        if (tasks.length <= 0) {
+          _this.taskInit();
+        } else {
+          _this.setTasks(tasks);
+        }
 
         _this.overlay = false;
       })["catch"](function (err) {
@@ -6150,35 +6155,35 @@ axios.defaults.headers.common = {
         _this2.error = err;
       });
     },
+    taskInit: function taskInit() {
+      this.forms.splice(-this.forms.length);
+      this.forms.push({
+        id: 1,
+        label: "今日のやること１",
+        title: "",
+        comment: ""
+      }, {
+        id: 2,
+        label: "今日のやること２",
+        title: "",
+        comment: ""
+      }, {
+        id: 3,
+        label: "今日のやること３",
+        title: "",
+        comment: ""
+      });
+    },
     setTasks: function setTasks(tasks) {
-      if (tasks.length > 0) {
-        this.tasks = tasks;
-        this.isTasks = true;
-        this.forms.splice(-this.forms.length);
-        this.forms.push({
-          id: 1,
-          label: "やること追加1",
-          title: "",
-          comment: ""
-        });
-      } else {
-        this.forms.push({
-          id: 1,
-          label: "今日のやること１",
-          title: "",
-          comment: ""
-        }, {
-          id: 2,
-          label: "今日のやること２",
-          title: "",
-          comment: ""
-        }, {
-          id: 3,
-          label: "今日のやること３",
-          title: "",
-          comment: ""
-        });
-      }
+      this.tasks = tasks;
+      this.isTasks = true;
+      this.forms.splice(-this.forms.length);
+      this.forms.push({
+        id: 1,
+        label: "やること追加1",
+        title: "",
+        comment: ""
+      });
     }
   },
   created: function created() {// alert(liff)
@@ -6198,7 +6203,13 @@ axios.defaults.headers.common = {
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
         // タスクセット
-        _this3.setTasks(response.data);
+        var tasks = response.data;
+
+        if (tasks.length <= 0) {
+          _this3.taskInit();
+        } else {
+          _this3.setTasks(tasks);
+        }
 
         _this3.overlay = false;
       })["catch"](function (err) {
