@@ -74,10 +74,10 @@
                     </v-row>
                 </v-form>
             </v-container>
+            <div id="error" class="error">{{ error }}</div>
             <div id="liff_id">LIFF ID：{{ liffId }}</div>
             <div id="line_id">LINE ID：{{ lineId }}</div>
             <div id="access_token">access_token：{{ accessToken }}</div>
-            <div id="test">test:{{ test }}</div>
             <ul>
                 <li v-for="task in tasks">{{ task.id }}:::{{ task.title }}:::{{ task.done }}</li>
             </ul>
@@ -87,8 +87,6 @@
                 </div>
                 <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
             </div>
-            <v-btn @click="getAccess()">GET</v-btn>
-            <v-btn @click="postAccess()">POST</v-btn>
         </v-main>
         
         <v-footer>
@@ -102,7 +100,7 @@ import Vue from 'vue'
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
 import liff from '@line/liff';
-import ApiHandler from '../lib/api';
+// import ApiHandler from '../lib/api';
 
 Bugsnag.start({
     apiKey: 'd96162df63a8803bcee425928dcd0f36',
@@ -112,7 +110,11 @@ Bugsnag.start({
 const bugsnagVue = Bugsnag.getPlugin('vue')
 bugsnagVue.installVueErrorHandler(Vue)
 
-const apiHandler = new ApiHandler()
+// const apiHandler = new ApiHandler()
+axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
 
 export default {
     name: "Start",
@@ -132,7 +134,7 @@ export default {
             forms: [],
             tasks: [],
             isTasks: false,
-            test: ""
+            error: ""
         }
     },
     computed: {
@@ -170,9 +172,14 @@ export default {
             }
             
             axios.post('/today', data)
-                .then((res) => {
-                    console.log(res)
+                .then((response) => {
+                    // console.log(res)
+                    this.setTasks(response.data)
+
                 })
+                .catch((err) => {
+                    this.error = err
+                });
             
         },
         liffInit: function (liffId) {
@@ -180,37 +187,46 @@ export default {
                 liffId: liffId
             })
             .then((liff) => {
-                Bugsnag.notify(new Error(liff))
+                // Bugsnag.notify(new Error(liff))
                 this.accessToken = liff.getAccessToken();
             })
             .catch((err) => {
-                // alert(err)
+                this.error = err
             });
         },
-        getAccess: function() {
-            const test = apiHandler.test()
-            this.test = test
-            // console.log('GET')
-            // axios.get('getUser')
-            //     .then(response => {
-            //         console.log('送信したテキスト: ' + response.data.message);
-            //     }).catch(error => {
-            //         console.log(error);
-            //     });
-
+        setTasks: function (tasks) {
+            if(tasks.length > 0) {
+                this.tasks = tasks
+                this.isTasks = true
+                this.forms.push({
+                    id: 1,
+                    label: 'やること追加1',
+                    title: '',
+                    comment: '',
+                })
+            } else {
+                this.forms.push(
+                    {
+                        id: 1,
+                        label: '今日のやること１',
+                        title: '',
+                        comment: '',
+                    },
+                    {
+                        id: 2,
+                        label: '今日のやること２',
+                        title: '',
+                        comment: '',
+                    },
+                    {
+                        id: 3,
+                        label: '今日のやること３',
+                        title: '',
+                        comment: '',
+                    },
+                )
+            }
         },
-        postAccess: function() {
-            console.log('getUser')
-            axios.post('getAccessToken', {
-                text: 'postテストだよー',
-                token: this.accessToken
-            })
-                .then(response => {
-                    console.log('送信したテキスト: ' + response.data.message);
-                }).catch(error => {
-                    console.log(error);
-                });
-        }
     },
     created: function(){
         // alert(liff)
@@ -229,38 +245,8 @@ export default {
                 })
                     .then(response => {
                         // Bugsnag.notify(new Error(response.data))
-                        // nullチェックはこれでよいか？
-                        if(response.data.length > 0) {
-                            this.tasks = response.data
-                            this.isTasks = true
-                            this.forms.push({
-                                id: 1,
-                                label: 'やること追加1',
-                                title: '',
-                                comment: '',
-                            })
-                        } else {
-                            this.forms.push(
-                                {
-                                    id: 1,
-                                    label: '今日のやること１',
-                                    title: '',
-                                    comment: '',
-                                },
-                                {
-                                    id: 2,
-                                    label: '今日のやること２',
-                                    title: '',
-                                    comment: '',
-                                },
-                                {
-                                    id: 3,
-                                    label: '今日のやること３',
-                                    title: '',
-                                    comment: '',
-                                },
-                            )
-                        }
+                        // タスクセット
+                        this.setTasks(response.data)
                     }).catch(error => {
                         console.log(error);
                         Bugsnag.notify(new Error('/v1/liff/setTasks error'))

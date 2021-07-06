@@ -5929,9 +5929,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @line/liff */ "./node_modules/@line/liff/dist/lib/index.js");
 /* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_line_liff__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _lib_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/api */ "./resources/js/lib/api.js");
-//
-//
 //
 //
 //
@@ -6032,15 +6029,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // import ApiHandler from '../lib/api';
 
 _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
   apiKey: 'd96162df63a8803bcee425928dcd0f36',
   plugins: [new _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default.a()]
 });
 var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('vue');
-bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
-var apiHandler = new _lib_api__WEBPACK_IMPORTED_MODULE_4__["default"]();
+bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a); // const apiHandler = new ApiHandler()
+
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
   props: {
@@ -6059,7 +6060,7 @@ var apiHandler = new _lib_api__WEBPACK_IMPORTED_MODULE_4__["default"]();
       forms: [],
       tasks: [],
       isTasks: false,
-      test: ""
+      error: ""
     };
   },
   computed: {},
@@ -6088,91 +6089,78 @@ var apiHandler = new _lib_api__WEBPACK_IMPORTED_MODULE_4__["default"]();
       this.forms.splice(num, 1); // console.log(this.forms)
     },
     submitForm: function submitForm() {
+      var _this = this;
+
       var data = {
         forms: this.forms,
         access_token: this.accessToken
       };
-      axios.post('/today', data).then(function (res) {
-        console.log(res);
+      axios.post('/today', data).then(function (response) {
+        // console.log(res)
+        _this.setTasks(response.data);
+      })["catch"](function (err) {
+        _this.error = err;
       });
     },
     liffInit: function liffInit(liffId) {
-      var _this = this;
+      var _this2 = this;
 
       _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
         liffId: liffId
       }).then(function (liff) {
-        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(liff));
-        _this.accessToken = liff.getAccessToken();
-      })["catch"](function (err) {// alert(err)
+        // Bugsnag.notify(new Error(liff))
+        _this2.accessToken = liff.getAccessToken();
+      })["catch"](function (err) {
+        _this2.error = err;
       });
     },
-    getAccess: function getAccess() {
-      var test = apiHandler.test();
-      this.test = test; // console.log('GET')
-      // axios.get('getUser')
-      //     .then(response => {
-      //         console.log('送信したテキスト: ' + response.data.message);
-      //     }).catch(error => {
-      //         console.log(error);
-      //     });
-    },
-    postAccess: function postAccess() {
-      console.log('getUser');
-      axios.post('getAccessToken', {
-        text: 'postテストだよー',
-        token: this.accessToken
-      }).then(function (response) {
-        console.log('送信したテキスト: ' + response.data.message);
-      })["catch"](function (error) {
-        console.log(error);
-      });
+    setTasks: function setTasks(tasks) {
+      if (tasks.length > 0) {
+        this.tasks = tasks;
+        this.isTasks = true;
+        this.forms.push({
+          id: 1,
+          label: 'やること追加1',
+          title: '',
+          comment: ''
+        });
+      } else {
+        this.forms.push({
+          id: 1,
+          label: '今日のやること１',
+          title: '',
+          comment: ''
+        }, {
+          id: 2,
+          label: '今日のやること２',
+          title: '',
+          comment: ''
+        }, {
+          id: 3,
+          label: '今日のやること３',
+          title: '',
+          comment: ''
+        });
+      }
     }
   },
   created: function created() {// alert(liff)
     // Bugsnag.notify(new Error('Test error'))
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
       liffId: this.liffId
     }).then(function () {
-      _this2.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
+      _this3.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
 
       axios.post('/v1/liff/setTasks', {
-        access_token: _this2.accessToken
+        access_token: _this3.accessToken
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
-        // nullチェックはこれでよいか？
-        if (response.data.length > 0) {
-          _this2.tasks = response.data;
-          _this2.isTasks = true;
-
-          _this2.forms.push({
-            id: 1,
-            label: 'やること追加1',
-            title: '',
-            comment: ''
-          });
-        } else {
-          _this2.forms.push({
-            id: 1,
-            label: '今日のやること１',
-            title: '',
-            comment: ''
-          }, {
-            id: 2,
-            label: '今日のやること２',
-            title: '',
-            comment: ''
-          }, {
-            id: 3,
-            label: '今日のやること３',
-            title: '',
-            comment: ''
-          });
-        }
+        // タスクセット
+        _this3.setTasks(response.data);
       })["catch"](function (error) {
         console.log(error);
         _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error('/v1/liff/setTasks error'));
@@ -43032,6 +43020,10 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c("div", { staticClass: "error", attrs: { id: "error" } }, [
+            _vm._v(_vm._s(_vm.error))
+          ]),
+          _vm._v(" "),
           _c("div", { attrs: { id: "liff_id" } }, [
             _vm._v("LIFF ID：" + _vm._s(_vm.liffId))
           ]),
@@ -43042,10 +43034,6 @@ var render = function() {
           _vm._v(" "),
           _c("div", { attrs: { id: "access_token" } }, [
             _vm._v("access_token：" + _vm._s(_vm.accessToken))
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "test" } }, [
-            _vm._v("test:" + _vm._s(_vm.test))
           ]),
           _vm._v(" "),
           _c(
@@ -43101,31 +43089,7 @@ var render = function() {
               },
               [_vm._v("送信する")]
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.getAccess()
-                }
-              }
-            },
-            [_vm._v("GET")]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.postAccess()
-                }
-              }
-            },
-            [_vm._v("POST")]
-          )
+          ])
         ],
         1
       ),
@@ -101100,46 +101064,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartComponent_vue_vue_type_template_id_6af0dc66_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartComponent_vue_vue_type_template_id_6af0dc66_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/lib/api.js":
-/*!*********************************!*\
-  !*** ./resources/js/lib/api.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ApiHandler; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var ApiHandler = /*#__PURE__*/function () {
-  function ApiHandler() {
-    _classCallCheck(this, ApiHandler);
-
-    axios.defaults.headers.common = {
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    };
-  }
-
-  _createClass(ApiHandler, [{
-    key: "test",
-    value: function test() {
-      return "あいうえお";
-    }
-  }]);
-
-  return ApiHandler;
-}();
 
 
 
