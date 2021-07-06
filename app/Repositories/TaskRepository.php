@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Log;
 
 class TaskRepository
 {
+    /**
+    * タスク作成
+    *  
+    * @param Request $request リクエスト
+    * @return array タスクを整理し内容を返却
+     */
     public function store(array $tasks, string $mid): void
     {
         Log::debug("レポジトリ" . print_r($tasks, true));

@@ -19,7 +19,7 @@ class FollowerRepository
         return $follower->mid ?? "";
     }
 
-    public function follow(string $mid): void
+    public function follow(string $mid, string $name, string $icon_url): void
     {
         try {
             DB::beginTransaction();
@@ -30,6 +30,8 @@ class FollowerRepository
                 ],
                 [
                     "blocked_at" => null,
+                    "name" => $name,
+                    "icon_url" => $icon_url,
                 ]
             );
 

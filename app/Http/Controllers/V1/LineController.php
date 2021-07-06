@@ -18,9 +18,15 @@ class LineController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * LINE Messaging APIからの処理
+     * 
+     * @return Response
+     */
     public function entry(): Response
     {
-        Log::debug('エントリー');
+        // Log::debug('エントリー');
+        // エンドポイントに届いた情報を取得
         $json = json_decode(file_get_contents("php://input"), true);
         if ($json == null) {
             return response("NOT FOUND", 404);
@@ -30,8 +36,9 @@ class LineController extends Controller
             return response("", 200);
         }
 
-        Log::debug(print_r($json,true));
+        // Log::debug(print_r($json,true));
 
+        // 各パラメータを変数に代入
         $event = $json["events"][0];
         $mid = $event["source"]["userId"];
         $type = $event["message"]["type"] ?? $event["type"];
@@ -51,7 +58,7 @@ class LineController extends Controller
             return response("NOT FOUND", 404);
         }
 
-        Log::debug(print_r($data,true));
+        // Log::debug(print_r($data,true));
 
         $this->service->entry($reply_token, $mid, $type, $data);
 

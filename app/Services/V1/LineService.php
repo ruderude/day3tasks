@@ -18,6 +18,7 @@ class LineService
         $this->followerRepository = $followerRepository;
     }
 
+    // ユーザーの操作によって処理を分岐
     public function entry(?string $reply_token, string $mid, string $type, ?string $data): void
     {
         switch ($type) {
@@ -108,8 +109,10 @@ class LineService
 
     public function follow(string $mid, string $reply_token): void
     {
-        // $data = $this->_get_profile($mid);
-        $this->followerRepository->follow($mid);
+        $data = $this->_get_profile($mid);
+        Log::debug('データ：' . print_r($data, true));
+        exit;
+        $this->followerRepository->follow($mid, $data["name"], $data["icon_url"]);
 
         // $data = [];
 
@@ -122,6 +125,28 @@ class LineService
     public function unfollow(string $mid): void
     {
         $this->followerRepository->unfollow($mid);
+    }
+
+    /**
+     * フォロワーがLINEに設定してるアイコンや名前などの情報を取得する関数
+     *
+     * @see https://developers.line.biz/ja/reference/messaging-api/#get-profile
+     * @param string $mid
+     * @return array
+     */
+    protected function _get_profile(string $mid): array
+    {
+        $curl = curl_init("https://api.line.me/v2/bot/profile/$mid");
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [
+            "Authorization: Bearer" . env("LINE_ACCESS_TOKEN"),
+        ]);
+        $json = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($json, true);
     }
 
 }
