@@ -8,8 +8,10 @@
             <v-container class="container mt-5">
 
                 <v-progress-circular
+                    v-show="overlay"
                     indeterminate
                     color="green"
+                    :size="50"
                 ></v-progress-circular>
 
                 <v-list v-if="isTasks" dense>

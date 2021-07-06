@@ -6057,6 +6057,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -42911,7 +42913,15 @@ var render = function() {
             { staticClass: "container mt-5" },
             [
               _c("v-progress-circular", {
-                attrs: { indeterminate: "", color: "green" }
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.overlay,
+                    expression: "overlay"
+                  }
+                ],
+                attrs: { indeterminate: "", color: "green", size: 50 }
               }),
               _vm._v(" "),
               _vm.isTasks
