@@ -117,7 +117,7 @@ class LineService
     public function follow(string $mid, string $reply_token): void
     {
         $data = $this->_get_profile($mid);
-        // Log::debug('データ：' . print_r($data, true));
+        Log::debug('データ：' . print_r($data, true));
         $this->followerRepository->follow($mid, $data["displayName"], $data["pictureUrl"]);
 
         // $data = [];

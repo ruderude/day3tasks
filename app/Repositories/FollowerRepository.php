@@ -34,9 +34,11 @@ class FollowerRepository
                     "icon_url" => $icon_url,
                 ]
             );
+            Log::debug('成功！');
 
             DB::commit();
         } catch (Exception $e) {
+            Log::debug('フォロワーレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
     }
