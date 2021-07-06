@@ -110,6 +110,8 @@ class LineService
     public function follow(string $mid, string $reply_token): void
     {
         $data = $this->_get_profile($mid);
+        Log::debug('データ：' . print_r($data, true));
+        exit;
         $this->followerRepository->follow($mid);
 
         // $data = [];
@@ -135,14 +137,13 @@ class LineService
     protected function _get_profile(string $mid): array
     {
         $access_token = env("LINE_ACCESS_TOKEN");
-        Log::debug('アクセスとーけん：' . print_r($access_token, true));
-        exit;
+        // Log::debug('アクセスとーけん：' . print_r($access_token, true));
         $curl = curl_init("https://api.line.me/v2/bot/profile/$mid");
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, [
-            "Authorization: Bearer $this->access_token",
+            "Authorization: Bearer $access_token",
         ]);
         $json = curl_exec($curl);
         curl_close($curl);
