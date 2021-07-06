@@ -5,7 +5,7 @@
         </v-app-bar>
 
         <v-main>
-            <v-container class="mt-5">
+            <v-container class="container mt-5">
 
                 <v-progress-circular
                     indeterminate
@@ -168,7 +168,7 @@ export default {
             tasks: [],
             isTasks: false,
             error: "",
-            overlay: true,
+            overlay: false,
         };
     },
     computed: {},
@@ -197,6 +197,7 @@ export default {
             // console.log(this.forms)
         },
         submitForm: function() {
+            this.overlay = true
             const data = {
                 forms: this.forms,
                 access_token: this.accessToken
@@ -207,9 +208,11 @@ export default {
                 .then(response => {
                     // console.log(res)
                     this.setTasks(response.data);
+                    this.overlay = false
                 })
                 .catch(err => {
                     this.error = err;
+                    this.overlay = false
                 });
         },
         liffInit: function(liffId) {
@@ -218,17 +221,17 @@ export default {
             })
                 .then(liff => {
                     // Bugsnag.notify(new Error(liff))
-                    this.accessToken = liff.getAccessToken();
+                    this.accessToken = liff.getAccessToken()
                 })
                 .catch(err => {
-                    this.error = err;
+                    this.error = err
                 });
         },
         setTasks: function(tasks) {
             if (tasks.length > 0) {
                 this.tasks = tasks;
                 this.isTasks = true;
-                this.forms.splice(-this.forms.length);
+                this.forms.splice(-this.forms.length)
                 this.forms.push({
                     id: 1,
                     label: "やること追加1",
@@ -264,11 +267,12 @@ export default {
         // Bugsnag.notify(new Error('Test error'))
     },
     mounted: function() {
+        this.overlay = true
         liff.init({
             liffId: this.liffId
         })
             .then(() => {
-                this.accessToken = liff.getAccessToken();
+                this.accessToken = liff.getAccessToken()
                 // Bugsnag.notify(new Error(this.accessToken))
                 axios
                     .post("/v1/liff/setTasks", {
@@ -278,14 +282,19 @@ export default {
                         // Bugsnag.notify(new Error(response.data))
                         // タスクセット
                         this.setTasks(response.data);
+                        this.overlay = false
                     })
-                    .catch(error => {
-                        console.log(error);
+                    .catch(err => {
+                        // console.log(err);
+                        this.error = err
+                        this.overlay = false
                         Bugsnag.notify(new Error("/v1/liff/setTasks error"));
                     });
             })
             .catch(err => {
-                Bugsnag.notify(new Error(err));
+                this.error = err
+                this.overlay = false
+                Bugsnag.notify(new Error(err))
             });
     }
 };
@@ -293,7 +302,7 @@ export default {
 
 <style scoped>
 .v-progress-circular {
-    margin: 1rem;
+    margin: 3rem;
     z-index: 100;
 }
 </style>

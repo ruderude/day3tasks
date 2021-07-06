@@ -6092,7 +6092,7 @@ axios.defaults.headers.common = {
       tasks: [],
       isTasks: false,
       error: "",
-      overlay: true
+      overlay: false
     };
   },
   computed: {},
@@ -6123,6 +6123,7 @@ axios.defaults.headers.common = {
     submitForm: function submitForm() {
       var _this = this;
 
+      this.overlay = true;
       var data = {
         forms: this.forms,
         access_token: this.accessToken
@@ -6130,8 +6131,11 @@ axios.defaults.headers.common = {
       axios.post("/today", data).then(function (response) {
         // console.log(res)
         _this.setTasks(response.data);
+
+        _this.overlay = false;
       })["catch"](function (err) {
         _this.error = err;
+        _this.overlay = false;
       });
     },
     liffInit: function liffInit(liffId) {
@@ -6183,6 +6187,7 @@ axios.defaults.headers.common = {
   mounted: function mounted() {
     var _this3 = this;
 
+    this.overlay = true;
     _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
       liffId: this.liffId
     }).then(function () {
@@ -6194,11 +6199,17 @@ axios.defaults.headers.common = {
         // Bugsnag.notify(new Error(response.data))
         // タスクセット
         _this3.setTasks(response.data);
-      })["catch"](function (error) {
-        console.log(error);
+
+        _this3.overlay = false;
+      })["catch"](function (err) {
+        // console.log(err);
+        _this3.error = err;
+        _this3.overlay = false;
         _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/v1/liff/setTasks error"));
       });
     })["catch"](function (err) {
+      _this3.error = err;
+      _this3.overlay = false;
       _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
     });
   }
@@ -10680,7 +10691,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-progress-circular[data-v-6af0dc66] {\n    margin: 1rem;\n    z-index: 100;\n}\n", ""]);
+exports.push([module.i, "\n.v-progress-circular[data-v-6af0dc66] {\n    margin: 3rem;\n    z-index: 100;\n}\n", ""]);
 
 // exports
 
@@ -42886,7 +42897,7 @@ var render = function() {
         [
           _c(
             "v-container",
-            { staticClass: "mt-5" },
+            { staticClass: "container mt-5" },
             [
               _c("v-progress-circular", {
                 attrs: { indeterminate: "", color: "green" }
