@@ -6,6 +6,12 @@
 
         <v-main>
             <v-container class="mt-5">
+
+                <v-progress-circular
+                    indeterminate
+                    color="green"
+                ></v-progress-circular>
+
                 <v-list v-if="isTasks" dense>
                     <v-list-group
                         v-for="task in tasks"
@@ -34,6 +40,7 @@
                         </v-list-item>
                     </v-list-group>
                 </v-list>
+
                 <v-form>
                     <v-row>
                         <v-col
@@ -88,6 +95,7 @@
                     </v-row>
                 </v-form>
             </v-container>
+
             <div id="error" class="error">{{ error }}</div>
             <div id="liff_id">LIFF ID：{{ liffId }}</div>
             <div id="line_id">LINE ID：{{ lineId }}</div>
@@ -280,4 +288,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-progress-circular {
+    margin: 1rem;
+}
+</style>
