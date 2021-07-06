@@ -242,6 +242,7 @@ export default {
                 })
                     .then(response => {
                         // Bugsnag.notify(new Error(response.data))
+                        // nullチェックはこれでよいか？
                         if(response.data) {
                             this.tasks = response.data
                             this.isTasks = true

@@ -6155,6 +6155,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
         access_token: _this2.accessToken
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
+        // nullチェックはこれでよいか？
         if (response.data) {
           _this2.tasks = response.data;
           _this2.isTasks = true;
