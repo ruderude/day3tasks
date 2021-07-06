@@ -108,7 +108,7 @@ class LineService
 
     public function follow(string $mid, string $reply_token): void
     {
-        $data = Line::get_profile($mid);
+        $data = $this->_get_profile($mid);
         $this->followerRepository->follow($mid, $data["name"], $data["icon_url"]);
 
         // $data = [];
@@ -122,6 +122,28 @@ class LineService
     public function unfollow(string $mid): void
     {
         $this->followerRepository->unfollow($mid);
+    }
+
+    /**
+     * フォロワーがLINEに設定してるアイコンや名前などの情報を取得する関数
+     *
+     * @see https://developers.line.biz/ja/reference/messaging-api/#get-profile
+     * @param string $mid
+     * @return array
+     */
+    protected function _get_profile(string $mid): array
+    {
+        $curl = curl_init("https://api.line.me/v2/bot/profile/$mid");
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [
+            "Authorization: Bearer $this->access_token",
+        ]);
+        $json = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($json, true);
     }
 
 }
