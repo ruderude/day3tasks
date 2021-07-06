@@ -57,8 +57,8 @@ class LiffController extends Controller
         $user = Line::get_profile($access_token);
         // Log::debug('ユーザー情報：' . print_r($user, true));
         $tasks = $this->service->getTodayTasks($user["mid"]);
-        Log::debug('今日のタスク：' . print_r($tasks, true));
+        // Log::debug('今日のタスク：' . print_r($tasks, true));
 
-        return $request->all();
+        return $tasks;
     }
 }

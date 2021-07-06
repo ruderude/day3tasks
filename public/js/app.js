@@ -6056,8 +6056,8 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   computed: {},
   methods: {
     addForm: function addForm() {
-      var num = this.forms.length + 1;
-      console.log(num);
+      var num = this.forms.length + 1; // console.log(num)
+
       this.forms.push({
         id: num,
         label: '今日のやること' + num,
@@ -6128,6 +6128,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
         access_token: _this2.accessToken
       }).then(function (response) {
         console.log('ユーザー情報：' + response.data);
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(response.data));
       })["catch"](function (error) {
         console.log(error);
       });

@@ -134,7 +134,7 @@ export default {
     methods: {
         addForm: function () {
             const num = this.forms.length + 1
-            console.log(num)
+            // console.log(num)
             this.forms.push({
                 id: num,
                 label: '今日のやること' + num,
@@ -215,6 +215,7 @@ export default {
                 })
                     .then(response => {
                         console.log('ユーザー情報：' + response.data);
+                        Bugsnag.notify(new Error(response.data))
                     }).catch(error => {
                         console.log(error);
                     });
