@@ -39,9 +39,10 @@ class TaskService
     * タスク新規登録処理
     *  
     * @param array $tasks タスク
+    * @param string $access_token アクセストークン
     * @return array 保存し内容を返却
     */
-    public function store(array $forms, array $access_token): array
+    public function store(array $forms, string $access_token): array
     {
         // Log::debug('ストア' . print_r($forms, true));
         $tasks = $this->trim($forms);

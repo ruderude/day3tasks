@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class TaskRepository
 {
-    public function store(array $tasks, String $mid): void
+    public function store(array $tasks, string $mid): void
     {
         Log::debug("レポジトリ" . print_r($tasks, true));
         try {
