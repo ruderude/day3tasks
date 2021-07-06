@@ -41,7 +41,7 @@ class LiffController extends Controller
         return $data;
     }
 
-    public function getUser(Request $request)
+    public function setTasks(Request $request)
     {
         // Log::debug('ゲットユーザー：' . print_r($request->all(), true));
         $access_token = $request->post('access_token');

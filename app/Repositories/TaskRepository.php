@@ -17,7 +17,7 @@ class TaskRepository
      */
     public function store(array $tasks, string $mid): void
     {
-        Log::debug("レポジトリ" . print_r($tasks, true));
+        // Log::debug("レポジトリ" . print_r($tasks, true));
         try {
             DB::beginTransaction();
 
@@ -36,6 +36,5 @@ class TaskRepository
             Log::debug('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
-        Log::debug("レポジトリ完了");
     }
 }

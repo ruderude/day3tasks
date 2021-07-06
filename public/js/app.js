@@ -6029,20 +6029,28 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       accessToken: null,
       forms: [{
         id: 1,
-        label: '今日のやること１',
+        label: 'やること追加',
         title: '',
         comment: ''
-      }, {
-        id: 2,
-        label: '今日のやること２',
-        title: '',
-        comment: ''
-      }, {
-        id: 3,
-        label: '今日のやること３',
-        title: '',
-        comment: ''
-      }]
+      } // {
+      //     id: 1,
+      //     label: '今日のやること１',
+      //     title: '',
+      //     comment: '',
+      // },
+      // {
+      //     id: 2,
+      //     label: '今日のやること２',
+      //     title: '',
+      //     comment: '',
+      // },
+      // {
+      //     id: 3,
+      //     label: '今日のやること３',
+      //     title: '',
+      //     comment: '',
+      // },
+      ]
     };
   },
   computed: {},
@@ -6072,19 +6080,6 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       };
       axios.post('/today', data).then(function (res) {
         console.log(res);
-      });
-    },
-    onSubmit: function onSubmit() {
-      window.liff.sendMessages([{
-        type: 'text',
-        text: "\u304A\u540D\u524D\uFF1A\n".concat(this.formData.name)
-      }, {
-        type: 'text',
-        text: '送信が完了しました'
-      }]).then(function () {
-        window.liff.closeWindow();
-      })["catch"](function (e) {
-        window.alert('Error sending message: ' + e);
       });
     },
     liffInit: function liffInit(liffId) {
@@ -6129,7 +6124,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
     }).then(function () {
       _this2.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
 
-      axios.post('/v1/liff/getUser', {
+      axios.post('/v1/liff/setTasks', {
         access_token: _this2.accessToken
       }).then(function (response) {
         console.log('ユーザー情報：' + response.data);

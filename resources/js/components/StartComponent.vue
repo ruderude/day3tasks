@@ -103,22 +103,28 @@ export default {
             forms: [
                 {
                     id: 1,
-                    label: '今日のやること１',
+                    label: 'やること追加',
                     title: '',
                     comment: '',
                 },
-                {
-                    id: 2,
-                    label: '今日のやること２',
-                    title: '',
-                    comment: '',
-                },
-                {
-                    id: 3,
-                    label: '今日のやること３',
-                    title: '',
-                    comment: '',
-                },
+                // {
+                //     id: 1,
+                //     label: '今日のやること１',
+                //     title: '',
+                //     comment: '',
+                // },
+                // {
+                //     id: 2,
+                //     label: '今日のやること２',
+                //     title: '',
+                //     comment: '',
+                // },
+                // {
+                //     id: 3,
+                //     label: '今日のやること３',
+                //     title: '',
+                //     comment: '',
+                // },
             ]
         }
     },
@@ -156,25 +162,6 @@ export default {
                     console.log(res)
                 })
             
-        },
-        onSubmit: function () {
-            window.liff
-                .sendMessages([
-                {
-                    type: 'text',
-                    text: `お名前：\n${this.formData.name}`
-                },
-                {
-                    type: 'text',
-                    text: '送信が完了しました'
-                }
-                ])
-                    .then(() => {
-                    window.liff.closeWindow()
-                })
-                    .catch(e => {
-                    window.alert('Error sending message: ' + e)
-                })
         },
         liffInit: function (liffId) {
             liff.init({
@@ -223,7 +210,7 @@ export default {
             .then(() => {
                 this.accessToken = liff.getAccessToken();
                 // Bugsnag.notify(new Error(this.accessToken))
-                axios.post('/v1/liff/getUser', {
+                axios.post('/v1/liff/setTasks', {
                     access_token: this.accessToken
                 })
                     .then(response => {

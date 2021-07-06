@@ -16,6 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("mid")->comment("LINEのmid");
+            $table->foreign("mid")->references("mid")->on("followers")->OnDelete("cascade");
             $table->string("title")->comment("タスクタイトル");
             $table->text("detail")->nullable(true)->comment("タスク詳細");
             $table->boolean("done")->nullable(false)->default(false)->comment("完了フラグ");
