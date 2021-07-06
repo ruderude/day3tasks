@@ -218,7 +218,7 @@ export default {
                     .then(response => {
                         // Bugsnag.notify(new Error(response.data))
                         // nullチェックはこれでよいか？
-                        if(response.data) {
+                        if(response.data.length > 0) {
                             this.tasks = response.data
                             this.isTasks = true
                             this.forms.push({

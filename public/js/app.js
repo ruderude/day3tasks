@@ -6133,7 +6133,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
         // nullチェックはこれでよいか？
-        if (response.data) {
+        if (response.data.length > 0) {
           _this2.tasks = response.data;
           _this2.isTasks = true;
 
