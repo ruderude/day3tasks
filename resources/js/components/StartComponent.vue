@@ -301,8 +301,17 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    position: relative;
+}
+
 .v-progress-circular {
-    margin: 3rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     z-index: 100;
 }
 </style>

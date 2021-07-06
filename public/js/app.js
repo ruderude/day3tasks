@@ -10691,7 +10691,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-progress-circular[data-v-6af0dc66] {\n    margin: 3rem;\n    z-index: 100;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-6af0dc66] {\n    position: relative;\n}\n.v-progress-circular[data-v-6af0dc66] {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    margin: auto;\n    z-index: 100;\n}\n", ""]);
 
 // exports
 
