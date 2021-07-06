@@ -214,10 +214,10 @@ export default {
                     access_token: this.accessToken
                 })
                     .then(response => {
-                        console.log('ユーザー情報：' + response.data);
-                        Bugsnag.notify(new Error(response.data))
+                        Bugsnag.notify(new Error(response.data.data))
                     }).catch(error => {
                         console.log(error);
+                        Bugsnag.notify(new Error('/v1/liff/setTasks error'))
                     });
             })
             .catch((err) => {

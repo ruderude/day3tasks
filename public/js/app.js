@@ -6127,10 +6127,10 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       axios.post('/v1/liff/setTasks', {
         access_token: _this2.accessToken
       }).then(function (response) {
-        console.log('ユーザー情報：' + response.data);
-        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(response.data));
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(response.data.data));
       })["catch"](function (error) {
         console.log(error);
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error('/v1/liff/setTasks error'));
       });
     })["catch"](function (err) {
       _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
