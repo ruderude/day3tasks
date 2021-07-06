@@ -107,12 +107,18 @@ class LineService
         return file_get_contents("https://api-data.line.me/v2/bot/message/$id/content", false, stream_context_create($context));
     }
 
+    /**
+     * フォロー処理
+     * 
+     * @param string $mid
+     * @param string $reply_token
+     * @return void
+     */
     public function follow(string $mid, string $reply_token): void
     {
         $data = $this->_get_profile($mid);
-        Log::debug('データ：' . print_r($data, true));
-        exit;
-        $this->followerRepository->follow($mid);
+        // Log::debug('データ：' . print_r($data, true));
+        $this->followerRepository->follow($mid, $data["displayName"], $data["pictureUrl"]);
 
         // $data = [];
 
@@ -122,6 +128,12 @@ class LineService
         // $this->_reply($data, $reply_token);
     }
 
+    /**
+     * フォロー解除処理
+     * 
+     * @param string $mid
+     * @return void
+     */
     public function unfollow(string $mid): void
     {
         $this->followerRepository->unfollow($mid);
