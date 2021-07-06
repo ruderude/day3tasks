@@ -21,10 +21,10 @@ class TaskService
     * @param Request $request リクエスト
     * @return array タスクを整理し内容を返却
     */
-    public function trim(Request $request): array
+    public function trim(array $forms): array
     {
         $tasks = [];
-        foreach($request->all() as $task) {
+        foreach($forms as $task) {
             $task['title'] = isset($task['title']) ? trim(mb_convert_kana($task['title'], "s", 'UTF-8')) : "";
             if($task['title']) {
                 $tasks[] = $task;
@@ -40,11 +40,12 @@ class TaskService
     * @param array $tasks タスク
     * @return array 保存し内容を返却
     */
-    public function store(Request $request): array
+    public function store(array $forms): array
     {
-        $tasks = $this->trim($request);
+        // Log::debug('ストア' . print_r($forms, true));
+        $tasks = $this->trim($forms);
         $this->repository->store($tasks);
-        Log::debug('ストア' . print_r($tasks, true));
+        // Log::debug('ストア' . print_r($tasks, true));
         return $tasks;
     }
 }

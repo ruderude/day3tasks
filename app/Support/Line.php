@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class Line
 {
-    public static function get_profile(Request $request): array
+    public static function get_profile(Request $request, String $access_token): array
     {
-        $access_token = $request->post('accessToken');
         // Log::debug('アクセストークン：' . print_r($access_token, true));
 
         $ch = curl_init();

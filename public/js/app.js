@@ -6062,11 +6062,15 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       this.forms.splice(num, 1); // console.log(this.forms)
     },
     submitForm: function submitForm() {
+      var data = {
+        forms: this.forms,
+        access_token: this.accessToken
+      };
       axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       };
-      axios.post('/today', this.forms).then(function (res) {
+      axios.post('/today', data).then(function (res) {
         console.log(res);
       });
     },
@@ -6126,7 +6130,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       _this2.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
 
       axios.post('/v1/liff/getUser', {
-        accessToken: _this2.accessToken
+        access_token: _this2.accessToken
       }).then(function (response) {
         console.log('ユーザー情報：' + response.data);
       })["catch"](function (error) {

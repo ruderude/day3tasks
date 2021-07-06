@@ -26,7 +26,9 @@ class TodayController extends Controller
     {
         Log::debug(print_r($request->all(), true));
 
-        $tasks = $this->service->store($request);
+        $forms = $request["forms"];
+        $access_token = $request["access_token"];
+        $tasks = $this->service->store($forms);
         // Log::debug(print_r($tasks, true));
 
         return $tasks;
