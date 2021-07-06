@@ -6002,6 +6002,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -6050,7 +6053,8 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       //     title: '',
       //     comment: '',
       // },
-      ]
+      ],
+      tasks: []
     };
   },
   computed: {},
@@ -6127,7 +6131,8 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       axios.post('/v1/liff/setTasks', {
         access_token: _this2.accessToken
       }).then(function (response) {
-        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(response.data.data));
+        // Bugsnag.notify(new Error(response.data))
+        _this2.tasks = response.data;
       })["catch"](function (error) {
         console.log(error);
         _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error('/v1/liff/setTasks error'));
@@ -42925,6 +42930,22 @@ var render = function() {
           _c("div", { attrs: { id: "access_token" } }, [
             _vm._v("access_token：" + _vm._s(_vm.accessToken))
           ]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.tasks, function(task) {
+              return _c("li", [
+                _vm._v(
+                  _vm._s(task.id) +
+                    ":::" +
+                    _vm._s(task.title) +
+                    ":::" +
+                    _vm._s(task.done)
+                )
+              ])
+            }),
+            0
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "form" }, [
             _c("div", { staticClass: "control" }, [

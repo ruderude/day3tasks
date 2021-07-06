@@ -55,6 +55,9 @@
             <div id="liff_id">LIFF ID：{{ liffId }}</div>
             <div id="line_id">LINE ID：{{ lineId }}</div>
             <div id="access_token">access_token：{{ accessToken }}</div>
+            <ul>
+                <li v-for="task in tasks">{{ task.id }}:::{{ task.title }}:::{{ task.done }}</li>
+            </ul>
             <div class="form">
                 <div class="control">
                     <input class="input" type="text" placeholder="お名前" v-model="formData.name">
@@ -125,7 +128,8 @@ export default {
                 //     title: '',
                 //     comment: '',
                 // },
-            ]
+            ],
+            tasks: [],
         }
     },
     computed: {
@@ -214,7 +218,8 @@ export default {
                     access_token: this.accessToken
                 })
                     .then(response => {
-                        Bugsnag.notify(new Error(response.data.data))
+                        // Bugsnag.notify(new Error(response.data))
+                        this.tasks = response.data
                     }).catch(error => {
                         console.log(error);
                         Bugsnag.notify(new Error('/v1/liff/setTasks error'))
