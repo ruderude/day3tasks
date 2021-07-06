@@ -5929,6 +5929,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @line/liff */ "./node_modules/@line/liff/dist/lib/index.js");
 /* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_line_liff__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _lib_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/api */ "./resources/js/lib/api.js");
 //
 //
 //
@@ -6027,6 +6028,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -6037,10 +6040,7 @@ _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
 });
 var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('vue');
 bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
-axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-};
+var apiHandler = new _lib_api__WEBPACK_IMPORTED_MODULE_4__["default"]();
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
   props: {
@@ -6058,7 +6058,8 @@ axios.defaults.headers.common = {
       accessToken: null,
       forms: [],
       tasks: [],
-      isTasks: false
+      isTasks: false,
+      test: ""
     };
   },
   computed: {},
@@ -6098,12 +6099,14 @@ axios.defaults.headers.common = {
       });
     },
     getAccess: function getAccess() {
-      console.log('GET');
-      axios.get('getUser').then(function (response) {
-        console.log('送信したテキスト: ' + response.data.message);
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      var test = apiHandler.test();
+      this.test = test; // console.log('GET')
+      // axios.get('getUser')
+      //     .then(response => {
+      //         console.log('送信したテキスト: ' + response.data.message);
+      //     }).catch(error => {
+      //         console.log(error);
+      //     });
     },
     postAccess: function postAccess() {
       console.log('getUser');
@@ -43030,6 +43033,10 @@ var render = function() {
           _vm._v(" "),
           _c("div", { attrs: { id: "access_token" } }, [
             _vm._v("access_token：" + _vm._s(_vm.accessToken))
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "test" } }, [
+            _vm._v("test:" + _vm._s(_vm.test))
           ]),
           _vm._v(" "),
           _c(
@@ -101084,6 +101091,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartComponent_vue_vue_type_template_id_6af0dc66_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartComponent_vue_vue_type_template_id_6af0dc66_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/lib/api.js":
+/*!*********************************!*\
+  !*** ./resources/js/lib/api.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ApiHandler; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ApiHandler = /*#__PURE__*/function () {
+  function ApiHandler() {
+    _classCallCheck(this, ApiHandler);
+
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
+  }
+
+  _createClass(ApiHandler, [{
+    key: "test",
+    value: function test() {
+      return "あいうえお";
+    }
+  }]);
+
+  return ApiHandler;
+}();
 
 
 

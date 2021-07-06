@@ -77,6 +77,7 @@
             <div id="liff_id">LIFF ID：{{ liffId }}</div>
             <div id="line_id">LINE ID：{{ lineId }}</div>
             <div id="access_token">access_token：{{ accessToken }}</div>
+            <div id="test">test:{{ test }}</div>
             <ul>
                 <li v-for="task in tasks">{{ task.id }}:::{{ task.title }}:::{{ task.done }}</li>
             </ul>
@@ -101,6 +102,7 @@ import Vue from 'vue'
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
 import liff from '@line/liff';
+import ApiHandler from '../lib/api';
 
 Bugsnag.start({
     apiKey: 'd96162df63a8803bcee425928dcd0f36',
@@ -110,10 +112,7 @@ Bugsnag.start({
 const bugsnagVue = Bugsnag.getPlugin('vue')
 bugsnagVue.installVueErrorHandler(Vue)
 
-axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-};
+const apiHandler = new ApiHandler()
 
 export default {
     name: "Start",
@@ -132,7 +131,8 @@ export default {
             accessToken: null,
             forms: [],
             tasks: [],
-            isTasks: false
+            isTasks: false,
+            test: ""
         }
     },
     computed: {
@@ -180,13 +180,15 @@ export default {
             });
         },
         getAccess: function() {
-            console.log('GET')
-            axios.get('getUser')
-                .then(response => {
-                    console.log('送信したテキスト: ' + response.data.message);
-                }).catch(error => {
-                    console.log(error);
-                });
+            const test = apiHandler.test()
+            this.test = test
+            // console.log('GET')
+            // axios.get('getUser')
+            //     .then(response => {
+            //         console.log('送信したテキスト: ' + response.data.message);
+            //     }).catch(error => {
+            //         console.log(error);
+            //     });
 
         },
         postAccess: function() {
