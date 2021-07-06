@@ -141,14 +141,22 @@ export default {
     methods: {
         addForm: function () {
             const num = this.forms.length + 1
-            // console.log(num)
-            this.forms.push({
-                id: num,
-                label: '今日のやること' + num,
-                title: '',
-                comment: '',
-            })
-            // console.log(this.forms)
+            if(this.isTasks){
+                this.forms.push({
+                    id: num,
+                    label: 'やること追加' + num,
+                    title: '',
+                    comment: '',
+                })
+            } else {
+                this.forms.push({
+                    id: num,
+                    label: '今日のやること' + num,
+                    title: '',
+                    comment: '',
+                })
+            }
+            
         },
         removeForm: function () {
             const num = this.forms.length - 1
@@ -227,7 +235,7 @@ export default {
                             this.isTasks = true
                             this.forms.push({
                                 id: 1,
-                                label: 'やること追加',
+                                label: 'やること追加1',
                                 title: '',
                                 comment: '',
                             })

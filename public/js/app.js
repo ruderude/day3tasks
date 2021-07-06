@@ -6065,14 +6065,23 @@ var apiHandler = new _lib_api__WEBPACK_IMPORTED_MODULE_4__["default"]();
   computed: {},
   methods: {
     addForm: function addForm() {
-      var num = this.forms.length + 1; // console.log(num)
+      var num = this.forms.length + 1;
 
-      this.forms.push({
-        id: num,
-        label: '今日のやること' + num,
-        title: '',
-        comment: ''
-      }); // console.log(this.forms)
+      if (this.isTasks) {
+        this.forms.push({
+          id: num,
+          label: 'やること追加' + num,
+          title: '',
+          comment: ''
+        });
+      } else {
+        this.forms.push({
+          id: num,
+          label: '今日のやること' + num,
+          title: '',
+          comment: ''
+        });
+      }
     },
     removeForm: function removeForm() {
       var num = this.forms.length - 1;
@@ -6142,7 +6151,7 @@ var apiHandler = new _lib_api__WEBPACK_IMPORTED_MODULE_4__["default"]();
 
           _this2.forms.push({
             id: 1,
-            label: 'やること追加',
+            label: 'やること追加1',
             title: '',
             comment: ''
           });
