@@ -6005,6 +6005,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6054,7 +6076,8 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       //     comment: '',
       // },
       ],
-      tasks: []
+      tasks: [],
+      isTasks: false
     };
   },
   computed: {},
@@ -6132,7 +6155,10 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
         access_token: _this2.accessToken
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
-        _this2.tasks = response.data;
+        if (response.data) {
+          _this2.tasks = response.data;
+          _this2.isTasks = true;
+        }
       })["catch"](function (error) {
         console.log(error);
         _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error('/v1/liff/setTasks error'));
@@ -42778,6 +42804,79 @@ var render = function() {
             "v-container",
             { staticClass: "mt-5" },
             [
+              _vm.isTasks
+                ? _c(
+                    "v-list",
+                    { attrs: { dense: "" } },
+                    _vm._l(_vm.tasks, function(task) {
+                      return _c(
+                        "v-list-group",
+                        {
+                          key: task.id,
+                          attrs: {
+                            "prepend-icon": "mdi-arrow-right-circle",
+                            color: "orange lighten-1",
+                            "no-action": ""
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function() {
+                                  return [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", {
+                                          domProps: {
+                                            textContent: _vm._s(task.title)
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("v-list-item-title", {
+                                          domProps: {
+                                            textContent: _vm._s(task.done)
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item",
+                            [
+                              _c(
+                                "v-list-item-content",
+                                [
+                                  _c("v-list-item-title", {
+                                    domProps: {
+                                      textContent: _vm._s(task.detail)
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c(
                 "v-form",
                 [

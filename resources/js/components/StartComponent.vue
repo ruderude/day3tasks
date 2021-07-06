@@ -6,6 +6,28 @@
         
         <v-main>
             <v-container class="mt-5">
+                <v-list v-if="isTasks" dense>
+                    <v-list-group
+                        v-for="task in tasks"
+                        :key="task.id"
+                        :prepend-icon="'mdi-arrow-right-circle'"
+                        color="orange lighten-1"
+                        no-action
+                    >
+                        <template v-slot:activator>
+                            <v-list-item-content>
+                                <v-list-item-title v-text="task.title"></v-list-item-title>
+                                <v-list-item-title v-text="task.done"></v-list-item-title>
+                            </v-list-item-content>
+                        </template>
+
+                        <v-list-item>
+                            <v-list-item-content>
+                                <v-list-item-title v-text="task.detail"></v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list-group>
+                </v-list>
                 <v-form>
                     <v-row>
                         <v-col v-for="form in forms" :key="form.id" class="mx-auto forms" cols="10">
@@ -130,6 +152,7 @@ export default {
                 // },
             ],
             tasks: [],
+            isTasks: false
         }
     },
     computed: {
@@ -219,7 +242,10 @@ export default {
                 })
                     .then(response => {
                         // Bugsnag.notify(new Error(response.data))
-                        this.tasks = response.data
+                        if(response.data) {
+                            this.tasks = response.data
+                            this.isTasks = true
+                        }
                     }).catch(error => {
                         console.log(error);
                         Bugsnag.notify(new Error('/v1/liff/setTasks error'))
