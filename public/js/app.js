@@ -6037,6 +6037,10 @@ _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
 });
 var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('vue');
 bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
   props: {
@@ -6077,10 +6081,6 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       var data = {
         forms: this.forms,
         access_token: this.accessToken
-      };
-      axios.defaults.headers.common = {
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       };
       axios.post('/today', data).then(function (res) {
         console.log(res);
@@ -42794,7 +42794,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目zzz")
+            _vm._v("今日の三項目")
           ])
         ]
       ),

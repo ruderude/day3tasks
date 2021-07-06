@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">今日の三項目zzz</div>
+            <div class="text-white text-h4 mx-auto">今日の三項目</div>
         </v-app-bar>
         
         <v-main>
@@ -110,6 +110,11 @@ Bugsnag.start({
 const bugsnagVue = Bugsnag.getPlugin('vue')
 bugsnagVue.installVueErrorHandler(Vue)
 
+axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
+
 export default {
     name: "Start",
     props: {
@@ -155,10 +160,7 @@ export default {
                 forms: this.forms,
                 access_token: this.accessToken
             }
-            axios.defaults.headers.common = {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            };
+            
             axios.post('/today', data)
                 .then((res) => {
                     console.log(res)
