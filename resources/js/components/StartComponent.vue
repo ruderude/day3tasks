@@ -3,7 +3,7 @@
         <v-app-bar app dense color="orange darken-1">
             <div class="text-white text-h4 mx-auto">今日の三項目</div>
         </v-app-bar>
-        
+
         <v-main>
             <v-container class="mt-5">
                 <v-list v-if="isTasks" dense>
@@ -16,21 +16,32 @@
                     >
                         <template v-slot:activator>
                             <v-list-item-content>
-                                <v-list-item-title v-text="task.title"></v-list-item-title>
-                                <v-list-item-title v-text="task.done"></v-list-item-title>
+                                <v-list-item-title
+                                    v-text="task.title"
+                                ></v-list-item-title>
+                                <v-list-item-title
+                                    v-text="task.done"
+                                ></v-list-item-title>
                             </v-list-item-content>
                         </template>
 
                         <v-list-item>
                             <v-list-item-content>
-                                <v-list-item-title v-text="task.detail"></v-list-item-title>
+                                <v-list-item-title
+                                    v-text="task.detail"
+                                ></v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
                     </v-list-group>
                 </v-list>
                 <v-form>
                     <v-row>
-                        <v-col v-for="form in forms" :key="form.id" class="mx-auto forms" cols="10">
+                        <v-col
+                            v-for="form in forms"
+                            :key="form.id"
+                            class="mx-auto forms"
+                            cols="10"
+                        >
                             <v-text-field
                                 v-model="form.title"
                                 :label="form.label"
@@ -64,10 +75,13 @@
                                 </v-icon>
                             </v-btn>
                         </v-col>
-                        
 
                         <v-col class="mx-auto" cols="12">
-                            <v-btn @click="submitForm()" color="text-white orange darken-1" block>
+                            <v-btn
+                                @click="submitForm()"
+                                color="text-white orange darken-1"
+                                block
+                            >
                                 決定!
                             </v-btn>
                         </v-col>
@@ -79,41 +93,50 @@
             <div id="line_id">LINE ID：{{ lineId }}</div>
             <div id="access_token">access_token：{{ accessToken }}</div>
             <ul>
-                <li v-for="task in tasks">{{ task.id }}:::{{ task.title }}:::{{ task.done }}</li>
+                <li v-for="task in tasks">
+                    {{ task.id }}:::{{ task.title }}:::{{ task.done }}
+                </li>
             </ul>
             <div class="form">
                 <div class="control">
-                    <input class="input" type="text" placeholder="お名前" v-model="formData.name">
+                    <input
+                        class="input"
+                        type="text"
+                        placeholder="お名前"
+                        v-model="formData.name"
+                    />
                 </div>
-                <button class="button is-info is-fullwidth" @click="onSubmit()">送信する</button>
+                <button class="button is-info is-fullwidth" @click="onSubmit()">
+                    送信する
+                </button>
             </div>
         </v-main>
-        
-        <v-footer>
-            
-        </v-footer>
+
+        <v-footer> </v-footer>
     </v-app>
 </template>
 
 <script>
-import Vue from 'vue'
-import Bugsnag from '@bugsnag/js'
-import BugsnagPluginVue from '@bugsnag/plugin-vue'
-import liff from '@line/liff';
+import Vue from "vue";
+import Bugsnag from "@bugsnag/js";
+import BugsnagPluginVue from "@bugsnag/plugin-vue";
+import liff from "@line/liff";
 // import ApiHandler from '../lib/api';
 
 Bugsnag.start({
-    apiKey: 'd96162df63a8803bcee425928dcd0f36',
+    apiKey: "d96162df63a8803bcee425928dcd0f36",
     plugins: [new BugsnagPluginVue()]
-})
+});
 
-const bugsnagVue = Bugsnag.getPlugin('vue')
-bugsnagVue.installVueErrorHandler(Vue)
+const bugsnagVue = Bugsnag.getPlugin("vue");
+bugsnagVue.installVueErrorHandler(Vue);
 
 // const apiHandler = new ApiHandler()
 axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    "X-Requested-With": "XMLHttpRequest",
+    "X-CSRF-TOKEN": document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content")
 };
 
 export default {
@@ -121,13 +144,13 @@ export default {
     props: {
         liffId: {
             type: String,
-            required: true,
+            required: true
         }
     },
-    data () {
+    data() {
         return {
             formData: {
-                name: ''
+                name: ""
             },
             lineId: null,
             accessToken: null,
@@ -135,130 +158,126 @@ export default {
             tasks: [],
             isTasks: false,
             error: ""
-        }
+        };
     },
-    computed: {
-
-    },
+    computed: {},
     methods: {
-        addForm: function () {
-            const num = this.forms.length + 1
-            if(this.isTasks){
+        addForm: function() {
+            const num = this.forms.length + 1;
+            if (this.isTasks) {
                 this.forms.push({
                     id: num,
-                    label: 'やること追加' + num,
-                    title: '',
-                    comment: '',
-                })
+                    label: "やること追加" + num,
+                    title: "",
+                    comment: ""
+                });
             } else {
                 this.forms.push({
                     id: num,
-                    label: '今日のやること' + num,
-                    title: '',
-                    comment: '',
-                })
+                    label: "今日のやること" + num,
+                    title: "",
+                    comment: ""
+                });
             }
-            
         },
-        removeForm: function () {
-            const num = this.forms.length - 1
-            this.forms.splice(num, 1)
+        removeForm: function() {
+            const num = this.forms.length - 1;
+            this.forms.splice(num, 1);
             // console.log(this.forms)
         },
-        submitForm: function () {
+        submitForm: function() {
             const data = {
                 forms: this.forms,
                 access_token: this.accessToken
-            }
-            
-            axios.post('/today', data)
-                .then((response) => {
-                    // console.log(res)
-                    this.setTasks(response.data)
+            };
 
+            axios
+                .post("/today", data)
+                .then(response => {
+                    // console.log(res)
+                    this.setTasks(response.data);
                 })
-                .catch((err) => {
-                    this.error = err
+                .catch(err => {
+                    this.error = err;
                 });
-            
         },
-        liffInit: function (liffId) {
+        liffInit: function(liffId) {
             liff.init({
                 liffId: liffId
             })
-            .then((liff) => {
-                // Bugsnag.notify(new Error(liff))
-                this.accessToken = liff.getAccessToken();
-            })
-            .catch((err) => {
-                this.error = err
-            });
+                .then(liff => {
+                    // Bugsnag.notify(new Error(liff))
+                    this.accessToken = liff.getAccessToken();
+                })
+                .catch(err => {
+                    this.error = err;
+                });
         },
-        setTasks: function (tasks) {
-            if(tasks.length > 0) {
-                this.tasks = tasks
-                this.isTasks = true
+        setTasks: function(tasks) {
+            if (tasks.length > 0) {
+                this.tasks = tasks;
+                this.isTasks = true;
+                this.forms.splice(-this.forms.length);
                 this.forms.push({
                     id: 1,
-                    label: 'やること追加1',
-                    title: '',
-                    comment: '',
-                })
+                    label: "やること追加1",
+                    title: "",
+                    comment: ""
+                });
             } else {
                 this.forms.push(
                     {
                         id: 1,
-                        label: '今日のやること１',
-                        title: '',
-                        comment: '',
+                        label: "今日のやること１",
+                        title: "",
+                        comment: ""
                     },
                     {
                         id: 2,
-                        label: '今日のやること２',
-                        title: '',
-                        comment: '',
+                        label: "今日のやること２",
+                        title: "",
+                        comment: ""
                     },
                     {
                         id: 3,
-                        label: '今日のやること３',
-                        title: '',
-                        comment: '',
-                    },
-                )
+                        label: "今日のやること３",
+                        title: "",
+                        comment: ""
+                    }
+                );
             }
-        },
+        }
     },
-    created: function(){
+    created: function() {
         // alert(liff)
         // Bugsnag.notify(new Error('Test error'))
-
     },
-    mounted: function(){
+    mounted: function() {
         liff.init({
-                liffId: this.liffId
-            })
+            liffId: this.liffId
+        })
             .then(() => {
                 this.accessToken = liff.getAccessToken();
                 // Bugsnag.notify(new Error(this.accessToken))
-                axios.post('/v1/liff/setTasks', {
-                    access_token: this.accessToken
-                })
+                axios
+                    .post("/v1/liff/setTasks", {
+                        access_token: this.accessToken
+                    })
                     .then(response => {
                         // Bugsnag.notify(new Error(response.data))
                         // タスクセット
-                        this.setTasks(response.data)
-                    }).catch(error => {
+                        this.setTasks(response.data);
+                    })
+                    .catch(error => {
                         console.log(error);
-                        Bugsnag.notify(new Error('/v1/liff/setTasks error'))
+                        Bugsnag.notify(new Error("/v1/liff/setTasks error"));
                     });
             })
-            .catch((err) => {
-                Bugsnag.notify(new Error(err))
+            .catch(err => {
+                Bugsnag.notify(new Error(err));
             });
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -6026,21 +6026,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
  // import ApiHandler from '../lib/api';
 
 _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
-  apiKey: 'd96162df63a8803bcee425928dcd0f36',
+  apiKey: "d96162df63a8803bcee425928dcd0f36",
   plugins: [new _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default.a()]
 });
-var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('vue');
+var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin("vue");
 bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a); // const apiHandler = new ApiHandler()
 
 axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  "X-Requested-With": "XMLHttpRequest",
+  "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Start",
@@ -6053,7 +6074,7 @@ axios.defaults.headers.common = {
   data: function data() {
     return {
       formData: {
-        name: ''
+        name: ""
       },
       lineId: null,
       accessToken: null,
@@ -6071,16 +6092,16 @@ axios.defaults.headers.common = {
       if (this.isTasks) {
         this.forms.push({
           id: num,
-          label: 'やること追加' + num,
-          title: '',
-          comment: ''
+          label: "やること追加" + num,
+          title: "",
+          comment: ""
         });
       } else {
         this.forms.push({
           id: num,
-          label: '今日のやること' + num,
-          title: '',
-          comment: ''
+          label: "今日のやること" + num,
+          title: "",
+          comment: ""
         });
       }
     },
@@ -6095,7 +6116,7 @@ axios.defaults.headers.common = {
         forms: this.forms,
         access_token: this.accessToken
       };
-      axios.post('/today', data).then(function (response) {
+      axios.post("/today", data).then(function (response) {
         // console.log(res)
         _this.setTasks(response.data);
       })["catch"](function (err) {
@@ -6118,28 +6139,29 @@ axios.defaults.headers.common = {
       if (tasks.length > 0) {
         this.tasks = tasks;
         this.isTasks = true;
+        this.forms.splice(-this.forms.length);
         this.forms.push({
           id: 1,
-          label: 'やること追加1',
-          title: '',
-          comment: ''
+          label: "やること追加1",
+          title: "",
+          comment: ""
         });
       } else {
         this.forms.push({
           id: 1,
-          label: '今日のやること１',
-          title: '',
-          comment: ''
+          label: "今日のやること１",
+          title: "",
+          comment: ""
         }, {
           id: 2,
-          label: '今日のやること２',
-          title: '',
-          comment: ''
+          label: "今日のやること２",
+          title: "",
+          comment: ""
         }, {
           id: 3,
-          label: '今日のやること３',
-          title: '',
-          comment: ''
+          label: "今日のやること３",
+          title: "",
+          comment: ""
         });
       }
     }
@@ -6155,7 +6177,7 @@ axios.defaults.headers.common = {
     }).then(function () {
       _this3.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
 
-      axios.post('/v1/liff/setTasks', {
+      axios.post("/v1/liff/setTasks", {
         access_token: _this3.accessToken
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
@@ -6163,7 +6185,7 @@ axios.defaults.headers.common = {
         _this3.setTasks(response.data);
       })["catch"](function (error) {
         console.log(error);
-        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error('/v1/liff/setTasks error'));
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/v1/liff/setTasks error"));
       });
     })["catch"](function (err) {
       _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
@@ -43041,11 +43063,13 @@ var render = function() {
             _vm._l(_vm.tasks, function(task) {
               return _c("li", [
                 _vm._v(
-                  _vm._s(task.id) +
+                  "\n                " +
+                    _vm._s(task.id) +
                     ":::" +
                     _vm._s(task.title) +
                     ":::" +
-                    _vm._s(task.done)
+                    _vm._s(task.done) +
+                    "\n            "
                 )
               ])
             }),
@@ -43087,7 +43111,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("送信する")]
+              [_vm._v("\n                送信する\n            ")]
             )
           ])
         ],
