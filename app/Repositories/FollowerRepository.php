@@ -8,6 +8,7 @@ use App\Support\Flag;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class FollowerRepository
 {
