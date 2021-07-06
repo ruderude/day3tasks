@@ -6055,6 +6055,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -6089,7 +6091,8 @@ axios.defaults.headers.common = {
       forms: [],
       tasks: [],
       isTasks: false,
-      error: ""
+      error: "",
+      overlay: true
     };
   },
   computed: {},
@@ -10677,7 +10680,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-progress-circular[data-v-6af0dc66] {\n    margin: 1rem;\n}\n", ""]);
+exports.push([module.i, "\n.v-progress-circular[data-v-6af0dc66] {\n    margin: 1rem;\n    z-index: 100;\n}\n", ""]);
 
 // exports
 
@@ -43174,7 +43177,9 @@ var render = function() {
               },
               [_vm._v("\n                送信する\n            ")]
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c("v-overlay", { attrs: { value: _vm.overlay } })
         ],
         1
       ),

@@ -118,6 +118,8 @@
                     送信する
                 </button>
             </div>
+
+            <v-overlay :value="overlay"></v-overlay>
         </v-main>
 
         <v-footer> </v-footer>
@@ -165,7 +167,8 @@ export default {
             forms: [],
             tasks: [],
             isTasks: false,
-            error: ""
+            error: "",
+            overlay: true,
         };
     },
     computed: {},
@@ -291,5 +294,6 @@ export default {
 <style scoped>
 .v-progress-circular {
     margin: 1rem;
+    z-index: 100;
 }
 </style>
