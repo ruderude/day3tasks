@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class Line
 {
-    public static function get_profile(Request $request, String $access_token): array
+    public static function get_profile(String $access_token): array
     {
         // Log::debug('アクセストークン：' . print_r($access_token, true));
 

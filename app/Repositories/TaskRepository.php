@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class TaskRepository
 {
-    public function store(array $tasks): void
+    public function store(array $tasks, String $mid): void
     {
         Log::debug("レポジトリ" . print_r($tasks, true));
         try {
@@ -17,8 +17,8 @@ class TaskRepository
 
             foreach ($tasks as $task) {
                 $created = Task::make();
-                // $created->mid = $mid;
-                $created->mid = isset($task["mid"]) ? $task["mid"] : "testtest";
+                $created->mid = $mid;
+                // $created->mid = isset($task["mid"]) ? $task["mid"] : "testtest";
                 $created->title = $task["title"];
                 $created->detail = isset($task["detail"]) ? $task["detail"] : "";
                 $created->done = isset($task["done"]) ? $task["done"] : false;

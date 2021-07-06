@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Repositories\TaskRepository;
+use App\Support\Line;
 use Illuminate\Support\Facades\Log;
 
 class TaskService
@@ -40,11 +41,13 @@ class TaskService
     * @param array $tasks タスク
     * @return array 保存し内容を返却
     */
-    public function store(array $forms): array
+    public function store(array $forms, array $access_token): array
     {
         // Log::debug('ストア' . print_r($forms, true));
         $tasks = $this->trim($forms);
-        $this->repository->store($tasks);
+        $user = Line::get_profile($access_token);
+        $mid = $user['mid'];
+        $this->repository->store($tasks, $mid);
         // Log::debug('ストア' . print_r($tasks, true));
         return $tasks;
     }
