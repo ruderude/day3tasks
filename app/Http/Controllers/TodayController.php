@@ -26,8 +26,8 @@ class TodayController extends Controller
     {
         Log::debug(print_r($request->all(), true));
 
-        $tasks = $this->service->trim($request);
-        Log::debug(print_r($tasks, true));
+        $tasks = $this->service->store($request);
+        // Log::debug(print_r($tasks, true));
 
         return $tasks;
     }

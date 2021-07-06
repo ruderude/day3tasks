@@ -8,10 +8,11 @@
             <v-container class="mt-5">
                 <v-form>
                     <v-row>
-                        <v-col v-for="task in tasks" :key="task.id" class="mx-auto tasks" cols="10">
+                        <v-col v-for="form in forms" :key="form.id" class="mx-auto forms" cols="10">
                             <v-text-field
-                                v-model="task.title"
-                                :label="task.label"
+                                v-model="form.title"
+                                :label="form.label"
+                                :name="'new' + form.id"
                                 outlined
                                 color="orange lighten-1"
                                 dense
@@ -99,7 +100,7 @@ export default {
             },
             lineId: null,
             accessToken: null,
-            tasks: [
+            forms: [
                 {
                     id: 1,
                     label: '今日のやること１',
@@ -126,27 +127,27 @@ export default {
     },
     methods: {
         addForm: function () {
-            const num = this.tasks.length + 1
+            const num = this.forms.length + 1
             console.log(num)
-            this.tasks.push({
+            this.forms.push({
                 id: num,
                 label: '今日のやること' + num,
                 title: '',
                 comment: '',
             })
-            // console.log(this.tasks)
+            // console.log(this.forms)
         },
         removeForm: function () {
-            const num = this.tasks.length - 1
-            this.tasks.splice(num, 1)
-            // console.log(this.tasks)
+            const num = this.forms.length - 1
+            this.forms.splice(num, 1)
+            // console.log(this.forms)
         },
         submitForm: function () {
             axios.defaults.headers.common = {
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             };
-            axios.post('/today', this.tasks)
+            axios.post('/today', this.forms)
                 .then((res) => {
                     console.log(res)
                 })
@@ -177,13 +178,7 @@ export default {
             })
             .then((liff) => {
                 Bugsnag.notify(new Error(liff))
-                // start to use LIFF's api
                 this.accessToken = liff.getAccessToken();
-                // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
-                // .then((res) => {
-                //     console.log(res)
-                // })
-                // alert(this.accessToken)
             })
             .catch((err) => {
                 // alert(err)
@@ -216,12 +211,6 @@ export default {
         // alert(liff)
         // Bugsnag.notify(new Error('Test error'))
 
-        // axios.post('/v1/liff/getAccessToken', params)
-        //     .then(response => {
-        //         console.log('送信したテキスト: ' + response.data.text);
-        //     }).catch(error => {
-        //         console.log(error);
-        //     });
     },
     mounted: function(){
         liff.init({

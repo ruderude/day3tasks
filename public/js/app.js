@@ -6001,6 +6001,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6026,7 +6027,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       },
       lineId: null,
       accessToken: null,
-      tasks: [{
+      forms: [{
         id: 1,
         label: '今日のやること１',
         title: '',
@@ -6047,25 +6048,25 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   computed: {},
   methods: {
     addForm: function addForm() {
-      var num = this.tasks.length + 1;
+      var num = this.forms.length + 1;
       console.log(num);
-      this.tasks.push({
+      this.forms.push({
         id: num,
         label: '今日のやること' + num,
         title: '',
         comment: ''
-      }); // console.log(this.tasks)
+      }); // console.log(this.forms)
     },
     removeForm: function removeForm() {
-      var num = this.tasks.length - 1;
-      this.tasks.splice(num, 1); // console.log(this.tasks)
+      var num = this.forms.length - 1;
+      this.forms.splice(num, 1); // console.log(this.forms)
     },
     submitForm: function submitForm() {
       axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       };
-      axios.post('/today', this.tasks).then(function (res) {
+      axios.post('/today', this.forms).then(function (res) {
         console.log(res);
       });
     },
@@ -6088,13 +6089,8 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
         liffId: liffId
       }).then(function (liff) {
-        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(liff)); // start to use LIFF's api
-
-        _this.accessToken = liff.getAccessToken(); // axios.post('/v1/liff/getAccessToken', liff.getAccessToken())
-        // .then((res) => {
-        //     console.log(res)
-        // })
-        // alert(this.accessToken)
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(liff));
+        _this.accessToken = liff.getAccessToken();
       })["catch"](function (err) {// alert(err)
       });
     },
@@ -6120,12 +6116,6 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
   },
   created: function created() {// alert(liff)
     // Bugsnag.notify(new Error('Test error'))
-    // axios.post('/v1/liff/getAccessToken', params)
-    //     .then(response => {
-    //         console.log('送信したテキスト: ' + response.data.text);
-    //     }).catch(error => {
-    //         console.log(error);
-    //     });
   },
   mounted: function mounted() {
     var _this2 = this;
@@ -42789,28 +42779,29 @@ var render = function() {
                   _c(
                     "v-row",
                     [
-                      _vm._l(_vm.tasks, function(task) {
+                      _vm._l(_vm.forms, function(form) {
                         return _c(
                           "v-col",
                           {
-                            key: task.id,
-                            staticClass: "mx-auto tasks",
+                            key: form.id,
+                            staticClass: "mx-auto forms",
                             attrs: { cols: "10" }
                           },
                           [
                             _c("v-text-field", {
                               attrs: {
-                                label: task.label,
+                                label: form.label,
+                                name: "new" + form.id,
                                 outlined: "",
                                 color: "orange lighten-1",
                                 dense: ""
                               },
                               model: {
-                                value: task.title,
+                                value: form.title,
                                 callback: function($$v) {
-                                  _vm.$set(task, "title", $$v)
+                                  _vm.$set(form, "title", $$v)
                                 },
-                                expression: "task.title"
+                                expression: "form.title"
                               }
                             })
                           ],

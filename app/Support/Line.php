@@ -9,22 +9,27 @@ use Illuminate\Support\Facades\DB;
 
 class Line
 {
-    public static function get_profile(string $mid): array
+    public static function get_profile(Request $request): array
     {
-        $curl = curl_init("https://api.line.me/v2/bot/profile/$mid");
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, [
-            "Authorization: Bearer ".env("LINE_BOT_SECRET_TOKEN"),
-        ]);
-        $json = curl_exec($curl);
-        curl_close($curl);
+        $access_token = $request->post('accessToken');
+        // Log::debug('アクセストークン：' . print_r($access_token, true));
 
-        $data = json_decode($json, true);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $access_token));
+        curl_setopt($ch, CURLOPT_URL, 'https://api.line.me/v2/profile');
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        return [
-            "name" => $data["displayName"] ?? "",
-            "icon_url" => $data["pictureUrl"] ?? "",
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $userdata = json_decode($response);
+        $data = [
+            "name" => $userdata->displayName,
+            "mid" => $userdata->userId,
+            "icon_url" => $userdata->pictureUrl,
         ];
+
+        return $data;
     }
 }

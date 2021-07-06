@@ -21,7 +21,7 @@ class TaskService
     * @param Request $request リクエスト
     * @return array タスクを整理し内容を返却
     */
-    public function trim(Request $request)
+    public function trim(Request $request): array
     {
         $tasks = [];
         foreach($request->all() as $task) {
@@ -29,7 +29,6 @@ class TaskService
             if($task['title']) {
                 $tasks[] = $task;
             }
-            // Log::debug($title);
         }
 
         return $tasks;
@@ -41,11 +40,11 @@ class TaskService
     * @param array $tasks タスク
     * @return array 保存し内容を返却
     */
-    public function store(array $tasks): array
+    public function store(Request $request): array
     {
-        // Log::debug(print_r($request->all(), true));
-        $tasks = $this->service->trim($request);
-
-        return $data;
+        $tasks = $this->trim($request);
+        $this->repository->store($tasks);
+        Log::debug('ストア' . print_r($tasks, true));
+        return $tasks;
     }
 }
