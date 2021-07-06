@@ -6,6 +6,7 @@ use App\Models\Task;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class TaskRepository
 {
@@ -36,5 +37,20 @@ class TaskRepository
             Log::debug('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
+    }
+
+    /**
+     * 今日のタスクを取得する
+     * 
+     * @param string $mid
+     * @return array
+     */
+    public function getTodayTasks($mid): array
+    {
+        return Task::select()
+            ->where("mid", "=", $mid)
+            ->where('created_at', '>=', Carbon::today())
+            ->get()
+            ->toArray();
     }
 }

@@ -4,12 +4,21 @@ namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
 use App\Support\Line;
+use App\Services\LiffService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
 
 class LiffController extends Controller
 {
+
+    private $service;
+
+    public function __construct(LiffService $service)
+    {
+        $this->service = $service;
+    }
+
     public function today(): View
     {
         return view('liff.start');
@@ -47,6 +56,8 @@ class LiffController extends Controller
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
         // Log::debug('ユーザー情報：' . print_r($user, true));
+        $tasks = $this->service->getTodayTasks($user["mid"]);
+        Log::debug('今日のタスク：' . print_r($tasks, true));
 
         return $request->all();
     }
