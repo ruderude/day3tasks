@@ -12,7 +12,7 @@ class Line
 {
     public static function get_profile(String $access_token): array
     {
-        // Log::debug('アクセストークン：' . print_r($access_token, true));
+        Log::debug('アクセストークン：' . print_r($access_token, true));
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $access_token));
@@ -29,6 +29,7 @@ class Line
             "mid" => $userdata->userId,
             "icon_url" => $userdata->pictureUrl,
         ];
+        Log::debug('ユーザー情報：' . print_r($data, true));
 
         return $data;
     }
