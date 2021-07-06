@@ -49,7 +49,20 @@ class TaskService
         $user = Line::get_profile($access_token);
         $mid = $user['mid'];
         $this->repository->store($tasks, $mid);
+        $today_tasks = $this->getTodayTasks($mid);
         // Log::debug('ストア' . print_r($tasks, true));
-        return $tasks;
+        return $today_tasks;
+    }
+
+    /**
+    * 今日のタスク取得
+    *  
+    * @param array $tasks タスク
+    * @param string $mid mid
+    * @return array タスクを返却
+    */
+    public function getTodayTasks(string $mid): array
+    {
+        return $this->repository->getTodayTasks($mid);
     }
 }

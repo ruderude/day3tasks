@@ -209,7 +209,7 @@ export default {
                 .post("/today", data)
                 .then(response => {
                     const tasks = response.data
-                    if (tasks.length <= 0) {
+                    if (tasks.length <= 0 && !this.isTasks) {
                         this.taskInit()
                     } else {
                         this.setTasks(tasks)

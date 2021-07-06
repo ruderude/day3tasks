@@ -6133,7 +6133,7 @@ axios.defaults.headers.common = {
       axios.post("/today", data).then(function (response) {
         var tasks = response.data;
 
-        if (tasks.length <= 0) {
+        if (tasks.length <= 0 && !_this.isTasks) {
           _this.taskInit();
         } else {
           _this.setTasks(tasks);
