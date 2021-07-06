@@ -126,6 +126,7 @@ class LineService
 
     /**
      * フォロワーがLINEに設定してるアイコンや名前などの情報を取得する関数
+     * midで取得する用
      *
      * @see https://developers.line.biz/ja/reference/messaging-api/#get-profile
      * @param string $mid
