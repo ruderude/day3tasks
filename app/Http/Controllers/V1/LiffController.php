@@ -43,7 +43,7 @@ class LiffController extends Controller
 
     public function getUser(Request $request)
     {
-        Log::debug('ゲットユーザー：' . print_r($request, true));
+        Log::debug('ゲットユーザー：' . print_r($request->all(), true));
         $access_token = $request->post('access_token');
         $user = Line::get_profile($request, $access_token);
         Log::debug('ユーザー情報：' . print_r($user, true));
