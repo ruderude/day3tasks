@@ -125,32 +125,7 @@ export default {
             },
             lineId: null,
             accessToken: null,
-            forms: [
-                {
-                    id: 1,
-                    label: 'やること追加',
-                    title: '',
-                    comment: '',
-                },
-                // {
-                //     id: 1,
-                //     label: '今日のやること１',
-                //     title: '',
-                //     comment: '',
-                // },
-                // {
-                //     id: 2,
-                //     label: '今日のやること２',
-                //     title: '',
-                //     comment: '',
-                // },
-                // {
-                //     id: 3,
-                //     label: '今日のやること３',
-                //     title: '',
-                //     comment: '',
-                // },
-            ],
+            forms: [],
             tasks: [],
             isTasks: false
         }
@@ -246,6 +221,33 @@ export default {
                         if(response.data) {
                             this.tasks = response.data
                             this.isTasks = true
+                            this.forms.push({
+                                id: 1,
+                                label: 'やること追加',
+                                title: '',
+                                comment: '',
+                            })
+                        } else {
+                            this.forms.push(
+                                {
+                                    id: 1,
+                                    label: '今日のやること１',
+                                    title: '',
+                                    comment: '',
+                                },
+                                {
+                                    id: 2,
+                                    label: '今日のやること２',
+                                    title: '',
+                                    comment: '',
+                                },
+                                {
+                                    id: 3,
+                                    label: '今日のやること３',
+                                    title: '',
+                                    comment: '',
+                                },
+                            )
                         }
                     }).catch(error => {
                         console.log(error);

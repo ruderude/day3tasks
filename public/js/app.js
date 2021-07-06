@@ -6052,30 +6052,7 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
       },
       lineId: null,
       accessToken: null,
-      forms: [{
-        id: 1,
-        label: 'やること追加',
-        title: '',
-        comment: ''
-      } // {
-      //     id: 1,
-      //     label: '今日のやること１',
-      //     title: '',
-      //     comment: '',
-      // },
-      // {
-      //     id: 2,
-      //     label: '今日のやること２',
-      //     title: '',
-      //     comment: '',
-      // },
-      // {
-      //     id: 3,
-      //     label: '今日のやること３',
-      //     title: '',
-      //     comment: '',
-      // },
-      ],
+      forms: [],
       tasks: [],
       isTasks: false
     };
@@ -6159,6 +6136,30 @@ bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
         if (response.data) {
           _this2.tasks = response.data;
           _this2.isTasks = true;
+
+          _this2.forms.push({
+            id: 1,
+            label: 'やること追加',
+            title: '',
+            comment: ''
+          });
+        } else {
+          _this2.forms.push({
+            id: 1,
+            label: '今日のやること１',
+            title: '',
+            comment: ''
+          }, {
+            id: 2,
+            label: '今日のやること２',
+            title: '',
+            comment: ''
+          }, {
+            id: 3,
+            label: '今日のやること３',
+            title: '',
+            comment: ''
+          });
         }
       })["catch"](function (error) {
         console.log(error);
