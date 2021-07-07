@@ -35,9 +35,9 @@
                                 <div>
                                     <v-container>
                                         <v-layout wrap>
+                                            <v-flex><v-btn><v-icon>mdi-check-outline</v-icon></v-btn></v-flex>
                                             <v-flex><v-btn><v-icon>mdi-square-edit-outline</v-icon></v-btn></v-flex>
-                                            <v-flex><v-btn ><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
-                                            <v-flex><v-btn><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
+                                            <v-flex><v-btn><v-icon>mdi-delete</v-icon></v-btn></v-flex>
                                         </v-layout>
                                     </v-container>
                                 </div>

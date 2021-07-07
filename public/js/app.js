@@ -42717,6 +42717,24 @@ var render = function() {
                                                   [
                                                     _c("v-icon", [
                                                       _vm._v(
+                                                        "mdi-check-outline"
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              [
+                                                _c(
+                                                  "v-btn",
+                                                  [
+                                                    _c("v-icon", [
+                                                      _vm._v(
                                                         "mdi-square-edit-outline"
                                                       )
                                                     ])
@@ -42734,27 +42752,7 @@ var render = function() {
                                                   "v-btn",
                                                   [
                                                     _c("v-icon", [
-                                                      _vm._v(
-                                                        "mdi-bookmark-check"
-                                                      )
-                                                    ])
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
-                                              [
-                                                _c(
-                                                  "v-btn",
-                                                  [
-                                                    _c("v-icon", [
-                                                      _vm._v(
-                                                        "mdi-bookmark-check"
-                                                      )
+                                                      _vm._v("mdi-delete")
                                                     ])
                                                   ],
                                                   1
