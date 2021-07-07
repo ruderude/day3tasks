@@ -176,7 +176,7 @@
                             <v-divider></v-divider>
                             <v-layout justify-end>
                                 <v-flex shrink>
-                                    <v-btn class="ma-3" @click="closeModal">閉じる</v-btn>
+                                    <v-btn class="ma-5" @click="closeModal">閉じる</v-btn>
                                 </v-flex>
                             </v-layout>
                             

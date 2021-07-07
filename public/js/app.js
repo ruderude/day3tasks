@@ -43368,7 +43368,7 @@ var render = function() {
                                   _c(
                                     "v-btn",
                                     {
-                                      staticClass: "ma-3",
+                                      staticClass: "ma-5",
                                       on: { click: _vm.closeModal }
                                     },
                                     [_vm._v("閉じる")]
