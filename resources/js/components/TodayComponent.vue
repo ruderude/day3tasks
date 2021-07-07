@@ -22,7 +22,7 @@
                         color="orange lighten-1"
                         no-action
                     >
-                        <template >
+                        <template v-slot:activator>
                             <v-list-item-content>
                                 <v-list-item-title
                                     v-text="task.title"
