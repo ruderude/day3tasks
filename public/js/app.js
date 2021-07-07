@@ -6072,6 +6072,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -43353,16 +43357,27 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-divider"),
                           _vm._v(" "),
-                          _c("v-spacer"),
-                          _vm._v(" "),
                           _c(
-                            "v-btn",
-                            {
-                              staticClass: "ma-3",
-                              attrs: { justify: "end" },
-                              on: { click: _vm.closeModal }
-                            },
-                            [_vm._v("閉じる")]
+                            "v-layout",
+                            { attrs: { row: "", wrap: "", "justify-end": "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { shrink: "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "ma-3",
+                                      on: { click: _vm.closeModal }
+                                    },
+                                    [_vm._v("閉じる")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
