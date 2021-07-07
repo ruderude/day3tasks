@@ -6033,6 +6033,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43167,7 +43205,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            決定!\n                        "
+                                "\n                            決定!!\n                        "
                               )
                             ]
                           )
@@ -43203,28 +43241,114 @@ var render = function() {
                       _c(
                         "v-card",
                         [
-                          _c("v-card-title", [
-                            _vm._v(_vm._s(_vm.postTask.title))
-                          ]),
+                          _c("v-card-title", [_vm._v("タスク編集")]),
                           _vm._v(" "),
                           _c("v-divider"),
                           _vm._v(" "),
                           _c(
                             "v-card-text",
                             [
-                              _c("v-sheet", { staticClass: "pa-3" }, [
-                                _c("div", { staticClass: "body-1" }, [
-                                  _vm._v(_vm._s(_vm.postTask.detail))
-                                ])
-                              ])
+                              _c(
+                                "v-sheet",
+                                { staticClass: "pa-3" },
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "v-col",
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  label: "タスク",
+                                                  name: "title",
+                                                  outlined: ""
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            [
+                                              _c("v-textarea", {
+                                                attrs: {
+                                                  outlined: "",
+                                                  name: "detail",
+                                                  label: "タスク詳細",
+                                                  value: ""
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            [
+                                              _c("v-checkbox", {
+                                                attrs: {
+                                                  label: "success",
+                                                  color: "success",
+                                                  value: "success",
+                                                  "hide-details": ""
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              staticClass: "mx-auto",
+                                              attrs: { cols: "12" }
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color:
+                                                      "text-white orange darken-1",
+                                                    block: ""
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.submitForm()
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                更新\n                                            "
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
                             ],
                             1
                           ),
                           _vm._v(" "),
                           _c(
-                            "button",
+                            "v-btn",
                             {
-                              staticClass: "text-center m-5",
+                              staticClass: "m-5",
                               on: { click: _vm.closeModal }
                             },
                             [_vm._v("閉じる")]

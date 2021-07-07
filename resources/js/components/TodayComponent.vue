@@ -118,7 +118,7 @@
                                 color="text-white orange darken-1"
                                 block
                             >
-                                決定!
+                                決定!!
                             </v-btn>
                         </v-col>
                     </v-row>
@@ -129,14 +129,52 @@
                 <v-container class="mt-3">
                     <v-dialog v-model="showModal" width=600>
                         <v-card>
-                            <v-card-title>{{ postTask.title }}</v-card-title>
+                            <v-card-title>タスク編集</v-card-title>
                             <v-divider></v-divider>
                             <v-card-text>
                                 <v-sheet class="pa-3">
-                                <div class="body-1">{{ postTask.detail }}</div>
+                                    <v-form>
+                                        <v-row>
+                                            <v-col>
+                                                <v-text-field
+                                                    label="タスク"
+                                                    name="title"
+                                                    outlined
+                                                ></v-text-field>
+                                            </v-col>
+
+                                            <v-col>
+                                                <v-textarea
+                                                    outlined
+                                                    name="detail"
+                                                    label="タスク詳細"
+                                                    value=""
+                                                ></v-textarea>
+                                            </v-col>
+
+                                            <v-col>
+                                                <v-checkbox
+                                                    label="success"
+                                                    color="success"
+                                                    value="success"
+                                                    hide-details
+                                                ></v-checkbox>
+                                            </v-col>
+
+                                            <v-col class="mx-auto" cols="12">
+                                                <v-btn
+                                                    @click="submitForm()"
+                                                    color="text-white orange darken-1"
+                                                    block
+                                                >
+                                                    更新
+                                                </v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-form>
                                 </v-sheet>
                             </v-card-text>
-                            <button class="text-center m-5" @click="closeModal">閉じる</button>
+                            <v-btn class="m-5" @click="closeModal">閉じる</v-btn>
                         </v-card>
                     </v-dialog>
                 </v-container>
