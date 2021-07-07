@@ -50,7 +50,7 @@ class TaskRepository
         return Task::select()
             ->where("mid", "=", $mid)
             ->where('created_at', '>=', Carbon::today())
-            ->whereNull(deleted_at)
+            ->whereNull('deleted_at')
             ->get()
             ->toArray();
     }
