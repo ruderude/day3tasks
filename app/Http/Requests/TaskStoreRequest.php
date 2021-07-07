@@ -27,4 +27,14 @@ class TaskStoreRequest extends FormRequest
             'title' => 'max:5',
         ];
     }
+
+    /**
+     * エラーメッセージを日本語化
+     * 
+     */
+    public function messages() {
+        return [
+            'title.max' => 'タスクタイトルは500文字以内で入力してください',
+        ];
+    }
 }
