@@ -5941,12 +5941,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -42669,11 +42663,7 @@ var render = function() {
                         "v-list-group",
                         {
                           key: task.id,
-                          attrs: {
-                            "prepend-icon": _vm.item.action,
-                            color: "orange lighten-1",
-                            "no-action": ""
-                          },
+                          attrs: { color: "orange lighten-1", "no-action": "" },
                           scopedSlots: _vm._u(
                             [
                               {
@@ -42747,18 +42737,6 @@ var render = function() {
                           _c(
                             "v-list-item",
                             [
-                              _c(
-                                "v-list-item-content",
-                                [
-                                  _c("v-list-item-title", {
-                                    domProps: {
-                                      textContent: _vm._s(task.title)
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
                               _c(
                                 "v-list-item-content",
                                 [

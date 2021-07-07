@@ -18,7 +18,6 @@
                     <v-list-group
                         v-for="task in tasks"
                         :key="task.id"
-                        :prepend-icon="item.action"
                         color="orange lighten-1"
                         no-action
                     >
@@ -45,11 +44,6 @@
                         </template>
 
                         <v-list-item>
-                            <v-list-item-content>
-                                <v-list-item-title
-                                    v-text="task.title"
-                                ></v-list-item-title>
-                            </v-list-item-content>
                             <v-list-item-content>
                                 <v-list-item-title
                                     v-text="task.detail"
