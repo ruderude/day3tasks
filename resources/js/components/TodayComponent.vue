@@ -174,7 +174,7 @@
                                 </v-sheet>
                             </v-card-text>
                             <v-divider></v-divider>
-                            <v-layout row wrap justify-end>
+                            <v-layout justify-end>
                                 <v-flex shrink>
                                     <v-btn class="ma-3" @click="closeModal">閉じる</v-btn>
                                 </v-flex>

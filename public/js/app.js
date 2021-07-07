@@ -43359,7 +43359,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "v-layout",
-                            { attrs: { row: "", wrap: "", "justify-end": "" } },
+                            { attrs: { "justify-end": "" } },
                             [
                               _c(
                                 "v-flex",
