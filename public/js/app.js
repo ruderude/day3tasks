@@ -5944,7 +5944,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // import ApiHandler from '../lib/api';
-// import Modal from 'ModalComponent'
 
 _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
   apiKey: "d96162df63a8803bcee425928dcd0f36",
@@ -5959,9 +5958,6 @@ axios.defaults.headers.common = {
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Today",
-  // components: {
-  //     Modal,
-  // },
   props: {
     liffId: {
       type: String,
