@@ -65,12 +65,13 @@ class TaskService
     * doneの入れ替え
     *  
     * @param array $tasks タスク
+    * @param int $id タスクid
     * @param string $mid mid
     * @return void
     */
-    public function changeDone(string $mid): void
+    public function changeDone(int $id, string $mid): void
     {
-        $this->repository->changeDone($mid);
+        $this->repository->changeDone($id, $mid);
     }
     
 }

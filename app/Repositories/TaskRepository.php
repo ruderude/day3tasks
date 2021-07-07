@@ -57,21 +57,19 @@ class TaskRepository
     /**
      * doneを入れ替える
      * 
+     * @param int $id
      * @param string $mid
      * @return void
      */
-    public function changeDone($mid): void
+    public function changeDone(int $id, string $mid): void
     {
+        $task = Task::find($id);
+        $done = $task->done ? false : true;
+
         try {
             DB::beginTransaction();
 
-            $created = Task::make();
-            $created->mid = $mid;
-            // $created->mid = isset($task["mid"]) ? $task["mid"] : "testtest";
-            $created->title = $task["title"];
-            $created->detail = isset($task["detail"]) ? $task["detail"] : "";
-            $created->done = isset($task["done"]) ? $task["done"] : false;
-            $created->save();
+            Task::where('id', $id)->update(['done' => $done]);
 
             DB::commit();
         } catch (Exception $e) {

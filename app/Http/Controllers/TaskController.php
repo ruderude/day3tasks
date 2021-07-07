@@ -54,10 +54,8 @@ class TaskController extends Controller
     {
         $id = $request->post('id');
         $access_token = $request->post('access_token');
-        Log::debug('Done情報：' . $id . ":::" . $access_token);
-        exit;
         $user = Line::get_profile($access_token);
-        $this->service->changeDone($user["mid"]);
+        $this->service->changeDone($id, $user["mid"]);
         $tasks = $this->service->getTodayTasks($user["mid"]);
 
         return $tasks;
