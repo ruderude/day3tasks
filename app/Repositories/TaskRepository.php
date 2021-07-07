@@ -48,6 +48,7 @@ class TaskRepository
      */
     public function update(array $tasks): void
     {
+        $tasks['done'] = $tasks['done'] ? 1 : 0;
         // Log::debug("レポジトリ" . print_r($tasks, true));
         try {
             DB::beginTransaction();
