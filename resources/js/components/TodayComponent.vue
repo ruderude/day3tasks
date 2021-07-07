@@ -34,13 +34,13 @@
                                 ></v-list-item-title>
                             </v-list-item-content>
                             <v-list-item-content>
-                                <v-icon>home</v-icon>
+                                <v-icon>mdi-square-edit-outline</v-icon>
                             </v-list-item-content>
                             <v-list-item-content>
-                                <v-icon large>info</v-icon>
+                                <v-icon>mdi-bookmark-check</v-icon>
                             </v-list-item-content>
                             <v-list-item-content>
-                                <v-icon x-large>event</v-icon>
+                                <v-icon>mdi-bookmark-check</v-icon>
                             </v-list-item-content>
                         </template>
 

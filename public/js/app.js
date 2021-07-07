@@ -42701,15 +42701,9 @@ var render = function() {
                                     _vm._v(" "),
                                     _c(
                                       "v-list-item-content",
-                                      [_c("v-icon", [_vm._v("home")])],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-list-item-content",
                                       [
-                                        _c("v-icon", { attrs: { large: "" } }, [
-                                          _vm._v("info")
+                                        _c("v-icon", [
+                                          _vm._v("mdi-square-edit-outline")
                                         ])
                                       ],
                                       1
@@ -42718,11 +42712,19 @@ var render = function() {
                                     _c(
                                       "v-list-item-content",
                                       [
-                                        _c(
-                                          "v-icon",
-                                          { attrs: { "x-large": "" } },
-                                          [_vm._v("event")]
-                                        )
+                                        _c("v-icon", [
+                                          _vm._v("mdi-bookmark-check")
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-icon", [
+                                          _vm._v("mdi-bookmark-check")
+                                        ])
                                       ],
                                       1
                                     )
