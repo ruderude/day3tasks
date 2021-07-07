@@ -5801,7 +5801,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @line/liff */ "./node_modules/@line/liff/dist/lib/index.js");
 /* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_line_liff__WEBPACK_IMPORTED_MODULE_3__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'ModalComponent'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module './components/ModalComponent'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+//
 //
 //
 //
@@ -5962,7 +5963,7 @@ axios.defaults.headers.common = {
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Today",
   components: {
-    Modal: !(function webpackMissingModule() { var e = new Error("Cannot find module 'ModalComponent'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+    Modal: !(function webpackMissingModule() { var e = new Error("Cannot find module './components/ModalComponent'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
   },
   props: {
     liffId: {
@@ -42946,6 +42947,8 @@ var render = function() {
                 ],
                 1
               ),
+              _vm._v(" "),
+              _c("Modal"),
               _vm._v(" "),
               _c("Modal")
             ],

@@ -105,6 +105,7 @@
                         </v-col>
                     </v-row>
                 </v-form>
+                <Modal />
                 <Modal></Modal>
             </v-container>
 
@@ -145,7 +146,7 @@ import BugsnagPluginVue from "@bugsnag/plugin-vue";
 import liff from "@line/liff";
 // import ApiHandler from '../lib/api';
 
-import Modal from 'ModalComponent'
+import Modal from './components/ModalComponent'
 
 Bugsnag.start({
     apiKey: "d96162df63a8803bcee425928dcd0f36",
@@ -165,9 +166,7 @@ axios.defaults.headers.common = {
 
 export default {
     name: "Today",
-    components: {
-        Modal,
-    },
+    components: { Modal },
     props: {
         liffId: {
             type: String,
