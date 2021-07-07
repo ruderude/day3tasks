@@ -5941,8 +5941,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -42950,8 +42948,6 @@ var render = function() {
             ],
             1
           ),
-          _vm._v(" "),
-          _c("Modal"),
           _vm._v(" "),
           _c("div", { staticClass: "error", attrs: { id: "error" } }, [
             _vm._v(_vm._s(_vm.error))

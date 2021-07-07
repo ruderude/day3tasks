@@ -107,8 +107,6 @@
                 </v-form>
             </v-container>
 
-            <Modal></Modal>
-
             <div id="error" class="error">{{ error }}</div>
             <div id="liff_id">LIFF ID：{{ liffId }}</div>
             <div id="line_id">LINE ID：{{ lineId }}</div>
