@@ -52,7 +52,6 @@ const app = new Vue({
     components: {
         Today,
         History,
-        Modal,
     },
     
 })

@@ -100669,8 +100669,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   // },
   components: {
     Today: _components_TodayComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
-    History: _components_HistoryComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Modal: Modal
+    History: _components_HistoryComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 
