@@ -43545,6 +43545,7 @@ var render = function() {
                                                     "v-btn",
                                                     {
                                                       staticClass: "ma-6",
+                                                      attrs: { color: "error" },
                                                       on: {
                                                         click: _vm.closeModal
                                                       }

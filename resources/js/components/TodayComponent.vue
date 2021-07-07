@@ -199,7 +199,7 @@
                                         <v-row>
                                         <v-layout justify-end>
                                             <v-flex shrink>
-                                                <v-btn class="ma-6" @click="closeModal">削除する</v-btn>
+                                                <v-btn color="error" class="ma-6" @click="closeModal">削除する</v-btn>
                                             </v-flex>
                                         </v-layout>
                                         <v-layout justify-end>
