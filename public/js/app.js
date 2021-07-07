@@ -6070,7 +6070,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -43297,8 +43296,7 @@ var render = function() {
                                                 attrs: {
                                                   label: "完了",
                                                   color: "success",
-                                                  value: "success",
-                                                  "hide-details": ""
+                                                  value: "完了"
                                                 }
                                               })
                                             ],

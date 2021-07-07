@@ -156,8 +156,7 @@
                                                 <v-checkbox
                                                     label="完了"
                                                     color="success"
-                                                    value="success"
-                                                    hide-details
+                                                    value="完了"
                                                 ></v-checkbox>
                                             </v-col>
 
