@@ -5945,6 +5945,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -42752,8 +42754,14 @@ var render = function() {
                                     domProps: {
                                       textContent: _vm._s(task.title)
                                     }
-                                  }),
-                                  _vm._v(" "),
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-item-content",
+                                [
                                   _c("v-list-item-subtitle", {
                                     domProps: {
                                       textContent: _vm._s(task.detail)

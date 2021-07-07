@@ -49,6 +49,8 @@
                                 <v-list-item-title
                                     v-text="task.title"
                                 ></v-list-item-title>
+                            </v-list-item-content>
+                            <v-list-item-content>
                                 <v-list-item-subtitle
                                     v-text="task.detail"
                                 ></v-list-item-subtitle>
