@@ -6186,50 +6186,60 @@ axios.defaults.headers.common = {
     submitForm: function submitForm() {
       var _this = this;
 
-      this.overlay = true;
-      var data = {
-        forms: this.forms,
-        access_token: this.accessToken
-      };
-      axios.post("/store", data).then(function (response) {
-        var tasks = response.data;
+      if (this.$refs.store_form.validate()) {
+        // すべてのバリデーションが通過したときのみ
+        this.overlay = true;
+        var data = {
+          forms: this.forms,
+          access_token: this.accessToken
+        };
+        axios.post("/store", data).then(function (response) {
+          var tasks = response.data;
 
-        if (tasks.length <= 0 && !_this.isTasks) {
-          _this.taskInit();
-        } else {
-          _this.setTasks(tasks);
-        }
+          if (tasks.length <= 0 && !_this.isTasks) {
+            _this.taskInit();
+          } else {
+            _this.setTasks(tasks);
+          }
 
-        _this.closeModal();
-      })["catch"](function (err) {
-        _this.error = err;
+          _this.closeModal();
+        })["catch"](function (err) {
+          _this.error = err;
 
-        _this.closeModal();
-      });
+          _this.closeModal();
+        });
+      } else {
+        return false;
+      }
     },
     submitEditForm: function submitEditForm(tasks) {
       var _this2 = this;
 
-      this.overlay = true;
-      var data = {
-        tasks: tasks,
-        access_token: this.accessToken
-      };
-      axios.post("/update", data).then(function (response) {
-        var tasks = response.data;
+      if (this.$refs.edit_form.validate()) {
+        // すべてのバリデーションが通過したときのみ
+        this.overlay = true;
+        var data = {
+          tasks: tasks,
+          access_token: this.accessToken
+        };
+        axios.post("/update", data).then(function (response) {
+          var tasks = response.data;
 
-        if (tasks.length <= 0 && !_this2.isTasks) {
-          _this2.taskInit();
-        } else {
-          _this2.setTasks(tasks);
-        }
+          if (tasks.length <= 0 && !_this2.isTasks) {
+            _this2.taskInit();
+          } else {
+            _this2.setTasks(tasks);
+          }
 
-        _this2.closeModal();
-      })["catch"](function (err) {
-        _this2.error = err;
+          _this2.closeModal();
+        })["catch"](function (err) {
+          _this2.error = err;
 
-        _this2.closeModal();
-      });
+          _this2.closeModal();
+        });
+      } else {
+        return false;
+      }
     },
     submitDeleteForm: function submitDeleteForm() {
       var _this3 = this;
@@ -43187,6 +43197,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-form",
+                { ref: "store_form" },
                 [
                   _c(
                     "v-row",
@@ -43357,6 +43368,7 @@ var render = function() {
                                 [
                                   _c(
                                     "v-form",
+                                    { ref: "edit_form" },
                                     [
                                       _c(
                                         "v-row",

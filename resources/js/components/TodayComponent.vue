@@ -70,7 +70,7 @@
                     </v-list-group>
                 </v-list>
 
-                <v-form>
+                <v-form ref="store_form">
                     <v-row>
                         <v-col
                             v-for="form in forms"
@@ -132,7 +132,7 @@
                             <v-divider></v-divider>
                             <v-card-text>
                                 <v-sheet class="pa-3">
-                                    <v-form>
+                                    <v-form ref="edit_form">
                                         <v-row>
                                             <v-col cols="12">
                                                 <v-text-field
@@ -313,50 +313,64 @@ export default {
             // console.log(this.forms)
         },
         submitForm: function() {
-            this.overlay = true
-            const data = {
-                forms: this.forms,
-                access_token: this.accessToken
-            };
+            if (this.$refs.store_form.validate()) {
+                // すべてのバリデーションが通過したときのみ
+                this.overlay = true
+                const data = {
+                    forms: this.forms,
+                    access_token: this.accessToken
+                };
 
-            axios
-                .post("/store", data)
-                .then(response => {
-                    const tasks = response.data
-                    if (tasks.length <= 0 && !this.isTasks) {
-                        this.taskInit()
-                    } else {
-                        this.setTasks(tasks)
-                    }
-                    this.closeModal()
-                })
-                .catch(err => {
-                    this.error = err;
-                    this.closeModal()
-                });
+                axios
+                    .post("/store", data)
+                    .then(response => {
+                        const tasks = response.data
+                        if (tasks.length <= 0 && !this.isTasks) {
+                            this.taskInit()
+                        } else {
+                            this.setTasks(tasks)
+                        }
+                        this.closeModal()
+                    })
+                    .catch(err => {
+                        this.error = err;
+                        this.closeModal()
+                    });
+                
+            } else {
+                return false
+            }
+            
         },
         submitEditForm: function(tasks) {
-            this.overlay = true
-            const data = {
-                tasks: tasks,
-                access_token: this.accessToken
-            };
+            if (this.$refs.edit_form.validate()) {
+                // すべてのバリデーションが通過したときのみ
+                this.overlay = true
+                const data = {
+                    tasks: tasks,
+                    access_token: this.accessToken
+                };
 
-            axios
-                .post("/update", data)
-                .then(response => {
-                    const tasks = response.data
-                    if (tasks.length <= 0 && !this.isTasks) {
-                        this.taskInit()
-                    } else {
-                        this.setTasks(tasks)
-                    }
-                    this.closeModal()
-                })
-                .catch(err => {
-                    this.error = err;
-                    this.closeModal()
-                });
+                axios
+                    .post("/update", data)
+                    .then(response => {
+                        const tasks = response.data
+                        if (tasks.length <= 0 && !this.isTasks) {
+                            this.taskInit()
+                        } else {
+                            this.setTasks(tasks)
+                        }
+                        this.closeModal()
+                    })
+                    .catch(err => {
+                        this.error = err;
+                        this.closeModal()
+                    });
+                
+            } else {
+                return false
+            }
+            
         },
         submitDeleteForm: function() {
             this.overlay = true
