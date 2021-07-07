@@ -42741,7 +42741,7 @@ var render = function() {
                             "v-list-item",
                             [
                               _c("v-list-item-content", [
-                                _c("div", { staticClass: "text-h4" }, [
+                                _c("div", { staticClass: "text-h6" }, [
                                   _vm._v(
                                     "\n                                " +
                                       _vm._s(task.title) +
@@ -42749,13 +42749,19 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("p", {}, [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(task.detail) +
-                                      "\n                            "
-                                  )
-                                ])
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "text-justify text-subtitle-1"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                " +
+                                        _vm._s(task.detail) +
+                                        "\n                            "
+                                    )
+                                  ]
+                                )
                               ])
                             ],
                             1
