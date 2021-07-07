@@ -6187,31 +6187,31 @@ axios.defaults.headers.common = {
     submitForm: function submitForm() {
       var _this = this;
 
-      if (this.$refs.store_form.validate()) {
-        // すべてのバリデーションが通過したときのみ
-        this.overlay = true;
-        var data = {
-          forms: this.forms,
-          access_token: this.accessToken
-        };
-        axios.post("/store", data).then(function (response) {
-          var tasks = response.data;
+      // if (this.$refs.store_form.validate()) {
+      // すべてのバリデーションが通過したときのみ
+      this.overlay = true;
+      var data = {
+        forms: this.forms,
+        access_token: this.accessToken
+      };
+      axios.post("/store", data).then(function (response) {
+        var tasks = response.data;
+        _this.error = response.data;
 
-          if (tasks.length <= 0 && !_this.isTasks) {
-            _this.taskInit();
-          } else {
-            _this.setTasks(tasks);
-          }
+        if (tasks.length <= 0 && !_this.isTasks) {
+          _this.taskInit();
+        } else {
+          _this.setTasks(tasks);
+        }
 
-          _this.closeModal();
-        })["catch"](function (err) {
-          _this.error = err;
+        _this.closeModal();
+      })["catch"](function (err) {
+        _this.error = err;
 
-          _this.closeModal();
-        });
-      } else {
-        return false;
-      }
+        _this.closeModal();
+      }); // } else {
+      //     return false
+      // }
     },
     submitEditForm: function submitEditForm(tasks) {
       var _this2 = this;
