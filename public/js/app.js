@@ -5960,9 +5960,9 @@ axios.defaults.headers.common = {
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Today",
-  components: {
-    Modal: !(function webpackMissingModule() { var e = new Error("Cannot find module 'ModalComponent'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
-  },
+  // components: {
+  //     Modal,
+  // },
   props: {
     liffId: {
       type: String,

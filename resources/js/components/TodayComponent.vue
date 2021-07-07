@@ -164,9 +164,9 @@ axios.defaults.headers.common = {
 
 export default {
     name: "Today",
-    components: {
-        Modal,
-    },
+    // components: {
+    //     Modal,
+    // },
     props: {
         liffId: {
             type: String,
