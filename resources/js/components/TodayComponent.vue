@@ -139,6 +139,7 @@
                                                 <v-text-field
                                                     label="タスク"
                                                     name="title"
+                                                    :value="postTask.title"
                                                     outlined
                                                 ></v-text-field>
                                             </v-col>
@@ -148,7 +149,7 @@
                                                     outlined
                                                     name="detail"
                                                     label="タスク詳細"
-                                                    value=""
+                                                    :value="postTask.detail"
                                                 ></v-textarea>
                                             </v-col>
 
@@ -156,7 +157,7 @@
                                                 <v-checkbox
                                                     label="完了"
                                                     color="success"
-                                                    value="true"
+                                                    :value="postTask.done"
                                                 ></v-checkbox>
                                             </v-col>
 

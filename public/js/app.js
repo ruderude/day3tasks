@@ -6076,6 +6076,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -43271,6 +43272,7 @@ var render = function() {
                                                 attrs: {
                                                   label: "タスク",
                                                   name: "title",
+                                                  value: _vm.postTask.title,
                                                   outlined: ""
                                                 }
                                               })
@@ -43287,7 +43289,7 @@ var render = function() {
                                                   outlined: "",
                                                   name: "detail",
                                                   label: "タスク詳細",
-                                                  value: ""
+                                                  value: _vm.postTask.detail
                                                 }
                                               })
                                             ],
@@ -43305,7 +43307,7 @@ var render = function() {
                                                 attrs: {
                                                   label: "完了",
                                                   color: "success",
-                                                  value: "true"
+                                                  value: _vm.postTask.done
                                                 }
                                               })
                                             ],
