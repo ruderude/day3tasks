@@ -6201,10 +6201,10 @@ axios.defaults.headers.common = {
           _this.setTasks(tasks);
         }
 
-        _this.overlay = false;
+        closeModal();
       })["catch"](function (err) {
         _this.error = err;
-        _this.overlay = false;
+        closeModal();
       });
     },
     submitEditForm: function submitEditForm(tasks) {
@@ -6224,12 +6224,10 @@ axios.defaults.headers.common = {
           _this2.setTasks(tasks);
         }
 
-        _this2.showEditModal = false;
-        _this2.overlay = false;
+        closeModal();
       })["catch"](function (err) {
         _this2.error = err;
-        _this2.showEditModal = false;
-        _this2.overlay = false;
+        closeModal();
       });
     },
     submitDeleteForm: function submitDeleteForm() {
@@ -6249,12 +6247,10 @@ axios.defaults.headers.common = {
           _this3.setTasks(tasks);
         }
 
-        _this3.showEditModal = false;
-        _this3.overlay = false;
+        closeModal();
       })["catch"](function (err) {
         _this3.error = err;
-        _this3.showEditModal = false;
-        _this3.overlay = false;
+        closeModal();
       });
     },
     liffInit: function liffInit(liffId) {
@@ -6312,6 +6308,7 @@ axios.defaults.headers.common = {
       this.deleteTaskId = null;
       this.showEditModal = false;
       this.showDeleteModal = false;
+      this.overlay = false;
     },
     changeDone: function changeDone(id) {
       var _this5 = this;

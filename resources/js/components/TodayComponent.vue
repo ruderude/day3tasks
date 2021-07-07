@@ -335,11 +335,11 @@ export default {
                     } else {
                         this.setTasks(tasks)
                     }
-                    this.overlay = false
+                    closeModal()
                 })
                 .catch(err => {
                     this.error = err;
-                    this.overlay = false
+                    closeModal()
                 });
         },
         submitEditForm: function(tasks) {
@@ -358,13 +358,11 @@ export default {
                     } else {
                         this.setTasks(tasks)
                     }
-                    this.showEditModal = false
-                    this.overlay = false
+                    closeModal()
                 })
                 .catch(err => {
                     this.error = err;
-                    this.showEditModal = false
-                    this.overlay = false
+                    closeModal()
                 });
         },
         submitDeleteForm: function() {
@@ -383,13 +381,11 @@ export default {
                     } else {
                         this.setTasks(tasks)
                     }
-                    this.showEditModal = false
-                    this.overlay = false
+                    closeModal()
                 })
                 .catch(err => {
                     this.error = err;
-                    this.showEditModal = false
-                    this.overlay = false
+                    closeModal()
                 });
         },
         liffInit: function(liffId) {
@@ -451,6 +447,7 @@ export default {
             this.deleteTaskId = null
             this.showEditModal = false
             this.showDeleteModal = false
+            this.overlay = false
         },
         changeDone (id) {
             axios.post("/changeDone", {
