@@ -5945,17 +5945,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -42739,60 +42728,60 @@ var render = function() {
                                           [
                                             _c(
                                               "v-flex",
-                                              [_c("v-btn", [_vm._v("押して")])],
+                                              [
+                                                _c(
+                                                  "v-btn",
+                                                  [
+                                                    _c("v-icon", [
+                                                      _vm._v(
+                                                        "mdi-square-edit-outline"
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
                                               1
                                             ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
-                                              [_c("v-btn", [_vm._v("押して")])],
+                                              [
+                                                _c(
+                                                  "v-btn",
+                                                  [
+                                                    _c("v-icon", [
+                                                      _vm._v(
+                                                        "mdi-bookmark-check"
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
                                               1
                                             ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
-                                              [_c("v-btn", [_vm._v("押して")])],
+                                              [
+                                                _c(
+                                                  "v-btn",
+                                                  [
+                                                    _c("v-icon", [
+                                                      _vm._v(
+                                                        "mdi-bookmark-check"
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
                                               1
                                             )
                                           ],
                                           1
                                         )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  [
-                                    _c(
-                                      "v-list-item-content",
-                                      [
-                                        _c("v-icon", [
-                                          _vm._v("mdi-square-edit-outline")
-                                        ])
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-list-item-content",
-                                      [
-                                        _c("v-icon", [
-                                          _vm._v("mdi-bookmark-check")
-                                        ])
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-list-item-content",
-                                      [
-                                        _c("v-icon", [
-                                          _vm._v("mdi-bookmark-check")
-                                        ])
                                       ],
                                       1
                                     )

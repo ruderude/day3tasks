@@ -40,22 +40,11 @@
                                 <div>
                                     <v-container>
                                         <v-layout wrap>
-                                        <v-flex><v-btn>押して</v-btn></v-flex>
-                                        <v-flex><v-btn >押して</v-btn></v-flex>
-                                        <v-flex><v-btn>押して</v-btn></v-flex>
+                                        <v-flex><v-btn><v-icon>mdi-square-edit-outline</v-icon></v-btn></v-flex>
+                                        <v-flex><v-btn ><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
+                                        <v-flex><v-btn><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
                                         </v-layout>
                                     </v-container>
-                                </div>
-                                <div>
-                                    <v-list-item-content>
-                                        <v-icon>mdi-square-edit-outline</v-icon>
-                                    </v-list-item-content>
-                                    <v-list-item-content>
-                                        <v-icon>mdi-bookmark-check</v-icon>
-                                    </v-list-item-content>
-                                    <v-list-item-content>
-                                        <v-icon>mdi-bookmark-check</v-icon>
-                                    </v-list-item-content>
                                 </div>
                                 <div class="text-h6">
                                     {{task.title}}
