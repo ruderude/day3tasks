@@ -38,9 +38,9 @@ class TaskService
     /**
     * タスク新規登録処理
     *  
-    * @param array $tasks タスク
-    * @param string $access_token アクセストークン
-    * @return array 保存し内容を返却
+    * @param array $forms タスク
+    * @param string $mid mid
+    * @return void 保存
     */
     public function store(array $forms, string $mid): void
     {
@@ -50,9 +50,22 @@ class TaskService
     }
 
     /**
-    * 今日のタスク取得
+    * タスク更新処理
     *  
     * @param array $tasks タスク
+    * @param string $mid mid
+    * @return void 更新
+    */
+    public function update(array $tasks, string $mid): void
+    {
+        $tasks['title'] = isset($tasks['title']) ? trim(mb_convert_kana($tasks['title'], "s", 'UTF-8')) : "";
+        if(!$tasks['title']){exit;}
+        $this->repository->update($tasks, $mid);
+    }
+
+    /**
+    * 今日のタスク取得
+    *  
     * @param string $mid mid
     * @return array タスクを返却
     */

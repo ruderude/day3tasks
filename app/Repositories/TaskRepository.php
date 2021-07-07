@@ -13,8 +13,9 @@ class TaskRepository
     /**
     * タスク作成
     *  
-    * @param Request $request リクエスト
-    * @return array タスクを整理し内容を返却
+    * @param array $tasks タスク
+    * @param string $mid mid
+    * @return void タスクを保存
      */
     public function store(array $tasks, string $mid): void
     {
@@ -31,6 +32,32 @@ class TaskRepository
                 $created->done = isset($task["done"]) ? $task["done"] : false;
                 $created->save();
             }
+
+            DB::commit();
+        } catch (Exception $e) {
+            Log::debug('タスクレポジトリ' . $e->getMessage());
+            DB::rollBack();
+        }
+    }
+
+    /**
+    * タスク更新
+    *  
+    * @param array $tasks タスク
+    * @param string $mid mid
+    * @return void タスクを更新
+     */
+    public function update(array $tasks, string $mid): void
+    {
+        // Log::debug("レポジトリ" . print_r($tasks, true));
+        try {
+            DB::beginTransaction();
+
+            Task::where('id', $tasks['id'])->update([
+                'title' => $tasks['title'],
+                'detail' => $tasks['detail'],
+                'done' => $tasks['done'],
+            ]);
 
             DB::commit();
         } catch (Exception $e) {
