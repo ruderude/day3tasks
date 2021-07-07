@@ -6029,6 +6029,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -6066,7 +6068,7 @@ axios.defaults.headers.common = {
       isTasks: false,
       error: "",
       overlay: false,
-      showModal: true,
+      showModal: false,
       postTask: []
     };
   },
@@ -43145,11 +43147,11 @@ var render = function() {
                     {
                       attrs: { width: "500" },
                       model: {
-                        value: _vm.dialog,
+                        value: _vm.showModal,
                         callback: function($$v) {
-                          _vm.dialog = $$v
+                          _vm.showModal = $$v
                         },
-                        expression: "dialog"
+                        expression: "showModal"
                       }
                     },
                     [
@@ -43172,7 +43174,9 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("button", [_vm._v("閉じる")])
+                          _c("button", { on: { click: _vm.closeModal } }, [
+                            _vm._v("閉じる")
+                          ])
                         ],
                         1
                       )

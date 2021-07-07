@@ -123,8 +123,9 @@
                         </v-col>
                     </v-row>
                 </v-form>
+
                 <v-container class="mt-12">
-                    <v-dialog v-model="dialog" width=500>
+                    <v-dialog v-model="showModal" width=500>
                         <v-card>
                             <v-card-title>Modal Title</v-card-title>
                             <v-divider></v-divider>
@@ -133,10 +134,11 @@
                                 <div class="body-1">Modal Text</div>
                                 </v-sheet>
                             </v-card-text>
-                            <button >閉じる</button>
+                            <button @click="closeModal">閉じる</button>
                         </v-card>
                     </v-dialog>
                 </v-container>
+
             </v-container>
 
             <div id="error" class="error">{{ error }}</div>
@@ -199,7 +201,7 @@ export default {
             isTasks: false,
             error: "",
             overlay: false,
-            showModal: true,
+            showModal: false,
             postTask: [],
         };
     },
