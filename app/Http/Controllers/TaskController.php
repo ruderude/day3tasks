@@ -31,6 +31,7 @@ class TaskController extends Controller
         $access_token = $request["access_token"];
         $user = Line::get_profile($access_token);
         $mid = $user['mid'];
+        Log::debug(print_r($mid, true));
         $this->service->store($forms, $mid);
         $tasks = $this->service->getTodayTasks($mid);
         // Log::debug(print_r($tasks, true));
