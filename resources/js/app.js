@@ -37,10 +37,8 @@ import Vuetify from 'vuetify';
 import '@mdi/font/css/materialdesignicons.css'
 Vue.use(Vuetify);
 
-import Start from './components/StartComponent'
-import List from './components/ListComponent'
+import Today from './components/TodayComponent'
 import History from './components/HistoryComponent'
-import Example from './components/ExampleComponent'
 
 
 const app = new Vue({
@@ -52,10 +50,8 @@ const app = new Vue({
         iconfont: 'mdi', // default - only for display purposes
     },
     components: {
-        Start,
-        List,
+        Today,
         History,
-        Example,
     },
     
 })

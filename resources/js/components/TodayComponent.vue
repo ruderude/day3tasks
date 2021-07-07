@@ -152,7 +152,7 @@ axios.defaults.headers.common = {
 };
 
 export default {
-    name: "Start",
+    name: "Today",
     props: {
         liffId: {
             type: String,
