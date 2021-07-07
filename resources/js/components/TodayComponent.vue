@@ -48,7 +48,7 @@
                                 <div class="">
                                     {{task.title}}
                                 </div>
-                                <p class="">
+                                <p class="text-justify">
                                     {{task.detail}}
                                 </p>
                             </v-list-item-content>

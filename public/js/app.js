@@ -42749,7 +42749,7 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("p", {}, [
+                                _c("p", { staticClass: "text-justify" }, [
                                   _vm._v(
                                     "\n                                " +
                                       _vm._s(task.detail) +
