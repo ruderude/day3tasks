@@ -34,7 +34,7 @@ class TaskStoreRequest extends FormRequest
      */
     public function messages() {
         return [
-            'title.max' => 'タスクタイトルは500文字以内で入力してください',
+            'forms.title.max' => 'タスクタイトルは500文字以内で入力してください',
         ];
     }
 }
