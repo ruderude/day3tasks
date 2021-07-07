@@ -18,7 +18,7 @@
                     <v-list-group
                         v-for="task in tasks"
                         :key="task.id"
-                        :prepend-icon="'mdi-arrow-right-circle'"
+                        :prepend-icon="doneIcon"
                         color="orange lighten-1"
                         no-action
                     >
@@ -208,8 +208,17 @@ export default {
             text: "テスト",
         };
     },
-    computed: {},
+    computed: {
+        
+    },
     methods: {
+        doneIcon: function (done) {
+            if(done){
+                return 'mdi-check'
+            } else {
+                return 'mdi-arrow-right-circle'
+            }
+        },
         addForm: function() {
             const num = this.forms.length + 1;
             if (this.isTasks) {

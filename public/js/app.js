@@ -6077,6 +6077,13 @@ axios.defaults.headers.common = {
   },
   computed: {},
   methods: {
+    doneIcon: function doneIcon(done) {
+      if (done) {
+        return 'mdi-check';
+      } else {
+        return 'mdi-arrow-right-circle';
+      }
+    },
     addForm: function addForm() {
       var num = this.forms.length + 1;
 
@@ -42877,7 +42884,7 @@ var render = function() {
                         {
                           key: task.id,
                           attrs: {
-                            "prepend-icon": "mdi-arrow-right-circle",
+                            "prepend-icon": _vm.doneIcon,
                             color: "orange lighten-1",
                             "no-action": ""
                           },
