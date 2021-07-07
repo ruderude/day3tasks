@@ -6072,7 +6072,7 @@ axios.defaults.headers.common = {
       overlay: false,
       showModal: false,
       postTask: [],
-      text: text
+      text: "テスト"
     };
   },
   computed: {},

@@ -205,7 +205,7 @@ export default {
             overlay: false,
             showModal: false,
             postTask: [],
-            text,
+            text: "テスト",
         };
     },
     computed: {},
