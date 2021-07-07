@@ -6096,18 +6096,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -43324,8 +43312,6 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", [_vm._v(_vm._s(_vm.postTask))]),
-              _vm._v(" "),
               _c(
                 "v-container",
                 { staticClass: "mt-3" },
@@ -43639,40 +43625,6 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "error", attrs: { id: "error" } }, [
-            _vm._v(_vm._s(_vm.error))
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "liff_id" } }, [
-            _vm._v("LIFF ID：" + _vm._s(_vm.liffId))
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "line_id" } }, [
-            _vm._v("LINE ID：" + _vm._s(_vm.lineId))
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "access_token" } }, [
-            _vm._v("access_token：" + _vm._s(_vm.accessToken))
-          ]),
-          _vm._v(" "),
-          _c(
-            "ul",
-            _vm._l(_vm.tasks, function(task) {
-              return _c("li", [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(task.id) +
-                    ":::" +
-                    _vm._s(task.title) +
-                    ":::" +
-                    _vm._s(task.done) +
-                    "\n            "
-                )
-              ])
-            }),
-            0
           ),
           _vm._v(" "),
           _c("v-overlay", { attrs: { value: _vm.overlay } })

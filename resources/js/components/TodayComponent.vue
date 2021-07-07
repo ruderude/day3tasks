@@ -124,8 +124,6 @@
                     </v-row>
                 </v-form>
 
-                <div>{{postTask}}</div>
-
                 <v-container class="mt-3">
                     <v-dialog v-model="showEditModal" width=600>
                         <v-card>
@@ -217,16 +215,6 @@
                 </v-container>
 
             </v-container>
-
-            <div id="error" class="error">{{ error }}</div>
-            <div id="liff_id">LIFF ID：{{ liffId }}</div>
-            <div id="line_id">LINE ID：{{ lineId }}</div>
-            <div id="access_token">access_token：{{ accessToken }}</div>
-            <ul>
-                <li v-for="task in tasks">
-                    {{ task.id }}:::{{ task.title }}:::{{ task.done }}
-                </li>
-            </ul>
 
             <v-overlay :value="overlay"></v-overlay>
         </v-main>
