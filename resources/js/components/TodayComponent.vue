@@ -135,7 +135,7 @@
                                 <v-sheet class="pa-3">
                                     <v-form>
                                         <v-row>
-                                            <v-col>
+                                            <v-col cols="12">
                                                 <v-text-field
                                                     label="タスク"
                                                     name="title"
@@ -143,7 +143,7 @@
                                                 ></v-text-field>
                                             </v-col>
 
-                                            <v-col>
+                                            <v-col cols="12">
                                                 <v-textarea
                                                     outlined
                                                     name="detail"
@@ -152,7 +152,7 @@
                                                 ></v-textarea>
                                             </v-col>
 
-                                            <v-col>
+                                            <v-col cols="12">
                                                 <v-checkbox
                                                     label="success"
                                                     color="success"

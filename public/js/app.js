@@ -43260,6 +43260,7 @@ var render = function() {
                                         [
                                           _c(
                                             "v-col",
+                                            { attrs: { cols: "12" } },
                                             [
                                               _c("v-text-field", {
                                                 attrs: {
@@ -43274,6 +43275,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-col",
+                                            { attrs: { cols: "12" } },
                                             [
                                               _c("v-textarea", {
                                                 attrs: {
@@ -43289,6 +43291,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-col",
+                                            { attrs: { cols: "12" } },
                                             [
                                               _c("v-checkbox", {
                                                 attrs: {
