@@ -105,6 +105,7 @@
                         </v-col>
                     </v-row>
                 </v-form>
+                <Modal></Modal>
             </v-container>
 
             <div id="error" class="error">{{ error }}</div>
