@@ -6031,6 +6031,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -6069,7 +6071,8 @@ axios.defaults.headers.common = {
       error: "",
       overlay: false,
       showModal: false,
-      postTask: []
+      postTask: [],
+      text: text
     };
   },
   computed: {},
@@ -6168,22 +6171,13 @@ axios.defaults.headers.common = {
     },
     closeModal: function closeModal() {
       this.showModal = false;
-    }
-  },
-  created: function created() {// alert(liff)
-    // Bugsnag.notify(new Error('Test error'))
-  },
-  mounted: function mounted() {
-    var _this3 = this;
+    },
+    changeDone: function changeDone(id) {
+      var _this3 = this;
 
-    this.overlay = true;
-    _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
-      liffId: this.liffId
-    }).then(function () {
-      _this3.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
-
-      axios.post("/setTasks", {
-        access_token: _this3.accessToken
+      axios.post("/changeDone", {
+        access_token: this.accessToken,
+        id: id
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
         // タスクセット
@@ -6200,11 +6194,45 @@ axios.defaults.headers.common = {
         // console.log(err);
         _this3.error = err;
         _this3.overlay = false;
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/changeDone error"));
+      });
+    }
+  },
+  created: function created() {// alert(liff)
+    // Bugsnag.notify(new Error('Test error'))
+  },
+  mounted: function mounted() {
+    var _this4 = this;
+
+    this.overlay = true;
+    _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
+      liffId: this.liffId
+    }).then(function () {
+      _this4.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
+
+      axios.post("/setTasks", {
+        access_token: _this4.accessToken
+      }).then(function (response) {
+        // Bugsnag.notify(new Error(response.data))
+        // タスクセット
+        var tasks = response.data;
+
+        if (tasks.length <= 0) {
+          _this4.taskInit();
+        } else {
+          _this4.setTasks(tasks);
+        }
+
+        _this4.overlay = false;
+      })["catch"](function (err) {
+        // console.log(err);
+        _this4.error = err;
+        _this4.overlay = false;
         _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/v1/liff/setTasks error"));
       });
     })["catch"](function (err) {
-      _this3.error = err;
-      _this3.overlay = false;
+      _this4.error = err;
+      _this4.overlay = false;
       _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
     });
   }
@@ -42900,6 +42928,15 @@ var render = function() {
                                               [
                                                 _c(
                                                   "v-btn",
+                                                  {
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.changeDone(
+                                                          task.id
+                                                        )
+                                                      }
+                                                    }
+                                                  },
                                                   [
                                                     _c("v-icon", [
                                                       _vm._v(
@@ -43137,6 +43174,8 @@ var render = function() {
                 ],
                 1
               ),
+              _vm._v(" "),
+              _c("div", [_vm._v(_vm._s(_vm.text))]),
               _vm._v(" "),
               _c(
                 "v-container",

@@ -36,7 +36,7 @@
                                     <v-container>
                                         <v-layout wrap>
                                             <v-flex>
-                                                <v-btn>
+                                                <v-btn @click="changeDone(task.id)">
                                                     <v-icon>
                                                         mdi-check-outline
                                                     </v-icon>
@@ -124,6 +124,8 @@
                     </v-row>
                 </v-form>
 
+                <div>{{text}}</div>
+
                 <v-container class="mt-6">
                     <v-dialog v-model="showModal" width=600>
                         <v-card>
@@ -203,6 +205,7 @@ export default {
             overlay: false,
             showModal: false,
             postTask: [],
+            text,
         };
     },
     computed: {},
@@ -305,6 +308,29 @@ export default {
         },
         closeModal () {
             this.showModal = false
+        },
+        changeDone (id) {
+            axios.post("/changeDone", {
+                    access_token: this.accessToken,
+                    id: id
+                })
+                .then(response => {
+                    // Bugsnag.notify(new Error(response.data))
+                    // タスクセット
+                    const tasks = response.data
+                    if (tasks.length <= 0) {
+                        this.taskInit()
+                    } else {
+                        this.setTasks(tasks)
+                    }
+                    this.overlay = false
+                })
+                .catch(err => {
+                    // console.log(err);
+                    this.error = err
+                    this.overlay = false
+                    Bugsnag.notify(new Error("/changeDone error"));
+                });
         }
     },
     created: function() {
@@ -319,8 +345,7 @@ export default {
             .then(() => {
                 this.accessToken = liff.getAccessToken()
                 // Bugsnag.notify(new Error(this.accessToken))
-                axios
-                    .post("/setTasks", {
+                axios.post("/setTasks", {
                         access_token: this.accessToken
                     })
                     .then(response => {

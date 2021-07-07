@@ -60,5 +60,17 @@ class TaskService
     {
         return $this->repository->getTodayTasks($mid);
     }
+
+    /**
+    * doneの入れ替え
+    *  
+    * @param array $tasks タスク
+    * @param string $mid mid
+    * @return void
+    */
+    public function changeDone(string $mid): void
+    {
+        $this->repository->changeDone($mid);
+    }
     
 }

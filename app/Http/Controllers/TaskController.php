@@ -45,7 +45,20 @@ class TaskController extends Controller
         $user = Line::get_profile($access_token);
         // Log::debug('ユーザー情報：' . print_r($user, true));
         $tasks = $this->service->getTodayTasks($user["mid"]);
-        Log::debug('今日のタスク：' . print_r($tasks, true));
+        // Log::debug('今日のタスク：' . print_r($tasks, true));
+
+        return $tasks;
+    }
+
+    public function changeDone(Request $request)
+    {
+        $id = $request->post('id');
+        $access_token = $request->post('access_token');
+        Log::debug('Done情報：' . $id . ":::" . $access_token);
+        exit;
+        $user = Line::get_profile($access_token);
+        $this->service->changeDone($user["mid"]);
+        $tasks = $this->service->getTodayTasks($user["mid"]);
 
         return $tasks;
     }
