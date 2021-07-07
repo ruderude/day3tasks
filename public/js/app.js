@@ -5944,6 +5944,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -42753,7 +42758,13 @@ var render = function() {
                                     domProps: {
                                       textContent: _vm._s(task.detail)
                                     }
-                                  })
+                                  }),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "text-justify" }, [
+                                    _vm._v(
+                                      "\n  Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Fusce convallis metus id felis luctus adipiscing. Aenean massa. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus.\n\n  Nulla consequat massa quis enim. Praesent venenatis metus at tortor pulvinar varius. Donec venenatis vulputate lorem. Phasellus accumsan cursus velit. Pellentesque ut neque.\n"
+                                    )
+                                  ])
                                 ],
                                 1
                               )
@@ -42831,7 +42842,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                mdi-plus\n                            "
+                                    "\n                                  mdi-plus\n                              "
                                   )
                                 ]
                               )
@@ -42862,7 +42873,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                mdi-minus\n                            "
+                                    "\n                                  mdi-minus\n                              "
                                   )
                                 ]
                               )
@@ -42892,7 +42903,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            決定!\n                        "
+                                "\n                              決定!\n                          "
                               )
                             ]
                           )
@@ -42930,13 +42941,13 @@ var render = function() {
             _vm._l(_vm.tasks, function(task) {
               return _c("li", [
                 _vm._v(
-                  "\n                " +
+                  "\n                  " +
                     _vm._s(task.id) +
                     ":::" +
                     _vm._s(task.title) +
                     ":::" +
                     _vm._s(task.done) +
-                    "\n            "
+                    "\n              "
                 )
               ])
             }),
@@ -42978,7 +42989,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                送信する\n            ")]
+              [_vm._v("\n                  送信する\n              ")]
             )
           ]),
           _vm._v(" "),
