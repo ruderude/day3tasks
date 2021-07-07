@@ -39,6 +39,7 @@ Vue.use(Vuetify);
 
 import Today from './components/TodayComponent'
 import History from './components/HistoryComponent'
+import Modal from './components/ModalComponent'
 
 
 const app = new Vue({
@@ -46,12 +47,13 @@ const app = new Vue({
     vuetify: new Vuetify({
         iconfont: 'mdi',
     }),
-    icons: {
-        iconfont: 'mdi', // default - only for display purposes
-    },
+    // icons: {
+    //     iconfont: 'mdi', // default - only for display purposes
+    // },
     components: {
         Today,
         History,
+        Modal,
     },
     
 })

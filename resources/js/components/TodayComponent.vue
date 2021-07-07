@@ -134,6 +134,7 @@
         </v-main>
 
         <v-footer> </v-footer>
+        <Modal></Modal>
     </v-app>
 </template>
 
