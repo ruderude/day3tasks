@@ -357,6 +357,7 @@ export default {
                     .post("/update", data)
                     .then(response => {
                         const tasks = response.data
+                        this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {
                             this.taskInit()
                         } else {
