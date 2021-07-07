@@ -43359,7 +43359,7 @@ var render = function() {
                             "v-btn",
                             {
                               staticClass: "ma-3",
-                              attrs: { justify: _vm.end },
+                              attrs: { justify: "end" },
                               on: { click: _vm.closeModal }
                             },
                             [_vm._v("閉じる")]
