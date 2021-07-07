@@ -6096,6 +6096,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -6137,7 +6140,15 @@ axios.defaults.headers.common = {
       showDeleteModal: false,
       postTask: [],
       deleteTaskId: null,
-      text: "テスト"
+      required: function required(value) {
+        return !!value || "必ず入力してください";
+      },
+      limit_length500: function limit_length500(value) {
+        return value.length <= 500 || "500文字以内で入力してください";
+      },
+      limit_length1000: function limit_length1000(value) {
+        return value.length <= 1000 || "1000文字以内で入力してください";
+      }
     };
   },
   computed: {},
@@ -43195,7 +43206,8 @@ var render = function() {
                                 name: "new" + form.id,
                                 outlined: "",
                                 color: "orange lighten-1",
-                                dense: ""
+                                dense: "",
+                                rules: [_vm.required, _vm.limit_length500]
                               },
                               model: {
                                 value: form.title,
@@ -43358,7 +43370,11 @@ var render = function() {
                                                   label: "タスク",
                                                   name: "title",
                                                   value: _vm.postTask.title,
-                                                  outlined: ""
+                                                  outlined: "",
+                                                  rules: [
+                                                    _vm.required,
+                                                    _vm.limit_length500
+                                                  ]
                                                 },
                                                 model: {
                                                   value: _vm.postTask.title,
@@ -43385,7 +43401,8 @@ var render = function() {
                                                   outlined: "",
                                                   name: "detail",
                                                   label: "タスク詳細",
-                                                  value: _vm.postTask.detail
+                                                  value: _vm.postTask.detail,
+                                                  rules: [_vm.limit_length1000]
                                                 },
                                                 model: {
                                                   value: _vm.postTask.detail,
