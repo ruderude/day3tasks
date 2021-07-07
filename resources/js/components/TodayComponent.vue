@@ -45,10 +45,10 @@
 
                         <v-list-item>
                             <v-list-item-content>
-                                <div class="">
+                                <div class="text-h4">
                                     {{task.title}}
                                 </div>
-                                <p class="text-justify">
+                                <p class="">
                                     {{task.detail}}
                                 </p>
                             </v-list-item-content>
