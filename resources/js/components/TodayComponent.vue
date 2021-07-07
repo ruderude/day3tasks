@@ -85,7 +85,7 @@
                                 outlined
                                 color="orange lighten-1"
                                 dense
-                                :rules="[required, limit_length500]"
+                                :rules="[limit_length500]"
                             ></v-text-field>
                         </v-col>
 
@@ -274,7 +274,7 @@ export default {
             postTask: [],
             deleteTaskId: null,
             required: value => !!value || "必ず入力してください",
-            limit_length500: value => value.length <=5 || "500文字以内で入力してください",
+            limit_length500: value => value.length <=500 || "500文字以内で入力してください",
             limit_length1000: value => value.length <= 1000 || "1000文字以内で入力してください",
         };
     },
