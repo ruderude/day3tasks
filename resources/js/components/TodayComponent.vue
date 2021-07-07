@@ -134,7 +134,7 @@
                                 <div class="body-1">Modal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal Text</div>
                                 </v-sheet>
                             </v-card-text>
-                            <button @click="closeModal">閉じる</button>
+                            <button class="text-center m-5" @click="closeModal">閉じる</button>
                         </v-card>
                     </v-dialog>
                 </v-container>

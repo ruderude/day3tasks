@@ -43176,9 +43176,14 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("button", { on: { click: _vm.closeModal } }, [
-                            _vm._v("閉じる")
-                          ])
+                          _c(
+                            "button",
+                            {
+                              staticClass: "text-center m-5",
+                              on: { click: _vm.closeModal }
+                            },
+                            [_vm._v("閉じる")]
+                          )
                         ],
                         1
                       )
