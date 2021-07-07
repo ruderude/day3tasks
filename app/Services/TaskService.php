@@ -94,7 +94,7 @@ class TaskService
     */
     public function delete(int $id, string $mid): void
     {
-        $this->repository->delete($id);
+        $this->repository->delete($id, $mid);
     }
     
 }
