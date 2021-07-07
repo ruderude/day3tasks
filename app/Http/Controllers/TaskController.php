@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\TaskService;
 use Illuminate\Support\Facades\Log;
 use App\Support\Line;
+use App\Http\Requests\TaskStoreRequest;
 
 class TaskController extends Controller
 {
@@ -23,7 +24,7 @@ class TaskController extends Controller
     * @param Request $request リクエスト
     * @return array 保存し内容を返却
     */
-    public function store(Request $request): array
+    public function store(TaskStoreRequest $request): array
     {
         // Log::debug(print_r($request->all(), true));
 
@@ -52,10 +53,13 @@ class TaskController extends Controller
         $mid = $tasks['mid'];
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
+
+        // 本人のリクエストか確認
         if(!Line::checkMid($user["mid"], $mid)){
             Log::error("midが一致しません");
             exit;
         }
+
         $this->service->update($tasks);
         $tasks = $this->service->getTodayTasks($user["mid"]);
         // Log::debug(print_r($tasks, true));

@@ -114,6 +114,7 @@ class TaskRepository
     */
     public function delete(int $id, string $mid): void
     {
+        // 本人のリクエストか確認
         $task = Task::find($id);
         if($task->mid !== $mid){
             Log::error("midが一致しません");

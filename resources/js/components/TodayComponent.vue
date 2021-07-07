@@ -122,6 +122,7 @@
                                 決定!!
                             </v-btn>
                         </v-col>
+                        <div class="red--text">{{ error }}</div>
                     </v-row>
                 </v-form>
 
@@ -313,7 +314,7 @@ export default {
             // console.log(this.forms)
         },
         submitForm: function() {
-            if (this.$refs.store_form.validate()) {
+            // if (this.$refs.store_form.validate()) {
                 // すべてのバリデーションが通過したときのみ
                 this.overlay = true
                 const data = {
@@ -325,6 +326,7 @@ export default {
                     .post("/store", data)
                     .then(response => {
                         const tasks = response.data
+                        this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {
                             this.taskInit()
                         } else {
@@ -333,13 +335,13 @@ export default {
                         this.closeModal()
                     })
                     .catch(err => {
-                        this.error = err;
+                        this.error = err
                         this.closeModal()
                     });
                 
-            } else {
-                return false
-            }
+            // } else {
+            //     return false
+            // }
             
         },
         submitEditForm: function(tasks) {
