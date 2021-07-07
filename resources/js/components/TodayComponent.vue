@@ -50,7 +50,7 @@
                                                 </v-btn>
                                             </v-flex>
                                             <v-flex>
-                                                <v-btn>
+                                                <v-btn @click="openDeleteModal(task.id)">
                                                     <v-icon>
                                                         mdi-delete
                                                     </v-icon>
@@ -188,6 +188,34 @@
                     </v-dialog>
                 </v-container>
 
+                <v-container class="mt-3">
+                    <v-dialog v-model="showDeleteModal" width=600>
+                        <v-card>
+                            <v-card-title>本当に削除しますか？</v-card-title>
+                            <v-divider></v-divider>
+                            <v-card-text>
+                                <v-sheet class="pa-3">
+                                    <v-form>
+                                        <v-row>
+                                        <v-layout justify-end>
+                                            <v-flex shrink>
+                                                <v-btn class="ma-6" @click="closeModal">削除する</v-btn>
+                                            </v-flex>
+                                        </v-layout>
+                                        <v-layout justify-end>
+                                            <v-flex shrink>
+                                                <v-btn class="ma-6" @click="closeModal">キャンセル</v-btn>
+                                            </v-flex>
+                                        </v-layout>
+                                        </v-row>
+                                    </v-form>
+                                </v-sheet>
+                            </v-card-text>
+                            
+                        </v-card>
+                    </v-dialog>
+                </v-container>
+
             </v-container>
 
             <div id="error" class="error">{{ error }}</div>
@@ -251,6 +279,7 @@ export default {
             error: "",
             overlay: false,
             showEditModal: false,
+            showDeleteModal: false,
             postTask: [],
             text: "テスト",
         };
@@ -387,8 +416,12 @@ export default {
             this.postTask = task
             this.showEditModal = true
         },
+        openDeleteModal (id) {
+            this.showDeleteModal = true
+        },
         closeModal () {
             this.showEditModal = false
+            this.showDeleteModal = false
         },
         changeDone (id) {
             axios.post("/changeDone", {

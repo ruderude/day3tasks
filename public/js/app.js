@@ -6080,6 +6080,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6118,6 +6146,7 @@ axios.defaults.headers.common = {
       error: "",
       overlay: false,
       showEditModal: false,
+      showDeleteModal: false,
       postTask: [],
       text: "テスト"
     };
@@ -6248,8 +6277,12 @@ axios.defaults.headers.common = {
       this.postTask = task;
       this.showEditModal = true;
     },
+    openDeleteModal: function openDeleteModal(id) {
+      this.showDeleteModal = true;
+    },
     closeModal: function closeModal() {
       this.showEditModal = false;
+      this.showDeleteModal = false;
     },
     changeDone: function changeDone(id) {
       var _this4 = this;
@@ -43060,6 +43093,15 @@ var render = function() {
                                               [
                                                 _c(
                                                   "v-btn",
+                                                  {
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.openDeleteModal(
+                                                          task.id
+                                                        )
+                                                      }
+                                                    }
+                                                  },
                                                   [
                                                     _c("v-icon", [
                                                       _vm._v(
@@ -43437,6 +43479,114 @@ var render = function() {
                                       on: { click: _vm.closeModal }
                                     },
                                     [_vm._v("閉じる")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-container",
+                { staticClass: "mt-3" },
+                [
+                  _c(
+                    "v-dialog",
+                    {
+                      attrs: { width: "600" },
+                      model: {
+                        value: _vm.showDeleteModal,
+                        callback: function($$v) {
+                          _vm.showDeleteModal = $$v
+                        },
+                        expression: "showDeleteModal"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-title", [_vm._v("本当に削除しますか？")]),
+                          _vm._v(" "),
+                          _c("v-divider"),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c(
+                                "v-sheet",
+                                { staticClass: "pa-3" },
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "v-layout",
+                                            { attrs: { "justify-end": "" } },
+                                            [
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { shrink: "" } },
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    {
+                                                      staticClass: "ma-6",
+                                                      on: {
+                                                        click: _vm.closeModal
+                                                      }
+                                                    },
+                                                    [_vm._v("削除する")]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-layout",
+                                            { attrs: { "justify-end": "" } },
+                                            [
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { shrink: "" } },
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    {
+                                                      staticClass: "ma-6",
+                                                      on: {
+                                                        click: _vm.closeModal
+                                                      }
+                                                    },
+                                                    [_vm._v("キャンセル")]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
