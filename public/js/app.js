@@ -6019,6 +6019,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43126,20 +43136,52 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("Modal"),
-              _vm._v(" "),
-              _c("Modal", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.showModal,
-                    expression: "showModal"
-                  }
+              _c(
+                "v-container",
+                { staticClass: "mt-12" },
+                [
+                  _c(
+                    "v-dialog",
+                    {
+                      attrs: { width: "500" },
+                      model: {
+                        value: _vm.dialog,
+                        callback: function($$v) {
+                          _vm.dialog = $$v
+                        },
+                        expression: "dialog"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-title", [_vm._v("Modal Title")]),
+                          _vm._v(" "),
+                          _c("v-divider"),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-sheet", { staticClass: "pa-3" }, [
+                                _c("div", { staticClass: "body-1" }, [
+                                  _vm._v("Modal Text")
+                                ])
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("button", [_vm._v("閉じる")])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
-                attrs: { task: _vm.postTask },
-                on: { close: _vm.closeModal }
-              })
+                1
+              )
             ],
             1
           ),

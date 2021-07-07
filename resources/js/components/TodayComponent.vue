@@ -123,10 +123,20 @@
                         </v-col>
                     </v-row>
                 </v-form>
-                <Modal />
-                <Modal
-                    :task="postTask" v-show="showModal" @close="closeModal"
-                ></Modal>
+                <v-container class="mt-12">
+                    <v-dialog v-model="dialog" width=500>
+                        <v-card>
+                            <v-card-title>Modal Title</v-card-title>
+                            <v-divider></v-divider>
+                            <v-card-text>
+                                <v-sheet class="pa-3">
+                                <div class="body-1">Modal Text</div>
+                                </v-sheet>
+                            </v-card-text>
+                            <button >閉じる</button>
+                        </v-card>
+                    </v-dialog>
+                </v-container>
             </v-container>
 
             <div id="error" class="error">{{ error }}</div>
