@@ -39,7 +39,6 @@ Vue.use(Vuetify);
 
 import Today from './components/TodayComponent'
 import History from './components/HistoryComponent'
-import Modal from './components/ModalComponent'
 
 
 const app = new Vue({

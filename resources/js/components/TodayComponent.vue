@@ -107,6 +107,8 @@
                 </v-form>
             </v-container>
 
+            <Modal></Modal>
+
             <div id="error" class="error">{{ error }}</div>
             <div id="liff_id">LIFF ID：{{ liffId }}</div>
             <div id="line_id">LINE ID：{{ lineId }}</div>
@@ -134,7 +136,6 @@
         </v-main>
 
         <v-footer> </v-footer>
-        <Modal></Modal>
     </v-app>
 </template>
 
@@ -144,6 +145,8 @@ import Bugsnag from "@bugsnag/js";
 import BugsnagPluginVue from "@bugsnag/plugin-vue";
 import liff from "@line/liff";
 // import ApiHandler from '../lib/api';
+
+import Modal from 'ModalComponent'
 
 Bugsnag.start({
     apiKey: "d96162df63a8803bcee425928dcd0f36",
@@ -163,6 +166,9 @@ axios.defaults.headers.common = {
 
 export default {
     name: "Today",
+    components: {
+        Modal,
+    },
     props: {
         liffId: {
             type: String,
