@@ -206,7 +206,7 @@ export default {
             };
 
             axios
-                .post("/today", data)
+                .post("/store", data)
                 .then(response => {
                     const tasks = response.data
                     if (tasks.length <= 0 && !this.isTasks) {
@@ -281,7 +281,7 @@ export default {
                 this.accessToken = liff.getAccessToken()
                 // Bugsnag.notify(new Error(this.accessToken))
                 axios
-                    .post("/v1/liff/setTasks", {
+                    .post("/setTasks", {
                         access_token: this.accessToken
                     })
                     .then(response => {

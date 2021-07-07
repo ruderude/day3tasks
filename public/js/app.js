@@ -6002,7 +6002,7 @@ axios.defaults.headers.common = {
         forms: this.forms,
         access_token: this.accessToken
       };
-      axios.post("/today", data).then(function (response) {
+      axios.post("/store", data).then(function (response) {
         var tasks = response.data;
 
         if (tasks.length <= 0 && !_this.isTasks) {
@@ -6072,7 +6072,7 @@ axios.defaults.headers.common = {
     }).then(function () {
       _this3.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
 
-      axios.post("/v1/liff/setTasks", {
+      axios.post("/setTasks", {
         access_token: _this3.accessToken
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))

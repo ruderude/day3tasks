@@ -42,16 +42,11 @@ class TaskService
     * @param string $access_token アクセストークン
     * @return array 保存し内容を返却
     */
-    public function store(array $forms, string $access_token): array
+    public function store(array $forms, string $mid): void
     {
         // Log::debug('ストア' . print_r($forms, true));
         $tasks = $this->trim($forms);
-        $user = Line::get_profile($access_token);
-        $mid = $user['mid'];
         $this->repository->store($tasks, $mid);
-        $today_tasks = $this->getTodayTasks($mid);
-        // Log::debug('ストア' . print_r($tasks, true));
-        return $today_tasks;
     }
 
     /**
@@ -65,4 +60,5 @@ class TaskService
     {
         return $this->repository->getTodayTasks($mid);
     }
+    
 }

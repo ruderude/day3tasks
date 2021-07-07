@@ -15,9 +15,4 @@ class LiffService
         $this->taskRepository = $taskRepository;
     }
 
-    public function getTodayTasks(string $mid): array
-    {
-        return $this->taskRepository->getTodayTasks($mid);
-    }
-
 }

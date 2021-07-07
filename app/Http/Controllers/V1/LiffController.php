@@ -49,15 +49,4 @@ class LiffController extends Controller
         return $data;
     }
 
-    public function setTasks(Request $request)
-    {
-        // Log::debug('ゲットユーザー：' . print_r($request->all(), true));
-        $access_token = $request->post('access_token');
-        $user = Line::get_profile($access_token);
-        // Log::debug('ユーザー情報：' . print_r($user, true));
-        $tasks = $this->service->getTodayTasks($user["mid"]);
-        Log::debug('今日のタスク：' . print_r($tasks, true));
-
-        return $tasks;
-    }
 }
