@@ -152,7 +152,7 @@
                                                 ></v-textarea>
                                             </v-col>
 
-                                            <v-col class="mt-n6" cols="12">
+                                            <v-col class="mt-n10" cols="12">
                                                 <v-checkbox
                                                     label="完了"
                                                     color="success"
@@ -174,7 +174,7 @@
                                 </v-sheet>
                             </v-card-text>
                             <v-divider></v-divider>
-                            <v-btn class="m-5" @click="closeModal">閉じる</v-btn>
+                            <v-btn class="float-right ma-3" @click="closeModal">閉じる</v-btn>
                         </v-card>
                     </v-dialog>
                 </v-container>

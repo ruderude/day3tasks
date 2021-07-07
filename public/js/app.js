@@ -43292,7 +43292,7 @@ var render = function() {
                                           _c(
                                             "v-col",
                                             {
-                                              staticClass: "mt-n6",
+                                              staticClass: "mt-n10",
                                               attrs: { cols: "12" }
                                             },
                                             [
@@ -43355,7 +43355,7 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              staticClass: "m-5",
+                              staticClass: "float-right ma-3",
                               on: { click: _vm.closeModal }
                             },
                             [_vm._v("閉じる")]
