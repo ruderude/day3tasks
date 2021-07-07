@@ -18,7 +18,7 @@
                     <v-list-group
                         v-for="task in tasks"
                         :key="task.id"
-                        :prepend-icon="doneIcon"
+                        :prepend-icon="doneIcon(task.done)"
                         color="orange lighten-1"
                         no-action
                     >

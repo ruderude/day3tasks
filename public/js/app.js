@@ -42884,7 +42884,7 @@ var render = function() {
                         {
                           key: task.id,
                           attrs: {
-                            "prepend-icon": _vm.doneIcon,
+                            "prepend-icon": _vm.doneIcon(task.done),
                             color: "orange lighten-1",
                             "no-action": ""
                           },
