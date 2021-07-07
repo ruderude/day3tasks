@@ -6071,6 +6071,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -43352,10 +43353,12 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-divider"),
                           _vm._v(" "),
+                          _c("v-spacer"),
+                          _vm._v(" "),
                           _c(
                             "v-btn",
                             {
-                              staticClass: "float-right ma-3",
+                              staticClass: "ma-3",
                               on: { click: _vm.closeModal }
                             },
                             [_vm._v("閉じる")]
