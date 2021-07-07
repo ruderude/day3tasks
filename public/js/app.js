@@ -5931,6 +5931,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42664,6 +42672,24 @@ var render = function() {
                                 key: "activator",
                                 fn: function() {
                                   return [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", {
+                                          domProps: {
+                                            textContent: _vm._s(task.title)
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("v-list-item-title", {
+                                          domProps: {
+                                            textContent: _vm._s(task.done)
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
                                     _c(
                                       "v-list-item-content",
                                       [
