@@ -5807,15 +5807,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -42693,29 +42684,11 @@ var render = function() {
   return _c(
     "v-app",
     [
-      _c(
-        "v-app-bar",
-        { attrs: { app: "", dense: "", color: "orange darken-1" } },
-        [
-          _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("モーダルヘッダー")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "v-main",
-        [
-          _c("v-container", [
-            _c("div", { staticClass: "text-h6 mx-auto" }, [
-              _vm._v("モーダルメイン")
-            ])
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-footer")
+      _c("v-container", [
+        _c("div", { staticClass: "text-h6 mx-auto" }, [
+          _vm._v("モーダルメイン")
+        ])
+      ])
     ],
     1
   )

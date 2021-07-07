@@ -1,17 +1,8 @@
 <template>
     <v-app>
-        <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">モーダルヘッダー</div>
-        </v-app-bar>
-        
-        <v-main>
-            <v-container>
-                <div class="text-h6 mx-auto">モーダルメイン</div>
-            </v-container>
-        </v-main>
-        
-        <v-footer>
-        </v-footer>
+        <v-container>
+            <div class="text-h6 mx-auto">モーダルメイン</div>
+        </v-container>
     </v-app>
 </template>
 
