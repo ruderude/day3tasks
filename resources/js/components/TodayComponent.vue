@@ -27,17 +27,20 @@
                                 <v-list-item-title
                                     v-text="task.title"
                                 ></v-list-item-title>
+                            </v-list-item-content>
+                            <v-list-item-content>
                                 <v-list-item-title
                                     v-text="task.done"
                                 ></v-list-item-title>
                             </v-list-item-content>
                             <v-list-item-content>
-                                <v-list-item-title
-                                    v-text="task.title"
-                                ></v-list-item-title>
-                                <v-list-item-title
-                                    v-text="task.done"
-                                ></v-list-item-title>
+                                <v-icon>home</v-icon>
+                            </v-list-item-content>
+                            <v-list-item-content>
+                                <v-icon large>info</v-icon>
+                            </v-list-item-content>
+                            <v-list-item-content>
+                                <v-icon x-large>event</v-icon>
                             </v-list-item-content>
                         </template>
 

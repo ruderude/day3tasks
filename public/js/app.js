@@ -5939,6 +5939,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -42679,8 +42682,14 @@ var render = function() {
                                           domProps: {
                                             textContent: _vm._s(task.title)
                                           }
-                                        }),
-                                        _vm._v(" "),
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list-item-content",
+                                      [
                                         _c("v-list-item-title", {
                                           domProps: {
                                             textContent: _vm._s(task.done)
@@ -42692,18 +42701,28 @@ var render = function() {
                                     _vm._v(" "),
                                     _c(
                                       "v-list-item-content",
+                                      [_c("v-icon", [_vm._v("home")])],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list-item-content",
                                       [
-                                        _c("v-list-item-title", {
-                                          domProps: {
-                                            textContent: _vm._s(task.title)
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("v-list-item-title", {
-                                          domProps: {
-                                            textContent: _vm._s(task.done)
-                                          }
-                                        })
+                                        _c("v-icon", { attrs: { large: "" } }, [
+                                          _vm._v("info")
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          { attrs: { "x-large": "" } },
+                                          [_vm._v("event")]
+                                        )
                                       ],
                                       1
                                     )
