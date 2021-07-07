@@ -44,10 +44,9 @@ class TaskRepository
     * タスク更新
     *  
     * @param array $tasks タスク
-    * @param string $mid mid
     * @return void タスクを更新
      */
-    public function update(array $tasks, string $mid): void
+    public function update(array $tasks): void
     {
         // Log::debug("レポジトリ" . print_r($tasks, true));
         try {
@@ -86,10 +85,9 @@ class TaskRepository
      * doneを入れ替える
      * 
      * @param int $id
-     * @param string $mid
      * @return void
      */
-    public function changeDone(int $id, string $mid): void
+    public function changeDone(int $id): void
     {
         $task = Task::find($id);
         $done = $task->done ? false : true;
@@ -98,6 +96,26 @@ class TaskRepository
             DB::beginTransaction();
 
             Task::where('id', $id)->update(['done' => $done]);
+
+            DB::commit();
+        } catch (Exception $e) {
+            Log::debug('タスクレポジトリ' . $e->getMessage());
+            DB::rollBack();
+        }
+    }
+
+    /**
+    * タスク削除
+    *  
+    * @param int $id タスクid
+    * @return void
+    */
+    public function delete(int $id): void
+    {
+        try {
+            DB::beginTransaction();
+
+            Task::destroy($id);
 
             DB::commit();
         } catch (Exception $e) {

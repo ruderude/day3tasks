@@ -199,7 +199,7 @@
                                         <v-row>
                                         <v-layout justify-end>
                                             <v-flex shrink>
-                                                <v-btn color="error" class="ma-6" @click="closeModal">削除する</v-btn>
+                                                <v-btn color="error" class="ma-6" @click="submitDeleteForm()">削除する</v-btn>
                                             </v-flex>
                                         </v-layout>
                                         <v-layout justify-end>
@@ -281,6 +281,7 @@ export default {
             showEditModal: false,
             showDeleteModal: false,
             postTask: [],
+            deleteTaskId: null,
             text: "テスト",
         };
     },
@@ -366,6 +367,31 @@ export default {
                     this.overlay = false
                 });
         },
+        submitDeleteForm: function() {
+            this.overlay = true
+            const data = {
+                id: this.deleteTaskId,
+                access_token: this.accessToken
+            };
+
+            axios
+                .post("/delete", data)
+                .then(response => {
+                    const tasks = response.data
+                    if (tasks.length <= 0 && !this.isTasks) {
+                        this.taskInit()
+                    } else {
+                        this.setTasks(tasks)
+                    }
+                    this.showEditModal = false
+                    this.overlay = false
+                })
+                .catch(err => {
+                    this.error = err;
+                    this.showEditModal = false
+                    this.overlay = false
+                });
+        },
         liffInit: function(liffId) {
             liff.init({
                 liffId: liffId
@@ -417,9 +443,12 @@ export default {
             this.showEditModal = true
         },
         openDeleteModal (id) {
+            this.deleteTaskId = id
             this.showDeleteModal = true
         },
         closeModal () {
+            this.postTask = []
+            this.deleteTaskId = null
             this.showEditModal = false
             this.showDeleteModal = false
         },

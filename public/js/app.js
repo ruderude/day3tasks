@@ -6148,6 +6148,7 @@ axios.defaults.headers.common = {
       showEditModal: false,
       showDeleteModal: false,
       postTask: [],
+      deleteTaskId: null,
       text: "テスト"
     };
   },
@@ -6231,16 +6232,41 @@ axios.defaults.headers.common = {
         _this2.overlay = false;
       });
     },
-    liffInit: function liffInit(liffId) {
+    submitDeleteForm: function submitDeleteForm() {
       var _this3 = this;
+
+      this.overlay = true;
+      var data = {
+        id: this.deleteTaskId,
+        access_token: this.accessToken
+      };
+      axios.post("/delete", data).then(function (response) {
+        var tasks = response.data;
+
+        if (tasks.length <= 0 && !_this3.isTasks) {
+          _this3.taskInit();
+        } else {
+          _this3.setTasks(tasks);
+        }
+
+        _this3.showEditModal = false;
+        _this3.overlay = false;
+      })["catch"](function (err) {
+        _this3.error = err;
+        _this3.showEditModal = false;
+        _this3.overlay = false;
+      });
+    },
+    liffInit: function liffInit(liffId) {
+      var _this4 = this;
 
       _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
         liffId: liffId
       }).then(function (liff) {
         // Bugsnag.notify(new Error(liff))
-        _this3.accessToken = liff.getAccessToken();
+        _this4.accessToken = liff.getAccessToken();
       })["catch"](function (err) {
-        _this3.error = err;
+        _this4.error = err;
       });
     },
     taskInit: function taskInit() {
@@ -6278,52 +6304,21 @@ axios.defaults.headers.common = {
       this.showEditModal = true;
     },
     openDeleteModal: function openDeleteModal(id) {
+      this.deleteTaskId = id;
       this.showDeleteModal = true;
     },
     closeModal: function closeModal() {
+      this.postTask = [];
+      this.deleteTaskId = null;
       this.showEditModal = false;
       this.showDeleteModal = false;
     },
     changeDone: function changeDone(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.post("/changeDone", {
         access_token: this.accessToken,
         id: id
-      }).then(function (response) {
-        // Bugsnag.notify(new Error(response.data))
-        // タスクセット
-        var tasks = response.data;
-
-        if (tasks.length <= 0) {
-          _this4.taskInit();
-        } else {
-          _this4.setTasks(tasks);
-        }
-
-        _this4.overlay = false;
-      })["catch"](function (err) {
-        // console.log(err);
-        _this4.error = err;
-        _this4.overlay = false;
-        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/changeDone error"));
-      });
-    }
-  },
-  created: function created() {// alert(liff)
-    // Bugsnag.notify(new Error('Test error'))
-  },
-  mounted: function mounted() {
-    var _this5 = this;
-
-    this.overlay = true;
-    _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
-      liffId: this.liffId
-    }).then(function () {
-      _this5.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
-
-      axios.post("/setTasks", {
-        access_token: _this5.accessToken
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
         // タスクセット
@@ -6340,11 +6335,45 @@ axios.defaults.headers.common = {
         // console.log(err);
         _this5.error = err;
         _this5.overlay = false;
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/changeDone error"));
+      });
+    }
+  },
+  created: function created() {// alert(liff)
+    // Bugsnag.notify(new Error('Test error'))
+  },
+  mounted: function mounted() {
+    var _this6 = this;
+
+    this.overlay = true;
+    _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
+      liffId: this.liffId
+    }).then(function () {
+      _this6.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
+
+      axios.post("/setTasks", {
+        access_token: _this6.accessToken
+      }).then(function (response) {
+        // Bugsnag.notify(new Error(response.data))
+        // タスクセット
+        var tasks = response.data;
+
+        if (tasks.length <= 0) {
+          _this6.taskInit();
+        } else {
+          _this6.setTasks(tasks);
+        }
+
+        _this6.overlay = false;
+      })["catch"](function (err) {
+        // console.log(err);
+        _this6.error = err;
+        _this6.overlay = false;
         _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/v1/liff/setTasks error"));
       });
     })["catch"](function (err) {
-      _this5.error = err;
-      _this5.overlay = false;
+      _this6.error = err;
+      _this6.overlay = false;
       _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
     });
   }
@@ -43547,7 +43576,11 @@ var render = function() {
                                                       staticClass: "ma-6",
                                                       attrs: { color: "error" },
                                                       on: {
-                                                        click: _vm.closeModal
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.submitDeleteForm()
+                                                        }
                                                       }
                                                     },
                                                     [_vm._v("削除する")]

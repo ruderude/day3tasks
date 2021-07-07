@@ -53,14 +53,13 @@ class TaskService
     * タスク更新処理
     *  
     * @param array $tasks タスク
-    * @param string $mid mid
     * @return void 更新
     */
-    public function update(array $tasks, string $mid): void
+    public function update(array $tasks): void
     {
         $tasks['title'] = isset($tasks['title']) ? trim(mb_convert_kana($tasks['title'], "s", 'UTF-8')) : "";
         if(!$tasks['title']){exit;}
-        $this->repository->update($tasks, $mid);
+        $this->repository->update($tasks);
     }
 
     /**
@@ -79,12 +78,22 @@ class TaskService
     *  
     * @param array $tasks タスク
     * @param int $id タスクid
-    * @param string $mid mid
     * @return void
     */
-    public function changeDone(int $id, string $mid): void
+    public function changeDone(int $id): void
     {
-        $this->repository->changeDone($id, $mid);
+        $this->repository->changeDone($id);
+    }
+
+    /**
+    * タスク削除
+    *  
+    * @param int $id タスクid
+    * @return void
+    */
+    public function delete(int $id): void
+    {
+        $this->repository->delete($id);
     }
     
 }

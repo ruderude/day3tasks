@@ -49,7 +49,7 @@ class TaskController extends Controller
         // Log::debug(print_r($request->all(), true));
         $tasks = $request["tasks"];
         $mid = $tasks['mid'];
-        $this->service->update($tasks, $mid);
+        $this->service->update($tasks);
         $tasks = $this->service->getTodayTasks($mid);
         // Log::debug(print_r($tasks, true));
 
@@ -73,7 +73,24 @@ class TaskController extends Controller
         $id = $request->post('id');
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
-        $this->service->changeDone($id, $user["mid"]);
+        $this->service->changeDone($id);
+        $tasks = $this->service->getTodayTasks($user["mid"]);
+
+        return $tasks;
+    }
+
+    /**
+    * タスク削除処理
+    *  
+    * @param Request $request リクエスト
+    * @return array 削除しタスクを返却
+    */
+    public function delete(Request $request): array
+    {
+        $id = $request->post('id');
+        $access_token = $request->post('access_token');
+        $user = Line::get_profile($access_token);
+        $this->service->delete($id);
         $tasks = $this->service->getTodayTasks($user["mid"]);
 
         return $tasks;
