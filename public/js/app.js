@@ -42741,7 +42741,7 @@ var render = function() {
                             "v-list-item",
                             [
                               _c("v-list-item-content", [
-                                _c("div", { staticClass: "text-justify" }, [
+                                _c("div", {}, [
                                   _vm._v(
                                     "\n                                " +
                                       _vm._s(task.title) +
@@ -42749,7 +42749,7 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("p", { staticClass: "text-justify" }, [
+                                _c("p", {}, [
                                   _vm._v(
                                     "\n                                " +
                                       _vm._s(task.detail) +
