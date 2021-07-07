@@ -6144,7 +6144,7 @@ axios.defaults.headers.common = {
         return !!value || "必ず入力してください";
       },
       limit_length500: function limit_length500(value) {
-        return value.length <= 500 || "500文字以内で入力してください";
+        return value.length <= 5 || "500文字以内で入力してください";
       },
       limit_length1000: function limit_length1000(value) {
         return value.length <= 1000 || "1000文字以内で入力してください";
