@@ -1,7 +1,18 @@
 <template>
     <v-app>
-        <v-container>
-            <div class="text-h6 mx-auto">モーダルメイン</div>
+        <v-container class="mt-12">
+            <v-dialog v-model="dialog" width=500>
+                <v-card>
+                    <v-card-title>{{ task.title }}</v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text>
+                        <v-sheet class="pa-3">
+                        <div class="body-1">{{ task.detail }}</div>
+                        </v-sheet>
+                    </v-card-text>
+                    <button @click="$emit('close')">閉じる</button>
+                </v-card>
+            </v-dialog>
         </v-container>
     </v-app>
 </template>
@@ -21,9 +32,13 @@ bugsnagVue.installVueErrorHandler(Vue)
 
 export default {
     name: "Modal",
+    props: {
+        task: {
+        },
+    },
     data () {
         return {
-
+            dialog: false,
         }
     },
     computed: {

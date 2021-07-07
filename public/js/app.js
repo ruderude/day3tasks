@@ -5807,6 +5807,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5818,8 +5829,13 @@ var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('v
 bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Modal",
+  props: {
+    task: {}
+  },
   data: function data() {
-    return {};
+    return {
+      dialog: false
+    };
   },
   computed: {},
   methods: {
@@ -5996,6 +6012,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6026,16 +6049,15 @@ axios.defaults.headers.common = {
   },
   data: function data() {
     return {
-      formData: {
-        name: ""
-      },
       lineId: null,
       accessToken: null,
       forms: [],
       tasks: [],
       isTasks: false,
       error: "",
-      overlay: false
+      overlay: false,
+      showModal: false,
+      postTask: []
     };
   },
   computed: {},
@@ -6127,6 +6149,13 @@ axios.defaults.headers.common = {
         title: "",
         comment: ""
       });
+    },
+    openModal: function openModal(task) {
+      this.postTask = task;
+      this.showModal = true;
+    },
+    closeModal: function closeModal() {
+      this.showModal = false;
     }
   },
   created: function created() {// alert(liff)
@@ -42684,11 +42713,62 @@ var render = function() {
   return _c(
     "v-app",
     [
-      _c("v-container", [
-        _c("div", { staticClass: "text-h6 mx-auto" }, [
-          _vm._v("モーダルメイン")
-        ])
-      ])
+      _c(
+        "v-container",
+        { staticClass: "mt-12" },
+        [
+          _c(
+            "v-dialog",
+            {
+              attrs: { width: "500" },
+              model: {
+                value: _vm.dialog,
+                callback: function($$v) {
+                  _vm.dialog = $$v
+                },
+                expression: "dialog"
+              }
+            },
+            [
+              _c(
+                "v-card",
+                [
+                  _c("v-card-title", [_vm._v(_vm._s(_vm.task.title))]),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _c("v-sheet", { staticClass: "pa-3" }, [
+                        _c("div", { staticClass: "body-1" }, [
+                          _vm._v(_vm._s(_vm.task.detail))
+                        ])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.$emit("close")
+                        }
+                      }
+                    },
+                    [_vm._v("閉じる")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -42808,10 +42888,19 @@ var render = function() {
                                               [
                                                 _c(
                                                   "v-btn",
+                                                  {
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.openModal(
+                                                          task
+                                                        )
+                                                      }
+                                                    }
+                                                  },
                                                   [
                                                     _c("v-icon", [
                                                       _vm._v(
-                                                        "mdi-check-outline"
+                                                        "\n                                                    mdi-check-outline\n                                                "
                                                       )
                                                     ])
                                                   ],
@@ -42829,7 +42918,7 @@ var render = function() {
                                                   [
                                                     _c("v-icon", [
                                                       _vm._v(
-                                                        "mdi-square-edit-outline"
+                                                        "\n                                                    mdi-square-edit-outline\n                                                "
                                                       )
                                                     ])
                                                   ],
@@ -42846,7 +42935,9 @@ var render = function() {
                                                   "v-btn",
                                                   [
                                                     _c("v-icon", [
-                                                      _vm._v("mdi-delete")
+                                                      _vm._v(
+                                                        "\n                                                    mdi-delete\n                                                "
+                                                      )
                                                     ])
                                                   ],
                                                   1
@@ -43037,7 +43128,18 @@ var render = function() {
               _vm._v(" "),
               _c("Modal"),
               _vm._v(" "),
-              _c("Modal")
+              _c("Modal", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showModal,
+                    expression: "showModal"
+                  }
+                ],
+                attrs: { task: _vm.postTask },
+                on: { close: _vm.closeModal }
+              })
             ],
             1
           ),
@@ -43075,45 +43177,6 @@ var render = function() {
             }),
             0
           ),
-          _vm._v(" "),
-          _c("div", { staticClass: "form" }, [
-            _c("div", { staticClass: "control" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.formData.name,
-                    expression: "formData.name"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text", placeholder: "お名前" },
-                domProps: { value: _vm.formData.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.formData, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "button is-info is-fullwidth",
-                on: {
-                  click: function($event) {
-                    return _vm.onSubmit()
-                  }
-                }
-              },
-              [_vm._v("\n                送信する\n            ")]
-            )
-          ]),
           _vm._v(" "),
           _c("v-overlay", { attrs: { value: _vm.overlay } })
         ],

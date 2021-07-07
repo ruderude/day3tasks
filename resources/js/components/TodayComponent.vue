@@ -35,9 +35,27 @@
                                 <div>
                                     <v-container>
                                         <v-layout wrap>
-                                            <v-flex><v-btn><v-icon>mdi-check-outline</v-icon></v-btn></v-flex>
-                                            <v-flex><v-btn><v-icon>mdi-square-edit-outline</v-icon></v-btn></v-flex>
-                                            <v-flex><v-btn><v-icon>mdi-delete</v-icon></v-btn></v-flex>
+                                            <v-flex>
+                                                <v-btn @click="openModal(task)">
+                                                    <v-icon>
+                                                        mdi-check-outline
+                                                    </v-icon>
+                                                </v-btn>
+                                            </v-flex>
+                                            <v-flex>
+                                                <v-btn>
+                                                    <v-icon>
+                                                        mdi-square-edit-outline
+                                                    </v-icon>
+                                                </v-btn>
+                                            </v-flex>
+                                            <v-flex>
+                                                <v-btn>
+                                                    <v-icon>
+                                                        mdi-delete
+                                                    </v-icon>
+                                                </v-btn>
+                                            </v-flex>
                                         </v-layout>
                                     </v-container>
                                 </div>
@@ -106,7 +124,9 @@
                     </v-row>
                 </v-form>
                 <Modal />
-                <Modal></Modal>
+                <Modal
+                    :task="postTask" v-show="showModal" @close="closeModal"
+                ></Modal>
             </v-container>
 
             <div id="error" class="error">{{ error }}</div>
@@ -118,19 +138,6 @@
                     {{ task.id }}:::{{ task.title }}:::{{ task.done }}
                 </li>
             </ul>
-            <div class="form">
-                <div class="control">
-                    <input
-                        class="input"
-                        type="text"
-                        placeholder="お名前"
-                        v-model="formData.name"
-                    />
-                </div>
-                <button class="button is-info is-fullwidth" @click="onSubmit()">
-                    送信する
-                </button>
-            </div>
 
             <v-overlay :value="overlay"></v-overlay>
         </v-main>
@@ -175,9 +182,6 @@ export default {
     },
     data() {
         return {
-            formData: {
-                name: ""
-            },
             lineId: null,
             accessToken: null,
             forms: [],
@@ -185,6 +189,8 @@ export default {
             isTasks: false,
             error: "",
             overlay: false,
+            showModal: false,
+            postTask: [],
         };
     },
     computed: {},
@@ -280,6 +286,13 @@ export default {
                 title: "",
                 comment: ""
             });
+        },
+        openModal (task) {
+            this.postTask = task
+            this.showModal = true
+        },
+        closeModal () {
+            this.showModal = false
         }
     },
     created: function() {
