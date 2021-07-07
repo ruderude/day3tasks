@@ -7,6 +7,7 @@ use App\Services\TaskService;
 use Illuminate\Support\Facades\Log;
 use App\Support\Line;
 use App\Http\Requests\TaskStoreRequest;
+use App\Http\Requests\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
@@ -46,7 +47,7 @@ class TaskController extends Controller
     * @param Request $request リクエスト
     * @return array 更新し内容を返却
     */
-    public function update(Request $request): array
+    public function update(TaskUpdateRequest $request): array
     {
         // Log::debug(print_r($request->all(), true));
         $tasks = $request["tasks"];

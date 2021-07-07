@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TaskStoreRequest extends FormRequest
+class TaskUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class TaskStoreRequest extends FormRequest
     {
         return [
             'title' => 'max:500',
+            'detail' => 'max:5',
         ];
     }
 
@@ -35,6 +36,7 @@ class TaskStoreRequest extends FormRequest
     public function messages() {
         return [
             'title.max' => 'タスクタイトルは500文字以内で入力してください',
+            'detail.max' => '詳細は1000文字以内で入力してください',
         ];
     }
 }
