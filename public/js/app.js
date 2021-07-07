@@ -42666,34 +42666,20 @@ var render = function() {
                             "prepend-icon": "mdi-arrow-right-circle",
                             color: "orange lighten-1",
                             "no-action": ""
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "activator",
-                                fn: function() {
-                                  return [
-                                    _c(
-                                      "v-list-item-content",
-                                      [
-                                        _c("v-list-item-title", {
-                                          domProps: {
-                                            textContent: _vm._s(task.title)
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                },
-                                proxy: true
-                              }
-                            ],
-                            null,
-                            true
-                          )
+                          }
                         },
                         [
+                          [
+                            _c(
+                              "v-list-item-content",
+                              [
+                                _c("v-list-item-title", {
+                                  domProps: { textContent: _vm._s(task.title) }
+                                })
+                              ],
+                              1
+                            )
+                          ],
                           _vm._v(" "),
                           _c(
                             "v-list-item",
@@ -42798,7 +42784,7 @@ var render = function() {
                             1
                           )
                         ],
-                        1
+                        2
                       )
                     }),
                     1

@@ -22,7 +22,7 @@
                         color="orange lighten-1"
                         no-action
                     >
-                        <template v-slot:activator>
+                        <template >
                             <v-list-item-content>
                                 <v-list-item-title
                                     v-text="task.title"
@@ -35,9 +35,9 @@
                                 <div>
                                     <v-container>
                                         <v-layout wrap>
-                                        <v-flex><v-btn><v-icon>mdi-square-edit-outline</v-icon></v-btn></v-flex>
-                                        <v-flex><v-btn ><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
-                                        <v-flex><v-btn><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
+                                            <v-flex><v-btn><v-icon>mdi-square-edit-outline</v-icon></v-btn></v-flex>
+                                            <v-flex><v-btn ><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
+                                            <v-flex><v-btn><v-icon>mdi-bookmark-check</v-icon></v-btn></v-flex>
                                         </v-layout>
                                     </v-container>
                                 </div>
