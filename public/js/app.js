@@ -43140,12 +43140,12 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-container",
-                { staticClass: "mt-12" },
+                { staticClass: "mt-6" },
                 [
                   _c(
                     "v-dialog",
                     {
-                      attrs: { width: "500" },
+                      attrs: { width: "600" },
                       model: {
                         value: _vm.showModal,
                         callback: function($$v) {
@@ -43167,7 +43167,9 @@ var render = function() {
                             [
                               _c("v-sheet", { staticClass: "pa-3" }, [
                                 _c("div", { staticClass: "body-1" }, [
-                                  _vm._v("Modal Text")
+                                  _vm._v(
+                                    "Modal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal Text"
+                                  )
                                 ])
                               ])
                             ],

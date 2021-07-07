@@ -124,14 +124,14 @@
                     </v-row>
                 </v-form>
 
-                <v-container class="mt-12">
-                    <v-dialog v-model="showModal" width=500>
+                <v-container class="mt-6">
+                    <v-dialog v-model="showModal" width=600>
                         <v-card>
                             <v-card-title>Modal Title</v-card-title>
                             <v-divider></v-divider>
                             <v-card-text>
                                 <v-sheet class="pa-3">
-                                <div class="body-1">Modal Text</div>
+                                <div class="body-1">Modal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal Text</div>
                                 </v-sheet>
                             </v-card-text>
                             <button @click="closeModal">閉じる</button>
