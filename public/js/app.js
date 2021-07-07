@@ -43363,7 +43363,6 @@ var render = function() {
                             [
                               _c(
                                 "v-flex",
-                                { attrs: { shrink: "" } },
                                 [
                                   _c(
                                     "v-btn",
