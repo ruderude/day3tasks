@@ -5947,6 +5947,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42718,6 +42727,43 @@ var render = function() {
                             "v-list-item",
                             [
                               _c("v-list-item-content", [
+                                _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "v-container",
+                                      [
+                                        _c(
+                                          "v-layout",
+                                          { attrs: { wrap: "" } },
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              [_c("v-btn", [_vm._v("押して")])],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              [_c("v-btn", [_vm._v("押して")])],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              [_c("v-btn", [_vm._v("押して")])],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
                                 _c(
                                   "div",
                                   [
