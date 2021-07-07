@@ -6077,6 +6077,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -43299,6 +43302,17 @@ var render = function() {
                                                   name: "title",
                                                   value: _vm.postTask.title,
                                                   outlined: ""
+                                                },
+                                                model: {
+                                                  value: _vm.postTask.title,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.postTask,
+                                                      "title",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "postTask.title"
                                                 }
                                               })
                                             ],
@@ -43315,6 +43329,17 @@ var render = function() {
                                                   name: "detail",
                                                   label: "タスク詳細",
                                                   value: _vm.postTask.detail
+                                                },
+                                                model: {
+                                                  value: _vm.postTask.detail,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.postTask,
+                                                      "detail",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "postTask.detail"
                                                 }
                                               })
                                             ],
@@ -43333,6 +43358,17 @@ var render = function() {
                                                   label: "完了",
                                                   color: "success",
                                                   value: _vm.postTask.done
+                                                },
+                                                model: {
+                                                  value: _vm.postTask.done,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.postTask,
+                                                      "done",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "postTask.done"
                                                 }
                                               })
                                             ],

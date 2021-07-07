@@ -137,6 +137,7 @@
                                         <v-row>
                                             <v-col cols="12">
                                                 <v-text-field
+                                                    v-model="postTask.title"
                                                     label="タスク"
                                                     name="title"
                                                     :value="postTask.title"
@@ -146,6 +147,7 @@
 
                                             <v-col cols="12">
                                                 <v-textarea
+                                                    v-model="postTask.detail"
                                                     outlined
                                                     name="detail"
                                                     label="タスク詳細"
@@ -155,6 +157,7 @@
 
                                             <v-col class="mt-n10" cols="12">
                                                 <v-checkbox
+                                                    v-model="postTask.done"
                                                     label="完了"
                                                     color="success"
                                                     :value="postTask.done"
