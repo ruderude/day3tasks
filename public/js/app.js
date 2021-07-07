@@ -43250,7 +43250,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", [_vm._v(_vm._s(_vm.text))]),
+              _c("div", [_vm._v(_vm._s(_vm.postTask))]),
               _vm._v(" "),
               _c(
                 "v-container",

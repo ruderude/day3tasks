@@ -124,7 +124,7 @@
                     </v-row>
                 </v-form>
 
-                <div>{{text}}</div>
+                <div>{{postTask}}</div>
 
                 <v-container class="mt-3">
                     <v-dialog v-model="showEditModal" width=600>
