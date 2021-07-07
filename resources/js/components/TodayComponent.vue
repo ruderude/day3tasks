@@ -43,7 +43,7 @@
                                                 </v-btn>
                                             </v-flex>
                                             <v-flex>
-                                                <v-btn @click="openModal(task)">
+                                                <v-btn @click="openEditModal(task)">
                                                     <v-icon>
                                                         mdi-square-edit-outline
                                                     </v-icon>
@@ -127,7 +127,7 @@
                 <div>{{text}}</div>
 
                 <v-container class="mt-3">
-                    <v-dialog v-model="showModal" width=600>
+                    <v-dialog v-model="showEditModal" width=600>
                         <v-card>
                             <v-card-title>タスク編集</v-card-title>
                             <v-divider></v-divider>
@@ -163,7 +163,7 @@
 
                                             <v-col class="mx-auto" cols="12">
                                                 <v-btn
-                                                    @click="submitForm()"
+                                                    @click="submitEditForm(postTask)"
                                                     color="text-white orange darken-1"
                                                     block
                                                 >
@@ -247,7 +247,7 @@ export default {
             isTasks: false,
             error: "",
             overlay: false,
-            showModal: false,
+            showEditModal: false,
             postTask: [],
             text: "テスト",
         };
@@ -309,6 +309,31 @@ export default {
                     this.overlay = false
                 });
         },
+        submitEditForm: function(tasks) {
+            this.overlay = true
+            const data = {
+                tasks: tasks,
+                access_token: this.accessToken
+            };
+
+            axios
+                .post("/update", data)
+                .then(response => {
+                    const tasks = response.data
+                    if (tasks.length <= 0 && !this.isTasks) {
+                        this.taskInit()
+                    } else {
+                        this.setTasks(tasks)
+                    }
+                    this.showEditModal = false
+                    this.overlay = false
+                })
+                .catch(err => {
+                    this.error = err;
+                    this.showEditModal = false
+                    this.overlay = false
+                });
+        },
         liffInit: function(liffId) {
             liff.init({
                 liffId: liffId
@@ -355,12 +380,12 @@ export default {
                 comment: ""
             });
         },
-        openModal (task) {
+        openEditModal (task) {
             this.postTask = task
-            this.showModal = true
+            this.showEditModal = true
         },
         closeModal () {
-            this.showModal = false
+            this.showEditModal = false
         },
         changeDone (id) {
             axios.post("/changeDone", {

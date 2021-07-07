@@ -6114,7 +6114,7 @@ axios.defaults.headers.common = {
       isTasks: false,
       error: "",
       overlay: false,
-      showModal: false,
+      showEditModal: false,
       postTask: [],
       text: "テスト"
     };
@@ -6174,16 +6174,41 @@ axios.defaults.headers.common = {
         _this.overlay = false;
       });
     },
-    liffInit: function liffInit(liffId) {
+    submitEditForm: function submitEditForm(tasks) {
       var _this2 = this;
+
+      this.overlay = true;
+      var data = {
+        tasks: tasks,
+        access_token: this.accessToken
+      };
+      axios.post("/update", data).then(function (response) {
+        var tasks = response.data;
+
+        if (tasks.length <= 0 && !_this2.isTasks) {
+          _this2.taskInit();
+        } else {
+          _this2.setTasks(tasks);
+        }
+
+        _this2.showEditModal = false;
+        _this2.overlay = false;
+      })["catch"](function (err) {
+        _this2.error = err;
+        _this2.showEditModal = false;
+        _this2.overlay = false;
+      });
+    },
+    liffInit: function liffInit(liffId) {
+      var _this3 = this;
 
       _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
         liffId: liffId
       }).then(function (liff) {
         // Bugsnag.notify(new Error(liff))
-        _this2.accessToken = liff.getAccessToken();
+        _this3.accessToken = liff.getAccessToken();
       })["catch"](function (err) {
-        _this2.error = err;
+        _this3.error = err;
       });
     },
     taskInit: function taskInit() {
@@ -6216,53 +6241,19 @@ axios.defaults.headers.common = {
         comment: ""
       });
     },
-    openModal: function openModal(task) {
+    openEditModal: function openEditModal(task) {
       this.postTask = task;
-      this.showModal = true;
+      this.showEditModal = true;
     },
     closeModal: function closeModal() {
-      this.showModal = false;
+      this.showEditModal = false;
     },
     changeDone: function changeDone(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post("/changeDone", {
         access_token: this.accessToken,
         id: id
-      }).then(function (response) {
-        // Bugsnag.notify(new Error(response.data))
-        // タスクセット
-        var tasks = response.data;
-
-        if (tasks.length <= 0) {
-          _this3.taskInit();
-        } else {
-          _this3.setTasks(tasks);
-        }
-
-        _this3.overlay = false;
-      })["catch"](function (err) {
-        // console.log(err);
-        _this3.error = err;
-        _this3.overlay = false;
-        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/changeDone error"));
-      });
-    }
-  },
-  created: function created() {// alert(liff)
-    // Bugsnag.notify(new Error('Test error'))
-  },
-  mounted: function mounted() {
-    var _this4 = this;
-
-    this.overlay = true;
-    _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
-      liffId: this.liffId
-    }).then(function () {
-      _this4.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
-
-      axios.post("/setTasks", {
-        access_token: _this4.accessToken
       }).then(function (response) {
         // Bugsnag.notify(new Error(response.data))
         // タスクセット
@@ -6279,11 +6270,45 @@ axios.defaults.headers.common = {
         // console.log(err);
         _this4.error = err;
         _this4.overlay = false;
+        _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/changeDone error"));
+      });
+    }
+  },
+  created: function created() {// alert(liff)
+    // Bugsnag.notify(new Error('Test error'))
+  },
+  mounted: function mounted() {
+    var _this5 = this;
+
+    this.overlay = true;
+    _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
+      liffId: this.liffId
+    }).then(function () {
+      _this5.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
+
+      axios.post("/setTasks", {
+        access_token: _this5.accessToken
+      }).then(function (response) {
+        // Bugsnag.notify(new Error(response.data))
+        // タスクセット
+        var tasks = response.data;
+
+        if (tasks.length <= 0) {
+          _this5.taskInit();
+        } else {
+          _this5.setTasks(tasks);
+        }
+
+        _this5.overlay = false;
+      })["catch"](function (err) {
+        // console.log(err);
+        _this5.error = err;
+        _this5.overlay = false;
         _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error("/v1/liff/setTasks error"));
       });
     })["catch"](function (err) {
-      _this4.error = err;
-      _this4.overlay = false;
+      _this5.error = err;
+      _this5.overlay = false;
       _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
     });
   }
@@ -43008,7 +43033,7 @@ var render = function() {
                                                   {
                                                     on: {
                                                       click: function($event) {
-                                                        return _vm.openModal(
+                                                        return _vm.openEditModal(
                                                           task
                                                         )
                                                       }
@@ -43236,11 +43261,11 @@ var render = function() {
                     {
                       attrs: { width: "600" },
                       model: {
-                        value: _vm.showModal,
+                        value: _vm.showEditModal,
                         callback: function($$v) {
-                          _vm.showModal = $$v
+                          _vm.showEditModal = $$v
                         },
-                        expression: "showModal"
+                        expression: "showEditModal"
                       }
                     },
                     [
@@ -43331,7 +43356,9 @@ var render = function() {
                                                   },
                                                   on: {
                                                     click: function($event) {
-                                                      return _vm.submitForm()
+                                                      return _vm.submitEditForm(
+                                                        _vm.postTask
+                                                      )
                                                     }
                                                   }
                                                 },

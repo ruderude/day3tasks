@@ -29,4 +29,5 @@ Route::get("/v1/liff/history", "V1\LiffController@history")->name("liff.history"
 
 Route::post("/setTasks", "TaskController@setTasks")->name("task.setTasks");
 Route::post('/store', 'TaskController@store')->name('task.store');
+Route::post('/update', 'TaskController@update')->name('task.update');
 Route::post('/changeDone', 'TaskController@changeDone')->name('task.changeDone');
