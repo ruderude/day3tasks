@@ -6225,6 +6225,7 @@ axios.defaults.headers.common = {
         };
         axios.post("/update", data).then(function (response) {
           var tasks = response.data;
+          _this2.error = response.data;
 
           if (tasks.length <= 0 && !_this2.isTasks) {
             _this2.taskInit();
