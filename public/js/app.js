@@ -6173,7 +6173,7 @@ axios.defaults.headers.common = {
       });
     },
     openModal: function openModal(task) {
-      // this.postTask = task
+      this.postTask = task;
       this.showModal = true;
     },
     closeModal: function closeModal() {
@@ -43203,7 +43203,9 @@ var render = function() {
                       _c(
                         "v-card",
                         [
-                          _c("v-card-title", [_vm._v("Modal Title")]),
+                          _c("v-card-title", [
+                            _vm._v(_vm._s(_vm.postTask.title))
+                          ]),
                           _vm._v(" "),
                           _c("v-divider"),
                           _vm._v(" "),
@@ -43212,9 +43214,7 @@ var render = function() {
                             [
                               _c("v-sheet", { staticClass: "pa-3" }, [
                                 _c("div", { staticClass: "body-1" }, [
-                                  _vm._v(
-                                    "Modal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal Text"
-                                  )
+                                  _vm._v(_vm._s(_vm.postTask.detail))
                                 ])
                               ])
                             ],

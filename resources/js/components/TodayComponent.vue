@@ -129,11 +129,11 @@
                 <v-container class="mt-3">
                     <v-dialog v-model="showModal" width=600>
                         <v-card>
-                            <v-card-title>Modal Title</v-card-title>
+                            <v-card-title>{{ postTask.title }}</v-card-title>
                             <v-divider></v-divider>
                             <v-card-text>
                                 <v-sheet class="pa-3">
-                                <div class="body-1">Modal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal TextModal Text</div>
+                                <div class="body-1">{{ postTask.detail }}</div>
                                 </v-sheet>
                             </v-card-text>
                             <button class="text-center m-5" @click="closeModal">閉じる</button>
@@ -312,7 +312,7 @@ export default {
             });
         },
         openModal (task) {
-            // this.postTask = task
+            this.postTask = task
             this.showModal = true
         },
         closeModal () {
