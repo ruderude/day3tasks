@@ -24,7 +24,7 @@ class TaskStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'max:5',
+            'forms.title' => 'max:5',
         ];
     }
 
