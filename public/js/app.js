@@ -42733,7 +42733,7 @@ var render = function() {
               _c(
                 "v-card",
                 [
-                  _c("v-card-title", [_vm._v(_vm._s(_vm.task.title))]),
+                  _c("v-card-title", [_vm._v("Modal Title")]),
                   _vm._v(" "),
                   _c("v-divider"),
                   _vm._v(" "),
@@ -42742,7 +42742,7 @@ var render = function() {
                     [
                       _c("v-sheet", { staticClass: "pa-3" }, [
                         _c("div", { staticClass: "body-1" }, [
-                          _vm._v(_vm._s(_vm.task.detail))
+                          _vm._v("Modal Text")
                         ])
                       ])
                     ],

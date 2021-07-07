@@ -3,11 +3,11 @@
         <v-container class="mt-12">
             <v-dialog v-model="dialog" width=500>
                 <v-card>
-                    <v-card-title>{{ task.title }}</v-card-title>
+                    <v-card-title>Modal Title</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text>
                         <v-sheet class="pa-3">
-                        <div class="body-1">{{ task.detail }}</div>
+                        <div class="body-1">Modal Text</div>
                         </v-sheet>
                     </v-card-text>
                     <button @click="$emit('close')">閉じる</button>
