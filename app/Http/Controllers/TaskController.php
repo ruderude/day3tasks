@@ -46,8 +46,7 @@ class TaskController extends Controller
     */
     public function update(Request $request): array
     {
-        Log::debug(print_r($request->all(), true));
-        exit;
+        // Log::debug(print_r($request->all(), true));
         $tasks = $request["tasks"];
         $mid = $tasks['mid'];
         $this->service->update($tasks, $mid);
