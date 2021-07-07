@@ -175,7 +175,7 @@
                             </v-card-text>
                             <v-divider></v-divider>
                             <v-spacer></v-spacer>
-                            <v-btn class="ma-3" @click="closeModal">閉じる</v-btn>
+                            <v-btn class="ml-auto my-3 mr-3" @click="closeModal">閉じる</v-btn>
                         </v-card>
                     </v-dialog>
                 </v-container>
