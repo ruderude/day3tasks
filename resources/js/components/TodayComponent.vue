@@ -36,14 +36,14 @@
                                     <v-container>
                                         <v-layout wrap>
                                             <v-flex>
-                                                <v-btn @click="openModal(task)">
+                                                <v-btn>
                                                     <v-icon>
                                                         mdi-check-outline
                                                     </v-icon>
                                                 </v-btn>
                                             </v-flex>
                                             <v-flex>
-                                                <v-btn>
+                                                <v-btn @click="openModal(task)">
                                                     <v-icon>
                                                         mdi-square-edit-outline
                                                     </v-icon>
@@ -189,7 +189,7 @@ export default {
             isTasks: false,
             error: "",
             overlay: false,
-            showModal: false,
+            showModal: true,
             postTask: [],
         };
     },
@@ -288,7 +288,7 @@ export default {
             });
         },
         openModal (task) {
-            this.postTask = task
+            // this.postTask = task
             this.showModal = true
         },
         closeModal () {

@@ -6056,7 +6056,7 @@ axios.defaults.headers.common = {
       isTasks: false,
       error: "",
       overlay: false,
-      showModal: false,
+      showModal: true,
       postTask: []
     };
   },
@@ -6151,7 +6151,7 @@ axios.defaults.headers.common = {
       });
     },
     openModal: function openModal(task) {
-      this.postTask = task;
+      // this.postTask = task
       this.showModal = true;
     },
     closeModal: function closeModal() {
@@ -42888,15 +42888,6 @@ var render = function() {
                                               [
                                                 _c(
                                                   "v-btn",
-                                                  {
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.openModal(
-                                                          task
-                                                        )
-                                                      }
-                                                    }
-                                                  },
                                                   [
                                                     _c("v-icon", [
                                                       _vm._v(
@@ -42915,6 +42906,15 @@ var render = function() {
                                               [
                                                 _c(
                                                   "v-btn",
+                                                  {
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.openModal(
+                                                          task
+                                                        )
+                                                      }
+                                                    }
+                                                  },
                                                   [
                                                     _c("v-icon", [
                                                       _vm._v(
