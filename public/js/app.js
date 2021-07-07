@@ -43363,11 +43363,12 @@ var render = function() {
                             [
                               _c(
                                 "v-flex",
+                                { attrs: { shrink: "" } },
                                 [
                                   _c(
                                     "v-btn",
                                     {
-                                      staticClass: "ma-5",
+                                      staticClass: "ma-6",
                                       on: { click: _vm.closeModal }
                                     },
                                     [_vm._v("閉じる")]
