@@ -35,7 +35,7 @@ class TaskRepository
 
             DB::commit();
         } catch (Exception $e) {
-            Log::debug('タスクレポジトリ' . $e->getMessage());
+            Log::error('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
     }
@@ -49,7 +49,7 @@ class TaskRepository
     public function update(array $tasks): void
     {
         $tasks['done'] = $tasks['done'] ? 1 : 0;
-        // Log::debug("レポジトリ" . print_r($tasks, true));
+        // Log::error("レポジトリ" . print_r($tasks, true));
         try {
             DB::beginTransaction();
 
@@ -61,7 +61,7 @@ class TaskRepository
 
             DB::commit();
         } catch (Exception $e) {
-            Log::debug('タスクレポジトリ' . $e->getMessage());
+            Log::error('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
     }
@@ -100,7 +100,7 @@ class TaskRepository
 
             DB::commit();
         } catch (Exception $e) {
-            Log::debug('タスクレポジトリ' . $e->getMessage());
+            Log::error('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
     }
@@ -109,10 +109,16 @@ class TaskRepository
     * タスク削除
     *  
     * @param int $id タスクid
+    * @param string $mid mid
     * @return void
     */
-    public function delete(int $id): void
+    public function delete(int $id, string $mid): void
     {
+        $task = Task::find($id);
+        if($task->mid !== $mid){
+            Log::error("midが一致しません");
+            exit;
+        }
         try {
             DB::beginTransaction();
 
@@ -120,7 +126,7 @@ class TaskRepository
 
             DB::commit();
         } catch (Exception $e) {
-            Log::debug('タスクレポジトリ' . $e->getMessage());
+            Log::error('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
     }

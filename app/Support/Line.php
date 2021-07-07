@@ -34,4 +34,9 @@ class Line
 
         return $data;
     }
+
+    public static function checkMid(string $mid1, string $mid2): bool
+    {
+        return $mid1 === $mid2;
+    }
 }

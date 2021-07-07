@@ -89,9 +89,10 @@ class TaskService
     * タスク削除
     *  
     * @param int $id タスクid
+    * @param string $mid mid
     * @return void
     */
-    public function delete(int $id): void
+    public function delete(int $id, string $mid): void
     {
         $this->repository->delete($id);
     }

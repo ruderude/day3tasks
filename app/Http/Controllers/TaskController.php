@@ -49,8 +49,14 @@ class TaskController extends Controller
         // Log::debug(print_r($request->all(), true));
         $tasks = $request["tasks"];
         $mid = $tasks['mid'];
+        $access_token = $request->post('access_token');
+        $user = Line::get_profile($access_token);
+        if(!Line::checkMid($user["mid"], $mid)){
+            Log::error("midが一致しません");
+            exit;
+        }
         $this->service->update($tasks);
-        $tasks = $this->service->getTodayTasks($mid);
+        $tasks = $this->service->getTodayTasks($user["mid"]);
         // Log::debug(print_r($tasks, true));
 
         return $tasks;
@@ -90,7 +96,7 @@ class TaskController extends Controller
         $id = $request->post('id');
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
-        $this->service->delete($id);
+        $this->service->delete($id, $user["mid"]);
         $tasks = $this->service->getTodayTasks($user["mid"]);
 
         return $tasks;
