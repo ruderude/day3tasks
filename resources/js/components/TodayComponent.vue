@@ -28,11 +28,6 @@
                                     v-text="task.title"
                                 ></v-list-item-title>
                             </v-list-item-content>
-                            <v-list-item-content>
-                                <v-list-item-title
-                                    v-text="task.done"
-                                ></v-list-item-title>
-                            </v-list-item-content>
                         </template>
 
                         <v-list-item>
