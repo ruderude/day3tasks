@@ -335,11 +335,11 @@ export default {
                     } else {
                         this.setTasks(tasks)
                     }
-                    closeModal()
+                    this.closeModal()
                 })
                 .catch(err => {
                     this.error = err;
-                    closeModal()
+                    this.closeModal()
                 });
         },
         submitEditForm: function(tasks) {
@@ -358,11 +358,11 @@ export default {
                     } else {
                         this.setTasks(tasks)
                     }
-                    closeModal()
+                    this.closeModal()
                 })
                 .catch(err => {
                     this.error = err;
-                    closeModal()
+                    this.closeModal()
                 });
         },
         submitDeleteForm: function() {
@@ -381,11 +381,11 @@ export default {
                     } else {
                         this.setTasks(tasks)
                     }
-                    closeModal()
+                    this.closeModal()
                 })
                 .catch(err => {
                     this.error = err;
-                    closeModal()
+                    this.closeModal()
                 });
         },
         liffInit: function(liffId) {

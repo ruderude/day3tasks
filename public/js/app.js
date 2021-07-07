@@ -6201,10 +6201,11 @@ axios.defaults.headers.common = {
           _this.setTasks(tasks);
         }
 
-        closeModal();
+        _this.closeModal();
       })["catch"](function (err) {
         _this.error = err;
-        closeModal();
+
+        _this.closeModal();
       });
     },
     submitEditForm: function submitEditForm(tasks) {
@@ -6224,10 +6225,11 @@ axios.defaults.headers.common = {
           _this2.setTasks(tasks);
         }
 
-        closeModal();
+        _this2.closeModal();
       })["catch"](function (err) {
         _this2.error = err;
-        closeModal();
+
+        _this2.closeModal();
       });
     },
     submitDeleteForm: function submitDeleteForm() {
@@ -6247,10 +6249,11 @@ axios.defaults.headers.common = {
           _this3.setTasks(tasks);
         }
 
-        closeModal();
+        _this3.closeModal();
       })["catch"](function (err) {
         _this3.error = err;
-        closeModal();
+
+        _this3.closeModal();
       });
     },
     liffInit: function liffInit(liffId) {
