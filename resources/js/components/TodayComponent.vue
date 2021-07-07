@@ -146,7 +146,7 @@ import BugsnagPluginVue from "@bugsnag/plugin-vue";
 import liff from "@line/liff";
 // import ApiHandler from '../lib/api';
 
-import Modal from './components/ModalComponent'
+import Modal from './ModalComponent'
 
 Bugsnag.start({
     apiKey: "d96162df63a8803bcee425928dcd0f36",
