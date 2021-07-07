@@ -6070,6 +6070,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -43345,6 +43346,8 @@ var render = function() {
                             ],
                             1
                           ),
+                          _vm._v(" "),
+                          _c("v-divider"),
                           _vm._v(" "),
                           _c(
                             "v-btn",
