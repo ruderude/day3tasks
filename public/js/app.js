@@ -43291,13 +43291,16 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-col",
-                                            { attrs: { cols: "12" } },
+                                            {
+                                              staticClass: "mt-n6",
+                                              attrs: { cols: "12" }
+                                            },
                                             [
                                               _c("v-checkbox", {
                                                 attrs: {
                                                   label: "完了",
                                                   color: "success",
-                                                  value: "完了"
+                                                  value: "true"
                                                 }
                                               })
                                             ],

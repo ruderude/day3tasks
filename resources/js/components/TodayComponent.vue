@@ -152,11 +152,11 @@
                                                 ></v-textarea>
                                             </v-col>
 
-                                            <v-col cols="12">
+                                            <v-col class="mt-n6" cols="12">
                                                 <v-checkbox
                                                     label="完了"
                                                     color="success"
-                                                    value="完了"
+                                                    value="true"
                                                 ></v-checkbox>
                                             </v-col>
 
