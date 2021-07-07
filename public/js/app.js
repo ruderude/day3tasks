@@ -43295,7 +43295,7 @@ var render = function() {
                                             [
                                               _c("v-checkbox", {
                                                 attrs: {
-                                                  label: "success",
+                                                  label: "完了",
                                                   color: "success",
                                                   value: "success",
                                                   "hide-details": ""
