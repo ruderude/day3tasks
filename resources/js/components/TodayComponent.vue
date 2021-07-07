@@ -18,7 +18,6 @@
                     <v-list-group
                         v-for="task in tasks"
                         :key="task.id"
-                        :prepend-icon="'mdi-arrow-right-circle'"
                         color="orange lighten-1"
                         no-action
                     >

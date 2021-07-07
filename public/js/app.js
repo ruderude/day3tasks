@@ -5941,7 +5941,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -42664,11 +42663,7 @@ var render = function() {
                         "v-list-group",
                         {
                           key: task.id,
-                          attrs: {
-                            "prepend-icon": "mdi-arrow-right-circle",
-                            color: "orange lighten-1",
-                            "no-action": ""
-                          },
+                          attrs: { color: "orange lighten-1", "no-action": "" },
                           scopedSlots: _vm._u(
                             [
                               {
