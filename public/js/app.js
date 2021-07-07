@@ -5944,6 +5944,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -42666,7 +42669,11 @@ var render = function() {
                         "v-list-group",
                         {
                           key: task.id,
-                          attrs: { color: "orange lighten-1", "no-action": "" },
+                          attrs: {
+                            "prepend-icon": "mdi-arrow-right-circle",
+                            color: "orange lighten-1",
+                            "no-action": ""
+                          },
                           scopedSlots: _vm._u(
                             [
                               {
@@ -42695,8 +42702,25 @@ var render = function() {
                                         })
                                       ],
                                       1
-                                    ),
-                                    _vm._v(" "),
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item",
+                            [
+                              _c("v-list-item-content", [
+                                _c(
+                                  "div",
+                                  [
                                     _c(
                                       "v-list-item-content",
                                       [
@@ -42726,21 +42750,10 @@ var render = function() {
                                       ],
                                       1
                                     )
-                                  ]
-                                },
-                                proxy: true
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        },
-                        [
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item",
-                            [
-                              _c("v-list-item-content", [
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
                                 _c("div", { staticClass: "text-h6" }, [
                                   _vm._v(
                                     "\n                                " +

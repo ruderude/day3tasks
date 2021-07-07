@@ -18,6 +18,7 @@
                     <v-list-group
                         v-for="task in tasks"
                         :key="task.id"
+                        :prepend-icon="'mdi-arrow-right-circle'"
                         color="orange lighten-1"
                         no-action
                     >
@@ -32,19 +33,21 @@
                                     v-text="task.done"
                                 ></v-list-item-title>
                             </v-list-item-content>
-                            <v-list-item-content>
-                                <v-icon>mdi-square-edit-outline</v-icon>
-                            </v-list-item-content>
-                            <v-list-item-content>
-                                <v-icon>mdi-bookmark-check</v-icon>
-                            </v-list-item-content>
-                            <v-list-item-content>
-                                <v-icon>mdi-bookmark-check</v-icon>
-                            </v-list-item-content>
                         </template>
 
                         <v-list-item>
                             <v-list-item-content>
+                                <div>
+                                    <v-list-item-content>
+                                        <v-icon>mdi-square-edit-outline</v-icon>
+                                    </v-list-item-content>
+                                    <v-list-item-content>
+                                        <v-icon>mdi-bookmark-check</v-icon>
+                                    </v-list-item-content>
+                                    <v-list-item-content>
+                                        <v-icon>mdi-bookmark-check</v-icon>
+                                    </v-list-item-content>
+                                </div>
                                 <div class="text-h6">
                                     {{task.title}}
                                 </div>
