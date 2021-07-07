@@ -42762,7 +42762,7 @@ var render = function() {
                               _c(
                                 "v-list-item-content",
                                 [
-                                  _c("v-list-item-subtitle", {
+                                  _c("v-list-item-title", {
                                     domProps: {
                                       textContent: _vm._s(task.detail)
                                     }
