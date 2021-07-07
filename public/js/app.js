@@ -42877,7 +42877,6 @@ var render = function() {
               _vm.isTasks
                 ? _c(
                     "v-list",
-                    { attrs: { dense: "" } },
                     _vm._l(_vm.tasks, function(task) {
                       return _c(
                         "v-list-group",
@@ -43186,7 +43185,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-container",
-                { staticClass: "mt-6" },
+                { staticClass: "mt-3" },
                 [
                   _c(
                     "v-dialog",

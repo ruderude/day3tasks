@@ -14,7 +14,7 @@
                     :size="50"
                 ></v-progress-circular>
 
-                <v-list v-if="isTasks" dense>
+                <v-list v-if="isTasks">
                     <v-list-group
                         v-for="task in tasks"
                         :key="task.id"
@@ -126,7 +126,7 @@
 
                 <div>{{text}}</div>
 
-                <v-container class="mt-6">
+                <v-container class="mt-3">
                     <v-dialog v-model="showModal" width=600>
                         <v-card>
                             <v-card-title>Modal Title</v-card-title>
