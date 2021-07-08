@@ -52,10 +52,10 @@
                                             <v-col cols="12">
                                                 <div class="text-subtitle-1">{{postTask.detail}}</div>
                                             </v-col>
-                                            <v-col cols="6">
+                                            <v-col cols="3">
                                                 <v-icon>{{doneIcon(postTask.done)}}</v-icon>
                                             </v-col>
-                                            <v-col cols="6">
+                                            <v-col cols="9">
                                                 <div>{{doneText(postTask.done)}}</div>
                                             </v-col>
                                         </v-row>

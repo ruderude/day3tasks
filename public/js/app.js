@@ -42955,7 +42955,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-col",
-                                            { attrs: { cols: "6" } },
+                                            { attrs: { cols: "3" } },
                                             [
                                               _c("v-icon", [
                                                 _vm._v(
@@ -42972,7 +42972,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-col",
-                                            { attrs: { cols: "6" } },
+                                            { attrs: { cols: "9" } },
                                             [
                                               _c("div", [
                                                 _vm._v(
