@@ -53,5 +53,6 @@ const app = new Vue({
         Today,
         History,
     },
+    render: h => h(App),
     
 })
