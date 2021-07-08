@@ -314,7 +314,7 @@ export default {
             // console.log(this.forms)
         },
         submitForm: function() {
-            // if (this.$refs.store_form.validate()) {
+            if (this.$refs.store_form.validate()) {
                 // すべてのバリデーションが通過したときのみ
                 this.overlay = true
                 const data = {
@@ -339,13 +339,13 @@ export default {
                         this.closeModal()
                     });
                 
-            // } else {
-            //     return false
-            // }
+            } else {
+                return false
+            }
             
         },
         submitEditForm: function(tasks) {
-            // if (this.$refs.edit_form.validate()) {
+            if (this.$refs.edit_form.validate()) {
                 // すべてのバリデーションが通過したときのみ
                 this.overlay = true
                 const data = {
@@ -370,9 +370,9 @@ export default {
                         this.closeModal()
                     });
                 
-            // } else {
-            //     return false
-            // }
+            } else {
+                return false
+            }
             
         },
         submitDeleteForm: function() {
