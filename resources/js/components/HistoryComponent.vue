@@ -38,6 +38,8 @@
                 <div id="liff_id">LIFF ID：{{ liffId }}</div>
                 <div id="line_id">LINE ID：{{ lineId }}</div>
                 <div id="access_token">access_token：{{ accessToken }}</div>
+                <div id="tasks">tasks：{{ tasks }}</div>
+                <div id="error">error：{{ error }}</div>
             </v-container>
         </v-main>
         
@@ -80,6 +82,8 @@ export default {
             liffId: null,
             lineId: null,
             accessToken: null,
+            tasks, [],
+            error: null,
             items: [
                 {
                 action: 'mdi-arrow-right-circle',
@@ -168,26 +172,27 @@ export default {
             .then(() => {
                 this.accessToken = liff.getAccessToken()
                 // Bugsnag.notify(new Error(this.accessToken))
-                // axios.post("/setTasks", {
-                //         access_token: this.accessToken
-                //     })
-                //     .then(response => {
-                //         // Bugsnag.notify(new Error(response.data))
-                //         // タスクセット
-                //         const tasks = response.data
-                //         if (tasks.length <= 0) {
-                //             this.taskInit()
-                //         } else {
-                //             this.setTasks(tasks)
-                //         }
-                //         this.overlay = false
-                //     })
-                //     .catch(err => {
-                //         // console.log(err);
-                //         this.error = err
-                //         this.overlay = false
-                //         Bugsnag.notify(new Error("/v1/liff/setTasks error"));
-                //     });
+                axios.post("/oldTasks", {
+                        access_token: this.accessToken
+                    })
+                    .then(response => {
+                        // Bugsnag.notify(new Error(response.data))
+                        // タスクセット
+                        const tasks = response.data
+                        this.tasks = tasks
+                        // if (tasks.length <= 0) {
+                        //     this.taskInit()
+                        // } else {
+                        //     this.setTasks(tasks)
+                        // }
+                        // this.overlay = false
+                    })
+                    .catch(err => {
+                        // console.log(err);
+                        this.error = err
+                        // this.overlay = false
+                        Bugsnag.notify(new Error("/v1/liff/setTasks error"));
+                    });
             })
             .catch(err => {
                 this.error = err

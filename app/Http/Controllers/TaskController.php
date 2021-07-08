@@ -68,13 +68,37 @@ class TaskController extends Controller
         return $tasks;
     }
 
-    public function setTasks(Request $request)
+    /**
+    * ユーザー情報を取得して今日のタスクを取得
+    *  
+    * @param Request $request リクエスト
+    * @return array 内容を返却
+    */
+    public function setTasks(Request $request): array
     {
         // Log::debug('ゲットユーザー：' . print_r($request->all(), true));
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
         // Log::debug('ユーザー情報：' . print_r($user, true));
         $tasks = $this->service->getTodayTasks($user["mid"]);
+        // Log::debug('今日のタスク：' . print_r($tasks, true));
+
+        return $tasks;
+    }
+
+    /**
+    * ユーザー情報を取得して過去のタスクを取得
+    *  
+    * @param Request $request リクエスト
+    * @return array 内容を返却
+    */
+    public function oldTasks(Request $request): array
+    {
+        // Log::debug('ゲットユーザー：' . print_r($request->all(), true));
+        $access_token = $request->post('access_token');
+        $user = Line::get_profile($access_token);
+        Log::debug('ユーザー情報：' . print_r($user, true));
+        exit;
         // Log::debug('今日のタスク：' . print_r($tasks, true));
 
         return $tasks;

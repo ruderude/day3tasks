@@ -5618,208 +5618,9 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HistoryComponent.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _bugsnag_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @bugsnag/js */ "./node_modules/@bugsnag/js/browser/notifier.js");
-/* harmony import */ var _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_bugsnag_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @bugsnag/plugin-vue */ "./node_modules/@bugsnag/plugin-vue/dist/bugsnag-vue.js");
-/* harmony import */ var _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @line/liff */ "./node_modules/@line/liff/dist/lib/index.js");
-/* harmony import */ var _line_liff__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_line_liff__WEBPACK_IMPORTED_MODULE_3__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-_bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.start({
-  apiKey: 'd96162df63a8803bcee425928dcd0f36',
-  plugins: [new _bugsnag_plugin_vue__WEBPACK_IMPORTED_MODULE_2___default.a()]
-});
-var bugsnagVue = _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.getPlugin('vue');
-bugsnagVue.installVueErrorHandler(vue__WEBPACK_IMPORTED_MODULE_0___default.a);
-axios.defaults.headers.common = {
-  "X-Requested-With": "XMLHttpRequest",
-  "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "History",
-  props: {
-    liffId: {
-      type: String,
-      required: true
-    }
-  },
-  data: function data() {
-    return {
-      liffId: null,
-      lineId: null,
-      accessToken: null,
-      items: [{
-        action: 'mdi-arrow-right-circle',
-        items: [{
-          title: 'List Item'
-        }],
-        title: '2021-06-25'
-      }, {
-        action: 'mdi-arrow-right-circle',
-        items: [{
-          title: 'Breakfast & brunch'
-        }, {
-          title: 'New American'
-        }, {
-          title: 'Sushi'
-        }],
-        title: '2021-06-24'
-      }, {
-        action: 'mdi-arrow-right-circle',
-        items: [{
-          title: 'List Item'
-        }],
-        title: '2021-06-23'
-      }, {
-        action: 'mdi-arrow-right-circle',
-        items: [{
-          title: 'Breakfast & brunch'
-        }, {
-          title: 'New American'
-        }, {
-          title: 'Sushi'
-        }],
-        title: '2021-06-22'
-      }, {
-        action: 'mdi-arrow-right-circle',
-        items: [{
-          title: 'List Item'
-        }],
-        title: '2021-06-21'
-      }, {
-        action: 'mdi-arrow-right-circle',
-        items: [{
-          title: 'List Item'
-        }],
-        title: '2021-06-20'
-      }, {
-        action: 'mdi-arrow-right-circle',
-        items: [{
-          title: 'List Item'
-        }],
-        title: '2021-06-19'
-      }]
-    };
-  },
-  computed: {},
-  methods: {
-    hello: function hello() {
-      console.log('hello hello');
-    },
-    getAccess: function getAccess() {
-      console.log('GET');
-      axios.get('getAccessToken?text=テキストテスト').then(function (response) {
-        console.log('送信したテキスト: ' + response.data.message);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    postAccess: function postAccess() {
-      console.log('POST');
-      axios.post('getAccessToken', {
-        text: 'postヒストリーテストだよー'
-      }).then(function (response) {
-        console.log('送信したテキスト: ' + response.data.message);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    }
-  },
-  created: function created() {
-    console.log('created');
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    // this.overlay = true
-    _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.init({
-      liffId: this.liffId
-    }).then(function () {
-      _this.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_3___default.a.getAccessToken(); // Bugsnag.notify(new Error(this.accessToken))
-      // axios.post("/setTasks", {
-      //         access_token: this.accessToken
-      //     })
-      //     .then(response => {
-      //         // Bugsnag.notify(new Error(response.data))
-      //         // タスクセット
-      //         const tasks = response.data
-      //         if (tasks.length <= 0) {
-      //             this.taskInit()
-      //         } else {
-      //             this.setTasks(tasks)
-      //         }
-      //         this.overlay = false
-      //     })
-      //     .catch(err => {
-      //         // console.log(err);
-      //         this.error = err
-      //         this.overlay = false
-      //         Bugsnag.notify(new Error("/v1/liff/setTasks error"));
-      //     });
-    })["catch"](function (err) {
-      _this.error = err; // this.overlay = false
-
-      _bugsnag_js__WEBPACK_IMPORTED_MODULE_1___default.a.notify(new Error(err));
-    });
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /var/www/html/day3tasks/resources/js/components/HistoryComponent.vue: Unexpected token (85:20)\n\n\u001b[0m \u001b[90m 83 |\u001b[39m             lineId\u001b[33m:\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 84 |\u001b[39m             accessToken\u001b[33m:\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 85 |\u001b[39m             tasks\u001b[33m,\u001b[39m []\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 86 |\u001b[39m             error\u001b[33m:\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 87 |\u001b[39m             items\u001b[33m:\u001b[39m [\u001b[0m\n\u001b[0m \u001b[90m 88 |\u001b[39m                 {\u001b[0m\n    at Parser._raise (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:816:17)\n    at Parser.raiseWithData (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:809:17)\n    at Parser.raise (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:770:17)\n    at Parser.unexpected (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:9893:16)\n    at Parser.parseExprAtom (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:11307:20)\n    at Parser.parseExprSubscripts (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10881:23)\n    at Parser.parseUpdate (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10861:21)\n    at Parser.parseMaybeUnary (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10839:23)\n    at Parser.parseExprOps (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10696:23)\n    at Parser.parseMaybeConditional (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10670:23)\n    at Parser.parseMaybeAssign (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10633:21)\n    at /var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10595:39\n    at Parser.allowInAnd (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:12334:12)\n    at Parser.parseMaybeAssignAllowIn (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10595:17)\n    at Parser.parsePropertyName (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:11892:23)\n    at Parser.parsePropertyDefinition (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:11783:22)\n    at Parser.parseObjectLike (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:11699:25)\n    at Parser.parseExprAtom (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:11223:23)\n    at Parser.parseExprSubscripts (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10881:23)\n    at Parser.parseUpdate (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10861:21)\n    at Parser.parseMaybeUnary (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10839:23)\n    at Parser.parseExprOps (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10696:23)\n    at Parser.parseMaybeConditional (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10670:23)\n    at Parser.parseMaybeAssign (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10633:21)\n    at Parser.parseExpressionBase (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10573:23)\n    at /var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10567:39\n    at Parser.allowInAnd (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:12328:16)\n    at Parser.parseExpression (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:10567:17)\n    at Parser.parseReturnStatement (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:12912:28)\n    at Parser.parseStatementContent (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:12582:21)\n    at Parser.parseStatement (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:12534:17)\n    at Parser.parseBlockOrModuleBlockBody (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:13123:25)\n    at Parser.parseBlockBody (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:13114:10)\n    at Parser.parseBlock (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:13098:10)\n    at Parser.parseFunctionBody (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:11989:24)\n    at Parser.parseFunctionBodyAndFinish (/var/www/html/day3tasks/node_modules/@babel/parser/lib/index.js:11973:10)");
 
 /***/ }),
 
@@ -6112,10 +5913,10 @@ axios.defaults.headers.common = {
         return !!value || "必ず入力してください";
       },
       limit_length500: function limit_length500(value) {
-        return value.length <= 5 || "500文字以内で入力してください";
+        return value.length <= 500 || "500文字以内で入力してください";
       },
       limit_length1000: function limit_length1000(value) {
-        return value.length <= 10 || "1000文字以内で入力してください";
+        return value.length <= 1000 || "1000文字以内で入力してください";
       }
     };
   },
@@ -42829,6 +42630,14 @@ var render = function() {
               _vm._v(" "),
               _c("div", { attrs: { id: "access_token" } }, [
                 _vm._v("access_token：" + _vm._s(_vm.accessToken))
+              ]),
+              _vm._v(" "),
+              _c("div", { attrs: { id: "tasks" } }, [
+                _vm._v("tasks：" + _vm._s(_vm.tasks))
+              ]),
+              _vm._v(" "),
+              _c("div", { attrs: { id: "error" } }, [
+                _vm._v("error：" + _vm._s(_vm.error))
               ])
             ],
             1
