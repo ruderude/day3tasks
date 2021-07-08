@@ -356,6 +356,18 @@ export default {
                 axios
                     .post("/update", data)
                     .then(response => {
+                        if (response.data.status == 400) {
+                            // バリデーションエラー
+                            // Object.keys(response.errors).forEach((key) => {
+                            // this.errors[key] = true;
+                            // this.messages[key] = response.errors[key];
+                            // })
+                            this.error = response.data.errors
+                        } else {
+                            // 成功
+                            this.error = "成功"
+                        }
+
                         const tasks = response.data
                         this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {

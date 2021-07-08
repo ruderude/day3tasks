@@ -6224,6 +6224,18 @@ axios.defaults.headers.common = {
           access_token: this.accessToken
         };
         axios.post("/update", data).then(function (response) {
+          if (response.data.status == 400) {
+            // バリデーションエラー
+            // Object.keys(response.errors).forEach((key) => {
+            // this.errors[key] = true;
+            // this.messages[key] = response.errors[key];
+            // })
+            _this2.error = response.data.errors;
+          } else {
+            // 成功
+            _this2.error = "成功";
+          }
+
           var tasks = response.data;
           _this2.error = response.data;
 
