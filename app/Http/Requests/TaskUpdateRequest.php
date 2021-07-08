@@ -26,7 +26,7 @@ class TaskUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'max:5',
+            'title' => 'required|max:5',
             'detail' => 'max:5',
         ];
     }
