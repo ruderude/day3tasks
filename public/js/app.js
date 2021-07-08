@@ -5683,6 +5683,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5711,6 +5746,8 @@ axios.defaults.headers.common = {
       lineId: null,
       accessToken: null,
       tasks: [],
+      postTask: [],
+      showTaskModal: false,
       error: null,
       items: [{
         action: 'mdi-arrow-right-circle',
@@ -5767,8 +5804,9 @@ axios.defaults.headers.common = {
   },
   computed: {},
   methods: {
-    hello: function hello() {
-      console.log('hello hello');
+    openTaskModal: function openTaskModal(task) {
+      this.postTask = task;
+      this.showTaskModal = true;
     },
     getAccess: function getAccess() {
       console.log('GET');
@@ -42773,18 +42811,11 @@ var render = function() {
                                     _c("v-list-item-title", {
                                       domProps: {
                                         textContent: _vm._s(child.title)
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-list-item-content",
-                                  [
-                                    _c("v-list-item-title", {
-                                      domProps: {
-                                        textContent: _vm._s(child.detail)
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.openTaskModal(_vm.task)
+                                        }
                                       }
                                     })
                                   ],
@@ -42823,6 +42854,131 @@ var render = function() {
                       }
                     },
                     [_vm._v("POST")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-container",
+                { staticClass: "mt-3" },
+                [
+                  _c(
+                    "v-dialog",
+                    {
+                      attrs: { width: "600" },
+                      model: {
+                        value: _vm.showTaskModal,
+                        callback: function($$v) {
+                          _vm.showTaskModal = $$v
+                        },
+                        expression: "showTaskModal"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-title", [_vm._v("タスク")]),
+                          _vm._v(" "),
+                          _c("v-divider"),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c(
+                                "v-sheet",
+                                { staticClass: "pa-3" },
+                                [
+                                  _c(
+                                    "v-form",
+                                    { ref: "edit_form" },
+                                    [
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "v-col",
+                                            { attrs: { cols: "12" } },
+                                            [
+                                              _c("div", [
+                                                _vm._v(
+                                                  _vm._s(_vm.postTask.title)
+                                                )
+                                              ])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              staticClass: "mt-n10",
+                                              attrs: { cols: "12" }
+                                            },
+                                            [
+                                              _c("v-checkbox", {
+                                                attrs: {
+                                                  label: "完了",
+                                                  color: "success",
+                                                  value: _vm.postTask.done
+                                                },
+                                                model: {
+                                                  value: _vm.postTask.done,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.postTask,
+                                                      "done",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "postTask.done"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-divider"),
+                          _vm._v(" "),
+                          _c(
+                            "v-layout",
+                            { attrs: { "justify-end": "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { shrink: "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "ma-6",
+                                      on: { click: _vm.closeModal }
+                                    },
+                                    [_vm._v("閉じる")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
                   )
                 ],
                 1

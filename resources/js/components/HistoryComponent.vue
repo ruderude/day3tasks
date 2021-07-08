@@ -26,10 +26,7 @@
                             :key="child.id"
                             >
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="child.title"></v-list-item-title>
-                                </v-list-item-content>
-                                <v-list-item-content>
-                                    <v-list-item-title v-text="child.detail"></v-list-item-title>
+                                    <v-list-item-title v-text="child.title" @click="openTaskModal(task)"></v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
 
@@ -38,6 +35,44 @@
                     <v-btn @click="getAccess()">GET</v-btn>
                     <v-btn @click="postAccess()">POST</v-btn>
                 </v-card>
+
+                <v-container class="mt-3">
+                    <v-dialog v-model="showTaskModal" width=600>
+                        <v-card>
+                            <v-card-title>タスク</v-card-title>
+                            <v-divider></v-divider>
+                            <v-card-text>
+                                <v-sheet class="pa-3">
+                                    <v-form ref="edit_form">
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <div>{{ postTask.title }}</div>
+                                            </v-col>
+
+                                            <v-col class="mt-n10" cols="12">
+                                                <v-checkbox
+                                                    v-model="postTask.done"
+                                                    label="完了"
+                                                    color="success"
+                                                    :value="postTask.done"
+                                                ></v-checkbox>
+                                            </v-col>
+
+                                        </v-row>
+                                    </v-form>
+                                </v-sheet>
+                            </v-card-text>
+                            <v-divider></v-divider>
+                            <v-layout justify-end>
+                                <v-flex shrink>
+                                    <v-btn class="ma-6" @click="closeModal">閉じる</v-btn>
+                                </v-flex>
+                            </v-layout>
+                            
+                        </v-card>
+                    </v-dialog>
+                </v-container>
+
                 <div id="liff_id">LIFF ID：{{ liffId }}</div>
                 <div id="line_id">LINE ID：{{ lineId }}</div>
                 <div id="access_token">access_token：{{ accessToken }}</div>
@@ -86,6 +121,8 @@ export default {
             lineId: null,
             accessToken: null,
             tasks: [],
+            postTask: [],
+            showTaskModal: false,
             error: null,
             items: [
                 {
@@ -138,8 +175,9 @@ export default {
 
     },
     methods: {
-        hello: function() {
-            console.log('hello hello')
+        openTaskModal (task) {
+            this.postTask = task
+            this.showTaskModal = true
         },
         getAccess: function() {
             console.log('GET')
