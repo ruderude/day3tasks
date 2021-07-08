@@ -314,7 +314,7 @@ export default {
             // console.log(this.forms)
         },
         submitForm: function() {
-            // if (this.$refs.store_form.validate()) {
+            if (this.$refs.store_form.validate()) {
                 // すべてのバリデーションが通過したときのみ
                 this.overlay = true
                 const data = {
@@ -339,9 +339,9 @@ export default {
                         this.closeModal()
                     });
                 
-            // } else {
-            //     return false
-            // }
+            } else {
+                return false
+            }
             
         },
         submitEditForm: function(tasks) {
@@ -356,18 +356,6 @@ export default {
                 axios
                     .post("/update", data)
                     .then(response => {
-                        if (response.data.status == 400) {
-                            // バリデーションエラー
-                            // Object.keys(response.errors).forEach((key) => {
-                            // this.errors[key] = true;
-                            // this.messages[key] = response.errors[key];
-                            // })
-                            this.error = response.data.errors
-                        } else {
-                            // 成功
-                            this.error = "成功"
-                        }
-
                         const tasks = response.data
                         this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {
