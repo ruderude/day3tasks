@@ -47,7 +47,7 @@
                                     <v-form ref="edit_form">
                                         <v-row>
                                             <v-col cols="12">
-                                                <div></div>
+                                                <div>{{postTask}}</div>
                                             </v-col>
                                         </v-row>
                                     </v-form>

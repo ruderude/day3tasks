@@ -42903,7 +42903,11 @@ var render = function() {
                                           _c(
                                             "v-col",
                                             { attrs: { cols: "12" } },
-                                            [_c("div")]
+                                            [
+                                              _c("div", [
+                                                _vm._v(_vm._s(_vm.postTask))
+                                              ])
+                                            ]
                                           )
                                         ],
                                         1
