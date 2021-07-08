@@ -6241,6 +6241,8 @@ axios.defaults.headers.common = {
         access_token: this.accessToken
       };
       axios.post("/update", data).then(function (response) {
+        _this2.error = response.data;
+        return;
         var tasks = response.data; // this.error = response.data;
 
         if (tasks.length <= 0 && !_this2.isTasks) {

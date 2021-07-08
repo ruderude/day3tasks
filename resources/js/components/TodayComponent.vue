@@ -353,6 +353,8 @@ export default {
                 axios
                     .post("/update", data)
                     .then(response => {
+                        this.error = response.data;
+                        return
                         const tasks = response.data
                         // this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {
