@@ -104,7 +104,13 @@ class TaskController extends Controller
         return $tasks;
     }
 
-    public function changeDone(Request $request)
+    /**
+    * タスクの完了未完了入れ替え
+    *  
+    * @param Request $request リクエスト
+    * @return array 内容を返却
+    */
+    public function changeDone(Request $request): array
     {
         $id = $request->post('id');
         $access_token = $request->post('access_token');
