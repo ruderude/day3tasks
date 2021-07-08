@@ -42910,11 +42910,15 @@ var render = function() {
                                             "v-col",
                                             { attrs: { cols: "12" } },
                                             [
-                                              _c("div", { staticClass: "h6" }, [
-                                                _vm._v(
-                                                  _vm._s(_vm.postTask.title)
-                                                )
-                                              ])
+                                              _c(
+                                                "div",
+                                                { staticClass: "text-h6" },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(_vm.postTask.title)
+                                                  )
+                                                ]
+                                              )
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -42924,7 +42928,9 @@ var render = function() {
                                             [
                                               _c(
                                                 "div",
-                                                { staticClass: "subtitle-1" },
+                                                {
+                                                  staticClass: "text-subtitle-1"
+                                                },
                                                 [
                                                   _vm._v(
                                                     _vm._s(_vm.postTask.detail)
