@@ -99,7 +99,6 @@ class TaskRepository
                 return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by days
                 //return Carbon::parse($date->created_at)->format('m'); // grouping by months
             })
-            ->paginate(3)
             ->toArray();
     }
 
