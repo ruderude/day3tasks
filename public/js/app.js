@@ -5806,8 +5806,8 @@ axios.defaults.headers.common = {
   computed: {},
   methods: {
     openTaskModal: function openTaskModal() {
-      // this.postTask = task
-      // this.error = task
+      this.postTask = task;
+      this.error = task;
       this.showTaskModal = true;
     },
     getAccess: function getAccess() {
@@ -42765,7 +42765,6 @@ var render = function() {
                 [
                   _c(
                     "v-list",
-                    { attrs: { dense: "" } },
                     _vm._l(_vm.tasks, function(value, key, index) {
                       return _c(
                         "v-list-group",
@@ -42816,7 +42815,7 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.openTaskModal(value)
+                                          return _vm.openTaskModal(child)
                                         }
                                       }
                                     })

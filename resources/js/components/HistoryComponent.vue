@@ -7,7 +7,7 @@
         <v-main>
             <v-container>
                 <v-card>
-                    <v-list dense>
+                    <v-list>
                         <v-list-group
                             v-for="(value, key, index) in tasks"
                             :key="value.title"
@@ -26,7 +26,7 @@
                             :key="child.id"
                             >
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="child.title" @click="openTaskModal(value)"></v-list-item-title>
+                                    <v-list-item-title v-text="child.title" @click="openTaskModal(child)"></v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
 
@@ -177,8 +177,8 @@ export default {
     },
     methods: {
         openTaskModal: function() {
-            // this.postTask = task
-            // this.error = task
+            this.postTask = task
+            this.error = task
             this.showTaskModal = true
         },
         getAccess: function() {
