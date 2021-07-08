@@ -47,7 +47,13 @@
                                     <v-form ref="edit_form">
                                         <v-row>
                                             <v-col cols="12">
-                                                <div>{{postTask}}</div>
+                                                <div class="h6">{{postTask.title}}</div>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <div class="subtitle-1">{{postTask.detail}}</div>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <div>{{postTask.done}}</div>
                                             </v-col>
                                         </v-row>
                                     </v-form>

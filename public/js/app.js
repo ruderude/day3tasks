@@ -5709,6 +5709,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42904,8 +42910,38 @@ var render = function() {
                                             "v-col",
                                             { attrs: { cols: "12" } },
                                             [
+                                              _c("div", { staticClass: "h6" }, [
+                                                _vm._v(
+                                                  _vm._s(_vm.postTask.title)
+                                                )
+                                              ])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            { attrs: { cols: "12" } },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "subtitle-1" },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(_vm.postTask.detail)
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            { attrs: { cols: "12" } },
+                                            [
                                               _c("div", [
-                                                _vm._v(_vm._s(_vm.postTask))
+                                                _vm._v(
+                                                  _vm._s(_vm.postTask.done)
+                                                )
                                               ])
                                             ]
                                           )
