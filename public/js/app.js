@@ -6155,11 +6155,7 @@ axios.defaults.headers.common = {
   computed: {},
   methods: {
     doneIcon: function doneIcon(done) {
-      return done ? 'mdi-check' : 'mdi-arrow-right-circle'; // if(done){
-      //     return 'mdi-check'
-      // } else {
-      //     return 'mdi-arrow-right-circle'
-      // }
+      return done ? 'mdi-check' : 'mdi-arrow-right-circle';
     },
     addForm: function addForm() {
       var num = this.forms.length + 1;

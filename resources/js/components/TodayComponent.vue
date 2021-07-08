@@ -285,11 +285,6 @@ export default {
     methods: {
         doneIcon: function (done) {
             return done ? 'mdi-check' : 'mdi-arrow-right-circle'
-            // if(done){
-            //     return 'mdi-check'
-            // } else {
-            //     return 'mdi-arrow-right-circle'
-            // }
         },
         addForm: function() {
             const num = this.forms.length + 1;
