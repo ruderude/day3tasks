@@ -5805,9 +5805,9 @@ axios.defaults.headers.common = {
   },
   computed: {},
   methods: {
-    openTaskModal: function openTaskModal(task) {
-      this.postTask = task;
-      this.error = task;
+    openTaskModal: function openTaskModal() {
+      // this.postTask = task
+      // this.error = task
       this.showTaskModal = true;
     },
     getAccess: function getAccess() {
@@ -42816,7 +42816,7 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.openTaskModal(_vm.task)
+                                          return _vm.openTaskModal(value)
                                         }
                                       }
                                     })
@@ -42839,7 +42839,7 @@ var render = function() {
                     {
                       on: {
                         click: function($event) {
-                          return _vm.openTaskModal(_vm.task)
+                          return _vm.openTaskModal()
                         }
                       }
                     },

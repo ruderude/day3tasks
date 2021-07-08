@@ -26,13 +26,13 @@
                             :key="child.id"
                             >
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="child.title" @click="openTaskModal(task)"></v-list-item-title>
+                                    <v-list-item-title v-text="child.title" @click="openTaskModal(value)"></v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
 
                         </v-list-group>
                     </v-list>
-                    <v-btn @click="openTaskModal(task)">ダイアログ</v-btn>
+                    <v-btn @click="openTaskModal()">ダイアログ</v-btn>
                     <v-btn @click="getAccess()">GET</v-btn>
                     <v-btn @click="postAccess()">POST</v-btn>
                 </v-card>
@@ -176,9 +176,9 @@ export default {
 
     },
     methods: {
-        openTaskModal: function(task) {
-            this.postTask = task
-            this.error = task
+        openTaskModal: function() {
+            // this.postTask = task
+            // this.error = task
             this.showTaskModal = true
         },
         getAccess: function() {
