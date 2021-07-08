@@ -35,6 +35,9 @@
                     <v-btn @click="getAccess()">GET</v-btn>
                     <v-btn @click="postAccess()">POST</v-btn>
                 </v-card>
+                <div id="liff_id">LIFF ID：{{ liffId }}</div>
+                <div id="line_id">LINE ID：{{ lineId }}</div>
+                <div id="access_token">access_token：{{ accessToken }}</div>
             </v-container>
         </v-main>
         
@@ -47,6 +50,7 @@
 import Vue from 'vue'
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
+import liff from "@line/liff";
 
 Bugsnag.start({
     apiKey: 'd96162df63a8803bcee425928dcd0f36',
@@ -56,10 +60,20 @@ Bugsnag.start({
 const bugsnagVue = Bugsnag.getPlugin('vue')
 bugsnagVue.installVueErrorHandler(Vue)
 
+axios.defaults.headers.common = {
+    "X-Requested-With": "XMLHttpRequest",
+    "X-CSRF-TOKEN": document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content")
+};
+
 export default {
     name: "History",
     data () {
         return {
+            liffId: null,
+            lineId: null,
+            accessToken: null,
             items: [
                 {
                 action: 'mdi-arrow-right-circle',
@@ -138,21 +152,42 @@ export default {
     },
     created : function(){
         console.log('created')
-        // axios.defaults.headers.common = {
-        //     'X-Requested-With': 'XMLHttpRequest',
-        //     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        // };
-        // axios.post('/v1/liff/getAccessToken', {
-        //     text: 'ヒストリーテストだよー'
-        // })
-        //     .then(response => {
-        //         console.log('送信したテキスト: ' + response.data.text);
-        //     }).catch(error => {
-        //         console.log(error);
-        //     });
+
         },
-    mounted : function(){
-        console.log('mounted')
+    mounted: function() {
+        this.overlay = true
+        liff.init({
+            liffId: this.liffId
+        })
+            .then(() => {
+                this.accessToken = liff.getAccessToken()
+                // Bugsnag.notify(new Error(this.accessToken))
+                // axios.post("/setTasks", {
+                //         access_token: this.accessToken
+                //     })
+                //     .then(response => {
+                //         // Bugsnag.notify(new Error(response.data))
+                //         // タスクセット
+                //         const tasks = response.data
+                //         if (tasks.length <= 0) {
+                //             this.taskInit()
+                //         } else {
+                //             this.setTasks(tasks)
+                //         }
+                //         this.overlay = false
+                //     })
+                //     .catch(err => {
+                //         // console.log(err);
+                //         this.error = err
+                //         this.overlay = false
+                //         Bugsnag.notify(new Error("/v1/liff/setTasks error"));
+                //     });
+            })
+            .catch(err => {
+                this.error = err
+                this.overlay = false
+                Bugsnag.notify(new Error(err))
+            });
     }
 }
 </script>
