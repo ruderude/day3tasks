@@ -9,16 +9,15 @@
                 <v-card>
                     <v-list dense>
                         <v-list-group
-                            v-for="item in tasks"
-                            :key="item.title"
-                            v-model="item.active"
-                            :prepend-icon="item.action"
+                            v-for="(value, key, index) in tasks"
+                            :key="value.title"
+                            :prepend-icon="'mdi-arrow-right-circle'"
                             color="orange lighten-1"
                             no-action
                         >
                             <template v-slot:activator>
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                                    <v-list-item-title v-text="key"></v-list-item-title>
                                 </v-list-item-content>
                             </template>
 

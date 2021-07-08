@@ -5671,7 +5671,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -42715,11 +42714,11 @@ var render = function() {
                   _c(
                     "v-list",
                     { attrs: { dense: "" } },
-                    _vm._l(_vm.tasks, function(item) {
+                    _vm._l(_vm.tasks, function(value, key, index) {
                       return _c("v-list-group", {
-                        key: item.title,
+                        key: value.title,
                         attrs: {
-                          "prepend-icon": item.action,
+                          "prepend-icon": "mdi-arrow-right-circle",
                           color: "orange lighten-1",
                           "no-action": ""
                         },
@@ -42733,9 +42732,7 @@ var render = function() {
                                     "v-list-item-content",
                                     [
                                       _c("v-list-item-title", {
-                                        domProps: {
-                                          textContent: _vm._s(item.title)
-                                        }
+                                        domProps: { textContent: _vm._s(key) }
                                       })
                                     ],
                                     1
@@ -42747,14 +42744,7 @@ var render = function() {
                           ],
                           null,
                           true
-                        ),
-                        model: {
-                          value: item.active,
-                          callback: function($$v) {
-                            _vm.$set(item, "active", $$v)
-                          },
-                          expression: "item.active"
-                        }
+                        )
                       })
                     }),
                     1
