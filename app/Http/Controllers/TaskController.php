@@ -25,7 +25,7 @@ class TaskController extends Controller
     * @param Request $request リクエスト
     * @return array 保存し内容を返却
     */
-    public function store(TaskStoreRequest $request): array
+    public function store(Request $request): array
     {
         Log::debug(print_r($request->all(), true));
 
@@ -47,7 +47,7 @@ class TaskController extends Controller
     * @param Request $request リクエスト
     * @return array 更新し内容を返却
     */
-    public function update(TaskUpdateRequest $request): array
+    public function update(Request $request): array
     {
         // Log::debug(print_r($request->all(), true));
         $tasks = $request["tasks"];
