@@ -5718,6 +5718,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5806,6 +5807,7 @@ axios.defaults.headers.common = {
   methods: {
     openTaskModal: function openTaskModal(task) {
       this.postTask = task;
+      this.error = task;
       this.showTaskModal = true;
     },
     getAccess: function getAccess() {
@@ -42830,6 +42832,18 @@ var render = function() {
                       )
                     }),
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.openTaskModal(_vm.task)
+                        }
+                      }
+                    },
+                    [_vm._v("ダイアログ")]
                   ),
                   _vm._v(" "),
                   _c(

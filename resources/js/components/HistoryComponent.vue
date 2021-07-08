@@ -32,6 +32,7 @@
 
                         </v-list-group>
                     </v-list>
+                    <v-btn @click="openTaskModal(task)">ダイアログ</v-btn>
                     <v-btn @click="getAccess()">GET</v-btn>
                     <v-btn @click="postAccess()">POST</v-btn>
                 </v-card>
@@ -177,6 +178,7 @@ export default {
     methods: {
         openTaskModal: function(task) {
             this.postTask = task
+            this.error = task
             this.showTaskModal = true
         },
         getAccess: function() {
