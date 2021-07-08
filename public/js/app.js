@@ -5672,14 +5672,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -42724,73 +42716,46 @@ var render = function() {
                     "v-list",
                     { attrs: { dense: "" } },
                     _vm._l(_vm.tasks, function(item) {
-                      return _c(
-                        "v-list-group",
-                        {
-                          key: item.title,
-                          attrs: {
-                            "prepend-icon": item.action,
-                            color: "orange lighten-1",
-                            "no-action": ""
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "activator",
-                                fn: function() {
-                                  return [
-                                    _c(
-                                      "v-list-item-content",
-                                      [
-                                        _c("v-list-item-title", {
-                                          domProps: {
-                                            textContent: _vm._s(item.title)
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                },
-                                proxy: true
-                              }
-                            ],
-                            null,
-                            true
-                          ),
-                          model: {
-                            value: item.active,
-                            callback: function($$v) {
-                              _vm.$set(item, "active", $$v)
-                            },
-                            expression: "item.active"
-                          }
+                      return _c("v-list-group", {
+                        key: item.title,
+                        attrs: {
+                          "prepend-icon": item.action,
+                          color: "orange lighten-1",
+                          "no-action": ""
                         },
-                        [
-                          _vm._v(" "),
-                          _vm._l(item.items, function(child) {
-                            return _c(
-                              "v-list-item",
-                              { key: child.title },
-                              [
-                                _c(
-                                  "v-list-item-content",
-                                  [
-                                    _c("v-list-item-title", {
-                                      domProps: {
-                                        textContent: _vm._s(child.title)
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          })
-                        ],
-                        2
-                      )
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "activator",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c("v-list-item-title", {
+                                        domProps: {
+                                          textContent: _vm._s(item.title)
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ],
+                          null,
+                          true
+                        ),
+                        model: {
+                          value: item.active,
+                          callback: function($$v) {
+                            _vm.$set(item, "active", $$v)
+                          },
+                          expression: "item.active"
+                        }
+                      })
                     }),
                     1
                   ),
