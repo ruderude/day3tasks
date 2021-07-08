@@ -5796,8 +5796,8 @@ axios.defaults.headers.common = {
   computed: {},
   methods: {
     openTaskModal: function openTaskModal(task) {
-      // this.postTask = task
-      this.error = task;
+      this.postTask = task; // this.error = task
+
       this.showTaskModal = true;
     },
     getAccess: function getAccess() {

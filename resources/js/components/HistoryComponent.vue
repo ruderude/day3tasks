@@ -167,8 +167,8 @@ export default {
     },
     methods: {
         openTaskModal: function(task) {
-            // this.postTask = task
-            this.error = task
+            this.postTask = task
+            // this.error = task
             this.showTaskModal = true
         },
         getAccess: function() {
