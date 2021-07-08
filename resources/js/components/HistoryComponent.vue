@@ -175,7 +175,7 @@ export default {
 
     },
     methods: {
-        openTaskModal (task) {
+        openTaskModal: function(task) {
             this.postTask = task
             this.showTaskModal = true
         },

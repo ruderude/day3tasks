@@ -428,22 +428,22 @@ export default {
                 comment: ""
             });
         },
-        openEditModal (task) {
+        openEditModal: function(task) {
             this.postTask = task
             this.showEditModal = true
         },
-        openDeleteModal (id) {
+        openDeleteModal: function(id) {
             this.deleteTaskId = id
             this.showDeleteModal = true
         },
-        closeModal () {
+        closeModal: function() {
             this.postTask = []
             this.deleteTaskId = null
             this.showEditModal = false
             this.showDeleteModal = false
             this.overlay = false
         },
-        changeDone (id) {
+        changeDone: function(id) {
             axios.post("/changeDone", {
                     access_token: this.accessToken,
                     id: id
