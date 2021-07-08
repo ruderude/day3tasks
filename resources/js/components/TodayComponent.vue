@@ -284,11 +284,12 @@ export default {
     },
     methods: {
         doneIcon: function (done) {
-            if(done){
-                return 'mdi-check'
-            } else {
-                return 'mdi-arrow-right-circle'
-            }
+            return done ? 'mdi-check' : 'mdi-arrow-right-circle'
+            // if(done){
+            //     return 'mdi-check'
+            // } else {
+            //     return 'mdi-arrow-right-circle'
+            // }
         },
         addForm: function() {
             const num = this.forms.length + 1;
@@ -326,7 +327,7 @@ export default {
                     .post("/store", data)
                     .then(response => {
                         const tasks = response.data
-                        this.error = response.data;
+                        // this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {
                             this.taskInit()
                         } else {
@@ -357,7 +358,7 @@ export default {
                     .post("/update", data)
                     .then(response => {
                         const tasks = response.data
-                        this.error = response.data;
+                        // this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {
                             this.taskInit()
                         } else {

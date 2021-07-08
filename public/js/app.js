@@ -6155,11 +6155,11 @@ axios.defaults.headers.common = {
   computed: {},
   methods: {
     doneIcon: function doneIcon(done) {
-      if (done) {
-        return 'mdi-check';
-      } else {
-        return 'mdi-arrow-right-circle';
-      }
+      return done ? 'mdi-check' : 'mdi-arrow-right-circle'; // if(done){
+      //     return 'mdi-check'
+      // } else {
+      //     return 'mdi-arrow-right-circle'
+      // }
     },
     addForm: function addForm() {
       var num = this.forms.length + 1;
@@ -6195,8 +6195,7 @@ axios.defaults.headers.common = {
           access_token: this.accessToken
         };
         axios.post("/store", data).then(function (response) {
-          var tasks = response.data;
-          _this.error = response.data;
+          var tasks = response.data; // this.error = response.data;
 
           if (tasks.length <= 0 && !_this.isTasks) {
             _this.taskInit();
@@ -6225,8 +6224,7 @@ axios.defaults.headers.common = {
           access_token: this.accessToken
         };
         axios.post("/update", data).then(function (response) {
-          var tasks = response.data;
-          _this2.error = response.data;
+          var tasks = response.data; // this.error = response.data;
 
           if (tasks.length <= 0 && !_this2.isTasks) {
             _this2.taskInit();
