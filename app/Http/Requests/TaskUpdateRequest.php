@@ -26,8 +26,8 @@ class TaskUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:5',
-            'detail' => 'max:5',
+            'tasks.title' => 'required|max:5',
+            'tasks.detail' => 'max:5',
         ];
     }
 
@@ -37,8 +37,8 @@ class TaskUpdateRequest extends FormRequest
      */
     public function messages() {
         return [
-            'title.max' => 'タスクタイトルは500文字以内で入力してください',
-            'detail.max' => '詳細は1000文字以内で入力してください',
+            'tasks.title.max' => 'タスクタイトルは500文字以内で入力してください',
+            'tasks.detail.max' => '詳細は1000文字以内で入力してください',
         ];
     }
 
