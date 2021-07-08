@@ -82,7 +82,7 @@ export default {
             liffId: null,
             lineId: null,
             accessToken: null,
-            tasks, [],
+            tasks: [],
             error: null,
             items: [
                 {
