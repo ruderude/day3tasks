@@ -394,18 +394,7 @@ export default {
                     this.closeModal()
                 });
         },
-        liffInit: function(liffId) {
-            liff.init({
-                liffId: liffId
-            })
-                .then(liff => {
-                    // Bugsnag.notify(new Error(liff))
-                    this.accessToken = liff.getAccessToken()
-                })
-                .catch(err => {
-                    this.error = err
-                });
-        },
+
         taskInit: function() {
             this.forms.splice(-this.forms.length)
             this.forms.push(

@@ -155,7 +155,7 @@ export default {
 
         },
     mounted: function() {
-        this.overlay = true
+        // this.overlay = true
         liff.init({
             liffId: this.liffId
         })
