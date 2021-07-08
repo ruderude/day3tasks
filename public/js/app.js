@@ -42723,7 +42723,7 @@ var render = function() {
                   _c(
                     "v-list",
                     { attrs: { dense: "" } },
-                    _vm._l(_vm.items, function(item) {
+                    _vm._l(_vm.tasks, function(item) {
                       return _c(
                         "v-list-group",
                         {

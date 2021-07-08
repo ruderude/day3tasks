@@ -9,7 +9,7 @@
                 <v-card>
                     <v-list dense>
                         <v-list-group
-                            v-for="item in items"
+                            v-for="item in tasks"
                             :key="item.title"
                             v-model="item.active"
                             :prepend-icon="item.action"
