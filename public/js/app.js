@@ -5806,6 +5806,10 @@ axios.defaults.headers.common = {
 
       this.showTaskModal = true;
     },
+    closeModal: function closeModal() {
+      this.postTask = [];
+      this.showTaskModal = false;
+    },
     getAccess: function getAccess() {
       console.log('GET');
       axios.get('getAccessToken?text=テキストテスト').then(function (response) {

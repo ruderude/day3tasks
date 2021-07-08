@@ -177,6 +177,10 @@ export default {
             // this.error = task
             this.showTaskModal = true
         },
+        closeModal: function() {
+            this.postTask = []
+            this.showTaskModal = false
+        },
         getAccess: function() {
             console.log('GET')
             axios.get('getAccessToken?text=テキストテスト')
