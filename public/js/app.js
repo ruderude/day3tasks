@@ -5715,6 +5715,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -5809,6 +5812,12 @@ axios.defaults.headers.common = {
     closeModal: function closeModal() {
       this.postTask = [];
       this.showTaskModal = false;
+    },
+    doneIcon: function doneIcon(done) {
+      return done ? "mdi-check" : "mdi-arrow-right-circle";
+    },
+    doneText: function doneText(done) {
+      return done ? "完了" : "未完了";
     },
     getAccess: function getAccess() {
       console.log('GET');
@@ -42946,11 +42955,32 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-col",
-                                            { attrs: { cols: "12" } },
+                                            { attrs: { cols: "6" } },
+                                            [
+                                              _c("v-icon", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.doneIcon(
+                                                      _vm.postTask.done
+                                                    )
+                                                  )
+                                                )
+                                              ])
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            { attrs: { cols: "6" } },
                                             [
                                               _c("div", [
                                                 _vm._v(
-                                                  _vm._s(_vm.postTask.done)
+                                                  _vm._s(
+                                                    _vm.doneText(
+                                                      _vm.postTask.done
+                                                    )
+                                                  )
                                                 )
                                               ])
                                             ]

@@ -52,8 +52,11 @@
                                             <v-col cols="12">
                                                 <div class="text-subtitle-1">{{postTask.detail}}</div>
                                             </v-col>
-                                            <v-col cols="12">
-                                                <div>{{postTask.done}}</div>
+                                            <v-col cols="6">
+                                                <v-icon>{{doneIcon(postTask.done)}}</v-icon>
+                                            </v-col>
+                                            <v-col cols="6">
+                                                <div>{{doneText(postTask.done)}}</div>
                                             </v-col>
                                         </v-row>
                                     </v-form>
@@ -180,6 +183,12 @@ export default {
         closeModal: function() {
             this.postTask = []
             this.showTaskModal = false
+        },
+        doneIcon: function(done) {
+            return done ? "mdi-check" : "mdi-arrow-right-circle"
+        },
+        doneText: function(done) {
+            return done ? "完了" : "未完了"
         },
         getAccess: function() {
             console.log('GET')
