@@ -6122,7 +6122,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -6233,32 +6232,31 @@ axios.defaults.headers.common = {
     submitEditForm: function submitEditForm(tasks) {
       var _this2 = this;
 
-      // if (this.$refs.edit_form.validate()) {
-      // すべてのバリデーションが通過したときのみ
-      this.overlay = true;
-      var data = {
-        tasks: tasks,
-        access_token: this.accessToken
-      };
-      axios.post("/update", data).then(function (response) {
-        _this2.error = response.data;
-        return;
-        var tasks = response.data; // this.error = response.data;
+      if (this.$refs.edit_form.validate()) {
+        // すべてのバリデーションが通過したときのみ
+        this.overlay = true;
+        var data = {
+          tasks: tasks,
+          access_token: this.accessToken
+        };
+        axios.post("/update", data).then(function (response) {
+          var tasks = response.data; // this.error = response.data;
 
-        if (tasks.length <= 0 && !_this2.isTasks) {
-          _this2.taskInit();
-        } else {
-          _this2.setTasks(tasks);
-        }
+          if (tasks.length <= 0 && !_this2.isTasks) {
+            _this2.taskInit();
+          } else {
+            _this2.setTasks(tasks);
+          }
 
-        _this2.closeModal();
-      })["catch"](function (err) {
-        _this2.error = err;
+          _this2.closeModal();
+        })["catch"](function (err) {
+          _this2.error = err;
 
-        _this2.closeModal();
-      }); // } else {
-      //     return false
-      // }
+          _this2.closeModal();
+        });
+      } else {
+        return false;
+      }
     },
     submitDeleteForm: function submitDeleteForm() {
       var _this3 = this;
@@ -43590,11 +43588,7 @@ var render = function() {
                                               )
                                             ],
                                             1
-                                          ),
-                                          _vm._v(" "),
-                                          _c("div", [
-                                            _vm._v(_vm._s(_vm.postTask))
-                                          ])
+                                          )
                                         ],
                                         1
                                       )

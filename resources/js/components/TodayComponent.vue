@@ -175,7 +175,6 @@
                                                     更新
                                                 </v-btn>
                                             </v-col>
-                                            <div>{{postTask}}</div>
                                         </v-row>
                                     </v-form>
                                 </v-sheet>
@@ -342,7 +341,7 @@ export default {
             
         },
         submitEditForm: function(tasks) {
-            // if (this.$refs.edit_form.validate()) {
+            if (this.$refs.edit_form.validate()) {
                 // すべてのバリデーションが通過したときのみ
                 this.overlay = true
                 const data = {
@@ -353,8 +352,6 @@ export default {
                 axios
                     .post("/update", data)
                     .then(response => {
-                        this.error = response.data;
-                        return
                         const tasks = response.data
                         // this.error = response.data;
                         if (tasks.length <= 0 && !this.isTasks) {
@@ -369,9 +366,9 @@ export default {
                         this.closeModal()
                     });
                 
-            // } else {
-            //     return false
-            // }
+            } else {
+                return false
+            }
             
         },
         submitDeleteForm: function() {
