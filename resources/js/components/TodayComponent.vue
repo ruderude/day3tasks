@@ -175,6 +175,7 @@
                                                     更新
                                                 </v-btn>
                                             </v-col>
+                                            <div>{{postTask}}</div>
                                         </v-row>
                                     </v-form>
                                 </v-sheet>
