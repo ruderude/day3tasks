@@ -95,7 +95,7 @@ class TaskRepository
             ->whereNull('deleted_at')
             ->get()
             ->groupBy(function($date) {
-                return Carbon::parse($date->created_at)->format('d'); // grouping by days
+                return Carbon::parse($date->created_at)->format('y-m-d'); // grouping by days
                 //return Carbon::parse($date->created_at)->format('m'); // grouping by months
             })
             ->toArray();
