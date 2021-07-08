@@ -5694,6 +5694,12 @@ axios.defaults.headers.common = {
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "History",
+  props: {
+    liffId: {
+      type: String,
+      required: true
+    }
+  },
   data: function data() {
     return {
       liffId: null,

@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="">
-    <History></History>
+    <History liff-id="{{env('VUE_APP_LIFF_ID')}}"></History>
 </div>
 @endsection

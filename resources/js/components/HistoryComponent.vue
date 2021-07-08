@@ -69,6 +69,12 @@ axios.defaults.headers.common = {
 
 export default {
     name: "History",
+    props: {
+        liffId: {
+            type: String,
+            required: true
+        }
+    },
     data () {
         return {
             liffId: null,

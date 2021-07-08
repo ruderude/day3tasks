@@ -394,7 +394,6 @@ export default {
                     this.closeModal()
                 });
         },
-
         taskInit: function() {
             this.forms.splice(-this.forms.length)
             this.forms.push(
