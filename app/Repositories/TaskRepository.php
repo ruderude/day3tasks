@@ -92,7 +92,7 @@ class TaskRepository
     {
         return Task::select()
             ->where("mid", "=", $mid)
-            ->whereNotIn('created_at', '>=', Carbon::today())
+            ->where('created_at', '<', Carbon::today())
             ->whereNull('deleted_at')
             ->orderBy('created_at', 'desc')
             ->paginate(5)
