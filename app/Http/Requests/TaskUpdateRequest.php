@@ -13,7 +13,7 @@ class TaskUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class TaskUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'max:500',
+            'title' => 'max:5',
             'detail' => 'max:5',
         ];
     }
@@ -38,5 +38,21 @@ class TaskUpdateRequest extends FormRequest
             'title.max' => 'タスクタイトルは500文字以内で入力してください',
             'detail.max' => '詳細は1000文字以内で入力してください',
         ];
+    }
+
+    /**
+     * [override] バリデーション失敗時ハンドリング
+     *
+     * @param Validator $validator
+     * @throw HttpResponseException
+     * @see FormRequest::failedValidation()
+     */
+    protected function failedValidation(Validator $validator) {
+        $response['status']  = 400;
+        $response['statusText'] = 'Failed validation.';
+        $response['errors']  = $validator->errors();
+        throw new HttpResponseException(
+            response()->json( $response, 200 )
+        );
     }
 }
