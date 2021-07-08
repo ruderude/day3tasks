@@ -5671,6 +5671,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42715,37 +42724,64 @@ var render = function() {
                     "v-list",
                     { attrs: { dense: "" } },
                     _vm._l(_vm.tasks, function(value, key, index) {
-                      return _c("v-list-group", {
-                        key: value.title,
-                        attrs: {
-                          "prepend-icon": "mdi-arrow-right-circle",
-                          color: "orange lighten-1",
-                          "no-action": ""
+                      return _c(
+                        "v-list-group",
+                        {
+                          key: value.title,
+                          attrs: {
+                            "prepend-icon": "mdi-arrow-right-circle",
+                            color: "orange lighten-1",
+                            "no-action": ""
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function() {
+                                  return [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", {
+                                          domProps: { textContent: _vm._s(key) }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            true
+                          )
                         },
-                        scopedSlots: _vm._u(
-                          [
-                            {
-                              key: "activator",
-                              fn: function() {
-                                return [
-                                  _c(
-                                    "v-list-item-content",
-                                    [
-                                      _c("v-list-item-title", {
-                                        domProps: { textContent: _vm._s(key) }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ]
-                              },
-                              proxy: true
-                            }
-                          ],
-                          null,
-                          true
-                        )
-                      })
+                        [
+                          _vm._v(" "),
+                          _vm._l(value, function(child) {
+                            return _c(
+                              "v-list-item",
+                              { key: child.id },
+                              [
+                                _c(
+                                  "v-list-item-content",
+                                  [
+                                    _c("v-list-item-title", {
+                                      domProps: {
+                                        textContent: _vm._s(child.title)
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          })
+                        ],
+                        2
+                      )
                     }),
                     1
                   ),

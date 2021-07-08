@@ -21,6 +21,15 @@
                                 </v-list-item-content>
                             </template>
 
+                            <v-list-item
+                            v-for="child in value"
+                            :key="child.id"
+                            >
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="child.title"></v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+
                         </v-list-group>
                     </v-list>
                     <v-btn @click="getAccess()">GET</v-btn>
