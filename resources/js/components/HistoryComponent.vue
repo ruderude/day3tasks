@@ -28,6 +28,9 @@
                                 <v-list-item-content>
                                     <v-list-item-title v-text="child.title"></v-list-item-title>
                                 </v-list-item-content>
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="child.detail"></v-list-item-title>
+                                </v-list-item-content>
                             </v-list-item>
 
                         </v-list-group>
