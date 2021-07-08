@@ -94,6 +94,7 @@ class TaskRepository
             ->where("mid", "=", $mid)
             ->whereNull('deleted_at')
             ->orderBy('created_at', 'desc')
+            ->get()
             ->groupBy(function($date) {
                 return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by days
                 //return Carbon::parse($date->created_at)->format('m'); // grouping by months
@@ -151,5 +152,5 @@ class TaskRepository
             DB::rollBack();
         }
     }
-    
+
 }
