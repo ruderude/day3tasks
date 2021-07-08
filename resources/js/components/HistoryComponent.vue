@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app dense color="orange darken-1">
-            <div class="text-white text-h4 mx-auto">タスクの履歴q</div>
+            <div class="text-white text-h4 mx-auto">タスクの履歴</div>
         </v-app-bar>
         
         <v-main>
@@ -185,7 +185,7 @@ export default {
             })
             .catch(err => {
                 this.error = err
-                this.overlay = false
+                // this.overlay = false
                 Bugsnag.notify(new Error(err))
             });
     }
