@@ -98,8 +98,8 @@ class TaskController extends Controller
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
         Log::debug('ユーザー情報：' . print_r($user, true));
-        exit;
-        // Log::debug('今日のタスク：' . print_r($tasks, true));
+        $tasks = $this->service->getOldTasks($user["mid"]);
+        Log::debug('過去のタスク：' . print_r($tasks, true));
 
         return $tasks;
     }

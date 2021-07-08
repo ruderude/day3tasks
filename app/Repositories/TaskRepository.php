@@ -83,6 +83,21 @@ class TaskRepository
     }
 
     /**
+     * 過去のタスクを取得する
+     * 
+     * @param string $mid
+     * @return array
+     */
+    public function getOldTasks($mid): array
+    {
+        return Task::select()
+            ->where("mid", "=", $mid)
+            ->whereNull('deleted_at')
+            ->get()
+            ->toArray();
+    }
+
+    /**
      * doneを入れ替える
      * 
      * @param int $id

@@ -74,6 +74,17 @@ class TaskService
     }
 
     /**
+    * 過去のタスク取得
+    *  
+    * @param string $mid mid
+    * @return array タスクを返却
+    */
+    public function getOldTasks(string $mid): array
+    {
+        return $this->repository->getOldTasks($mid);
+    }
+
+    /**
     * doneの入れ替え
     *  
     * @param array $tasks タスク
