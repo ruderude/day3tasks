@@ -47,18 +47,8 @@
                                     <v-form ref="edit_form">
                                         <v-row>
                                             <v-col cols="12">
-                                                <div>{{ postTask.title }}</div>
+                                                <div></div>
                                             </v-col>
-
-                                            <v-col class="mt-n10" cols="12">
-                                                <v-checkbox
-                                                    v-model="postTask.done"
-                                                    label="完了"
-                                                    color="success"
-                                                    :value="postTask.done"
-                                                ></v-checkbox>
-                                            </v-col>
-
                                         </v-row>
                                     </v-form>
                                 </v-sheet>
@@ -176,8 +166,8 @@ export default {
 
     },
     methods: {
-        openTaskModal: function() {
-            this.postTask = task
+        openTaskModal: function(task) {
+            // this.postTask = task
             this.error = task
             this.showTaskModal = true
         },

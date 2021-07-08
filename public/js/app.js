@@ -5709,16 +5709,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5805,8 +5795,8 @@ axios.defaults.headers.common = {
   },
   computed: {},
   methods: {
-    openTaskModal: function openTaskModal() {
-      this.postTask = task;
+    openTaskModal: function openTaskModal(task) {
+      // this.postTask = task
       this.error = task;
       this.showTaskModal = true;
     },
@@ -42913,42 +42903,7 @@ var render = function() {
                                           _c(
                                             "v-col",
                                             { attrs: { cols: "12" } },
-                                            [
-                                              _c("div", [
-                                                _vm._v(
-                                                  _vm._s(_vm.postTask.title)
-                                                )
-                                              ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-col",
-                                            {
-                                              staticClass: "mt-n10",
-                                              attrs: { cols: "12" }
-                                            },
-                                            [
-                                              _c("v-checkbox", {
-                                                attrs: {
-                                                  label: "完了",
-                                                  color: "success",
-                                                  value: _vm.postTask.done
-                                                },
-                                                model: {
-                                                  value: _vm.postTask.done,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.postTask,
-                                                      "done",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression: "postTask.done"
-                                                }
-                                              })
-                                            ],
-                                            1
+                                            [_c("div")]
                                           )
                                         ],
                                         1
