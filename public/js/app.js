@@ -5716,8 +5716,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -42955,7 +42953,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-col",
-                                            { attrs: { cols: "3" } },
+                                            { attrs: { cols: "12" } },
                                             [
                                               _c("v-icon", [
                                                 _vm._v(
@@ -42965,16 +42963,9 @@ var render = function() {
                                                     )
                                                   )
                                                 )
-                                              ])
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-col",
-                                            { attrs: { cols: "9" } },
-                                            [
-                                              _c("div", [
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("span", [
                                                 _vm._v(
                                                   _vm._s(
                                                     _vm.doneText(
@@ -42983,7 +42974,8 @@ var render = function() {
                                                   )
                                                 )
                                               ])
-                                            ]
+                                            ],
+                                            1
                                           )
                                         ],
                                         1
