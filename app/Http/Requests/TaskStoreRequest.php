@@ -24,7 +24,7 @@ class TaskStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'max:500',
+            'title' => 'max:5',
         ];
     }
 
@@ -39,18 +39,21 @@ class TaskStoreRequest extends FormRequest
     }
 
     /**
-     * [override] バリデーション失敗時ハンドリング
+     * Handle a failed validation attempt.
      *
      * @param Validator $validator
+     * @return void
      * @throw HttpResponseException
-     * @see FormRequest::failedValidation()
      */
-    protected function failedValidation(Validator $validator) {
-        $response['status']  = 400;
-        $response['statusText'] = 'Failed validation.';
-        $response['errors']  = $validator->errors();
-        throw new HttpResponseException(
-            response()->json( $response, 200 )
-        );
+    protected function failedValidation(Validator $validator): void
+    {
+        $data = [
+            'data' => [],
+            'status' => 'error',
+            'summary' => 'Failed validation.',
+            'errors' => $validator->errors()->toArray(),
+        ];
+
+        throw new HttpResponseException(response()->json($data, 422));
     }
 }
