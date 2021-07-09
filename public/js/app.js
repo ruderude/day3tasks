@@ -43085,7 +43085,7 @@ var render = function() {
         { attrs: { app: "", dense: "", color: "orange darken-1" } },
         [
           _c("div", { staticClass: "text-white text-h4 mx-auto" }, [
-            _vm._v("今日の三項目")
+            _vm._v("今日の三項目qqq")
           ])
         ]
       ),
@@ -101624,8 +101624,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/day3tasks/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/day3tasks/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\kunshi\PhpstormProjects\day3tasks\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\kunshi\PhpstormProjects\day3tasks\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
