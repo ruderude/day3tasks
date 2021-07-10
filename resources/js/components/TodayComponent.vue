@@ -8,6 +8,7 @@
             <v-container class="container mt-5">
 
                 <v-progress-circular
+                    class="progress-circular"
                     v-show="overlay"
                     indeterminate
                     color="green"
@@ -113,16 +114,20 @@
                             </v-btn>
                         </v-col>
 
+                        <v-col class="mx-auto" cols="10">
+                            <div class="red--text">{{ error }}</div>
+                        </v-col>
+
                         <v-col class="mx-auto" cols="12">
                             <v-btn
-                                @click="submitForm()"
+                                @click="submitStoreForm()"
                                 color="text-white orange darken-1"
                                 block
                             >
                                 決定!!
                             </v-btn>
                         </v-col>
-                        <div class="red--text">{{ error }}</div>
+
                     </v-row>
                 </v-form>
 
@@ -185,7 +190,7 @@
                                     <v-btn class="ma-6" @click="closeModal">閉じる</v-btn>
                                 </v-flex>
                             </v-layout>
-                            
+
                         </v-card>
                     </v-dialog>
                 </v-container>
@@ -213,7 +218,7 @@
                                     </v-form>
                                 </v-sheet>
                             </v-card-text>
-                            
+
                         </v-card>
                     </v-dialog>
                 </v-container>
@@ -280,7 +285,7 @@ export default {
         };
     },
     computed: {
-        
+
     },
     methods: {
         doneIcon: function (done) {
@@ -309,7 +314,7 @@ export default {
             this.forms.splice(num, 1);
             // console.log(this.forms)
         },
-        submitForm: function() {
+        submitStoreForm: function() {
             if (this.$refs.store_form.validate()) {
                 // すべてのバリデーションが通過したときのみ
                 this.overlay = true
@@ -322,7 +327,7 @@ export default {
                     .post("/store", data)
                     .then(response => {
                         const tasks = response.data
-                        // this.error = response.data;
+                        this.error = ""
                         if (tasks.length <= 0 && !this.isTasks) {
                             this.taskInit()
                         } else {
@@ -334,11 +339,11 @@ export default {
                         this.error = err
                         this.closeModal()
                     });
-                
+
             } else {
                 return false
             }
-            
+
         },
         submitEditForm: function(tasks) {
             if (this.$refs.edit_form.validate()) {
@@ -352,8 +357,14 @@ export default {
                 axios
                     .post("/update", data)
                     .then(response => {
+                        if(response.data.status == 400){
+                            this.error = ""
+                            this.closeModal()
+                            return false
+                        }
+
                         const tasks = response.data
-                        // this.error = response.data;
+
                         if (tasks.length <= 0 && !this.isTasks) {
                             this.taskInit()
                         } else {
@@ -365,11 +376,11 @@ export default {
                         this.error = err;
                         this.closeModal()
                     });
-                
+
             } else {
                 return false
             }
-            
+
         },
         submitDeleteForm: function() {
             this.overlay = true
@@ -381,6 +392,7 @@ export default {
             axios
                 .post("/delete", data)
                 .then(response => {
+                    this.error = ""
                     const tasks = response.data
                     if (tasks.length <= 0 && !this.isTasks) {
                         this.taskInit()
@@ -451,6 +463,7 @@ export default {
                 .then(response => {
                     // Bugsnag.notify(new Error(response.data))
                     // タスクセット
+                    this.error = ""
                     const tasks = response.data
                     if (tasks.length <= 0) {
                         this.taskInit()
@@ -504,9 +517,9 @@ export default {
                 this.error = err
                 this.overlay = false
                 Bugsnag.notify(new Error(err))
-            });
+            })
     }
-};
+}
 </script>
 
 <style scoped>
@@ -514,13 +527,13 @@ export default {
     position: relative;
 }
 
-.v-progress-circular {
+.progress-circular {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     z-index: 100;
 }
 </style>

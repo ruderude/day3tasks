@@ -26,14 +26,14 @@ class TaskUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'tasks.title' => 'required|max:5',
-            'tasks.detail' => 'max:5',
+            'tasks.title' => 'required|max:500',
+            'tasks.detail' => 'max:1000',
         ];
     }
 
     /**
      * エラーメッセージを日本語化
-     * 
+     *
      */
     public function messages() {
         return [
@@ -51,10 +51,10 @@ class TaskUpdateRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator) {
         $response['status']  = 400;
-        $response['statusText'] = 'Failed validation.';
+        $response['statusText'] = 'バリデーション失敗';
         $response['errors']  = $validator->errors();
         throw new HttpResponseException(
-            response()->json( $response, 200 )
+            response()->json( $response)
         );
     }
 }

@@ -26,36 +26,33 @@ class TaskStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'max:5',
+            'forms.title' => 'max:500',
         ];
     }
 
     /**
      * エラーメッセージを日本語化
-     * 
+     *
      */
     public function messages() {
         return [
-            'title.max' => 'タスクタイトルは500文字以内で入力してください',
+            'forms.title.max' => 'タスクタイトルは500文字以内で入力してください',
         ];
     }
 
     /**
-     * Handle a failed validation attempt.
+     * [override] バリデーション失敗時ハンドリング
      *
      * @param Validator $validator
-     * @return void
      * @throw HttpResponseException
+     * @see FormRequest::failedValidation()
      */
-    protected function failedValidation(Validator $validator): void
-    {
-        $data = [
-            'data' => [],
-            'status' => 'error',
-            'summary' => 'Failed validation.',
-            'errors' => $validator->errors()->toArray(),
-        ];
-
-        throw new HttpResponseException(response()->json($data, 422));
+    protected function failedValidation(Validator $validator) {
+        $response['status']  = 400;
+        $response['statusText'] = 'バリデーション失敗';
+        $response['errors']  = $validator->errors();
+        throw new HttpResponseException(
+            response()->json( $response)
+        );
     }
 }

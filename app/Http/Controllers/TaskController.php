@@ -21,13 +21,13 @@ class TaskController extends Controller
 
     /**
     * タスク新規登録処理
-    *  
-    * @param Request $request リクエスト
+    *
+    * @param TaskStoreRequest $request リクエスト
     * @return array 保存し内容を返却
     */
-    public function store(Request $request): array
+    public function store(TaskStoreRequest $request): array
     {
-        Log::debug(print_r($request->all(), true));
+//        Log::debug(print_r($request->all(), true));
 
         $forms = $request["forms"];
         $access_token = $request["access_token"];
@@ -35,19 +35,18 @@ class TaskController extends Controller
         $mid = $user['mid'];
         // Log::debug(print_r($mid, true));
         $this->service->store($forms, $mid);
-        $tasks = $this->service->getTodayTasks($mid);
         // Log::debug(print_r($tasks, true));
 
-        return $tasks;
+        return $this->service->getTodayTasks($mid);
     }
 
     /**
     * タスク更新処理
-    *  
-    * @param Request $request リクエスト
+    *
+    * @param TaskUpdateRequest $request リクエスト
     * @return array 更新し内容を返却
     */
-    public function update(Request $request): array
+    public function update(TaskUpdateRequest $request): array
     {
         // Log::debug(print_r($request->all(), true));
         $tasks = $request["tasks"];
@@ -62,15 +61,14 @@ class TaskController extends Controller
         }
 
         $this->service->update($tasks);
-        $tasks = $this->service->getTodayTasks($user["mid"]);
         // Log::debug(print_r($tasks, true));
 
-        return $tasks;
+        return $this->service->getTodayTasks($user["mid"]);
     }
 
     /**
     * ユーザー情報を取得して今日のタスクを取得
-    *  
+    *
     * @param Request $request リクエスト
     * @return array 内容を返却
     */
@@ -80,33 +78,31 @@ class TaskController extends Controller
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
         // Log::debug('ユーザー情報：' . print_r($user, true));
-        $tasks = $this->service->getTodayTasks($user["mid"]);
         // Log::debug('今日のタスク：' . print_r($tasks, true));
 
-        return $tasks;
+        return $this->service->getTodayTasks($user["mid"]);
     }
 
     /**
     * ユーザー情報を取得して過去のタスクを取得
-    *  
+    *
     * @param Request $request リクエスト
     * @return array 内容を返却
     */
     public function oldTasks(Request $request): array
     {
-        // Log::debug('ゲットユーザー：' . print_r($request->all(), true));
+         Log::debug('ゲットユーザー：' . print_r($request->all(), true));
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
-        Log::debug('ユーザー情報：' . print_r($user, true));
+//        Log::debug('ユーザー情報：' . print_r($user, true));
         $tasks = $this->service->getOldTasks($user["mid"]);
-        Log::debug('過去のタスク：' . print_r($tasks, true));
-
+        Log::debug('タスク情報：' . print_r($tasks, true));
         return $tasks;
     }
 
     /**
     * タスクの完了未完了入れ替え
-    *  
+    *
     * @param Request $request リクエスト
     * @return array 内容を返却
     */
@@ -115,15 +111,28 @@ class TaskController extends Controller
         $id = $request->post('id');
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
-        $this->service->changeDone($id);
-        $tasks = $this->service->getTodayTasks($user["mid"]);
+        $task = $this->service->changeDone($id);
+        return $this->service->getTodayTasks($user["mid"]);
+    }
 
-        return $tasks;
+    /**
+     * タスクの完了未完了入れ替え履歴用
+     * 今日のラスクを返却しない
+     *
+     * @param Request $request リクエスト
+     * @return array 内容を返却
+     */
+    public function oldChangeDone(Request $request): array
+    {
+//        Log::debug('オールドDONE：' . print_r($request->all(), true));
+        $id = $request->post('id');
+        return $this->service->changeDone($id);
+//        Log::debug('オールドDONE返却：' . print_r($task, true));
     }
 
     /**
     * タスク削除処理
-    *  
+    *
     * @param Request $request リクエスト
     * @return array 削除しタスクを返却
     */
@@ -133,9 +142,7 @@ class TaskController extends Controller
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
         $this->service->delete($id, $user["mid"]);
-        $tasks = $this->service->getTodayTasks($user["mid"]);
-
-        return $tasks;
+        return $this->service->getTodayTasks($user["mid"]);
     }
-    
+
 }

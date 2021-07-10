@@ -3,14 +3,25 @@
         <v-app-bar app dense color="orange darken-1">
             <div class="text-white text-h4 mx-auto">タスクの履歴</div>
         </v-app-bar>
-        
+
         <v-main>
-            <v-container>
+            <v-container class="container mt-5">
+
+                <v-progress-circular
+                    class="progress-circular"
+                    v-show="overlay"
+                    indeterminate
+                    color="green"
+                    :size="50"
+                ></v-progress-circular>
+
+                <div>{{text}}</div>
+
                 <v-card>
                     <v-list>
                         <v-list-group
                             v-for="(value, key, index) in tasks"
-                            :key="value.title"
+                            :key="value.id"
                             :prepend-icon="'mdi-arrow-right-circle'"
                             color="orange lighten-1"
                             no-action
@@ -22,19 +33,26 @@
                             </template>
 
                             <v-list-item
-                            v-for="child in value"
-                            :key="child.id"
+                                v-for="child in value"
+                                :key="child.id"
                             >
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="child.title" @click="openTaskModal(child)"></v-list-item-title>
+
+                                    <v-row>
+                                        <v-col cols="auto" class="text-subtitle-1 mr-auto" @click="openTaskModal(child)">{{ child.title | truncate }}</v-col>
+                                        <v-col cols="auto">
+                                            <v-btn small @click="changeDone(child)">
+                                                <v-icon>
+                                                    {{ doneIconLeft(child.done) }}
+                                                </v-icon>
+                                            </v-btn>
+                                        </v-col>
+                                    </v-row>
                                 </v-list-item-content>
                             </v-list-item>
 
                         </v-list-group>
                     </v-list>
-                    <v-btn @click="openTaskModal()">ダイアログ</v-btn>
-                    <v-btn @click="getAccess()">GET</v-btn>
-                    <v-btn @click="postAccess()">POST</v-btn>
                 </v-card>
 
                 <v-container class="mt-3">
@@ -53,7 +71,7 @@
                                                 <div class="text-subtitle-1">{{postTask.detail}}</div>
                                             </v-col>
                                             <v-col cols="12">
-                                                <v-icon>{{doneIcon(postTask.done)}}</v-icon>
+                                                <v-icon>{{doneIconRight(postTask.done)}}</v-icon>
                                                 <span>{{doneText(postTask.done)}}</span>
                                             </v-col>
                                         </v-row>
@@ -66,19 +84,15 @@
                                     <v-btn class="ma-6" @click="closeModal">閉じる</v-btn>
                                 </v-flex>
                             </v-layout>
-                            
+
                         </v-card>
                     </v-dialog>
                 </v-container>
-
-                <div id="liff_id">LIFF ID：{{ liffId }}</div>
-                <div id="line_id">LINE ID：{{ lineId }}</div>
-                <div id="access_token">access_token：{{ accessToken }}</div>
-                <div id="tasks">tasks：{{ tasks }}</div>
-                <div id="error">error：{{ error }}</div>
             </v-container>
+
+            <v-overlay :value="overlay"></v-overlay>
         </v-main>
-        
+
         <v-footer>
         </v-footer>
     </v-app>
@@ -118,61 +132,27 @@ export default {
             liffId: null,
             lineId: null,
             accessToken: null,
-            tasks: [],
-            postTask: [],
+            tasks: {},
+            postTask: {},
             showTaskModal: false,
-            error: null,
-            items: [
-                {
-                action: 'mdi-arrow-right-circle',
-                items: [{ title: 'List Item' }],
-                title: '2021-06-25',
-                },
-                {
-                action: 'mdi-arrow-right-circle',
-                items: [
-                    { title: 'Breakfast & brunch' },
-                    { title: 'New American' },
-                    { title: 'Sushi' },
-                ],
-                title: '2021-06-24',
-                },
-                {
-                action: 'mdi-arrow-right-circle',
-                items: [{ title: 'List Item' }],
-                title: '2021-06-23',
-                },
-                {
-                action: 'mdi-arrow-right-circle',
-                items: [
-                    { title: 'Breakfast & brunch' },
-                    { title: 'New American' },
-                    { title: 'Sushi' },
-                ],
-                title: '2021-06-22',
-                },
-                {
-                action: 'mdi-arrow-right-circle',
-                items: [{ title: 'List Item' }],
-                title: '2021-06-21',
-                },
-                {
-                action: 'mdi-arrow-right-circle',
-                items: [{ title: 'List Item' }],
-                title: '2021-06-20',
-                },
-                {
-                action: 'mdi-arrow-right-circle',
-                items: [{ title: 'List Item' }],
-                title: '2021-06-19',
-                },
-            ],
+            overlay: false,
+            page: 1,
+            text: ""
         }
     },
     computed: {
 
     },
     methods: {
+        setTaskDone: function(id) {
+            this.tasks = this.tasks.map((dayTask) => {
+                return dayTask.filter((value) => {
+                    if(value.id === id) {
+                        value.done = !value.done
+                    }
+                })
+            })
+        },
         openTaskModal: function(task) {
             this.postTask = task
             // this.error = task
@@ -182,73 +162,122 @@ export default {
             this.postTask = []
             this.showTaskModal = false
         },
-        doneIcon: function(done) {
+        doneIconRight: function(done) {
             return done ? "mdi-check" : "mdi-arrow-right-circle"
+        },
+        doneIconLeft: function(done) {
+            return done ? "mdi-check" : "mdi-arrow-left-circle"
         },
         doneText: function(done) {
             return done ? "完了" : "未完了"
         },
-        getAccess: function() {
-            console.log('GET')
-            axios.get('getAccessToken?text=テキストテスト')
-                .then(response => {
-                    console.log('送信したテキスト: ' + response.data.message);
-                }).catch(error => {
-                    console.log(error);
-                });
-
-        },
-        postAccess: function() {
-            console.log('POST')
-            axios.post('getAccessToken', {
-                text: 'postヒストリーテストだよー'
+        changeDone: function(task) {
+            this.overlay = true
+            axios.post("/oldChangeDone", {
+                access_token: this.accessToken,
+                id: task.id
             })
                 .then(response => {
-                    console.log('送信したテキスト: ' + response.data.message);
-                }).catch(error => {
-                    console.log(error);
-                });
-        }
+                    // Bugsnag.notify(new Error(response.data))
+                    // タスクセット
+                    task.done = !!response.data.done
+                    // this.text = response.data
+                    this.overlay = false
+                })
+                .catch(err => {
+                    // console.log(err);
+                    this.text = err
+                    this.overlay = false
+                    Bugsnag.notify(new Error("/changeDone error"))
+                })
+        },
+        async getTasks() {
+            if (!this.overlay) { //読み込み中は読み込めないようにする
+                this.overlay = true
+                try {
+                    const response = await axios.post('/oldTasks?page=' + this.page, {
+                        access_token: this.accessToken
+                    })
+                    // this.text = response.data
+                    const newTasks = response.data
+                    Object.assign(this.tasks, newTasks)
+                    this.page += 1
+                } catch (e) {
+                    this.text = e.response
+                    this.load = false
+                    this.overlay = false
+                } finally {
+                    this.overlay = false
+                }
+            }
+        },
     },
     created : function(){
         console.log('created')
 
         },
     mounted: function() {
-        // this.overlay = true
+        window.onscroll = () => {
+            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight == document.documentElement.offsetHeight
+            if (bottomOfWindow) this.getTasks()
+        }
+        this.overlay = true
         liff.init({
             liffId: this.liffId
         })
             .then(() => {
                 this.accessToken = liff.getAccessToken()
                 // Bugsnag.notify(new Error(this.accessToken))
-                axios.post("/oldTasks", {
+                axios.post("/oldTasks?page=" + this.page, {
                         access_token: this.accessToken
                     })
                     .then(response => {
                         // Bugsnag.notify(new Error(response.data))
                         // タスクセット
                         const tasks = response.data
+                        // this.text = tasks
                         this.tasks = tasks
-                        // if (tasks.length <= 0) {
-                        //     this.taskInit()
-                        // } else {
-                        //     this.setTasks(tasks)
-                        // }
-                        // this.overlay = false
+                        this.overlay = false
+                        this.page += 1
                     })
                     .catch(err => {
                         // console.log(err);
-                        this.error = err
-                        // this.overlay = false
-                        Bugsnag.notify(new Error("/v1/liff/setTasks error"));
+                        this.text = err
+                        this.overlay = false
+                        Bugsnag.notify(new Error("/v1/liff/oldTasks error"))
                     });
             })
             .catch(err => {
-                this.error = err
-                // this.overlay = false
+                this.text = err
+                this.overlay = false
                 Bugsnag.notify(new Error(err))
-            });
-    }
+            })
+    },
+    filters: {
+        truncate: function(value) {
+            var length = 12;
+            var ommision = "...";
+            if (value.length <= length) {
+                return value;
+            }
+            return value.substring(0, length) + ommision;
+        }
+    },
 }
 </script>
+
+<style scoped>
+.container {
+    position: relative;
+}
+
+.progress-circular {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    z-index: 100;
+}
+</style>

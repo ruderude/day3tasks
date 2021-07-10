@@ -18,8 +18,8 @@ class TaskService
 
     /**
     * タスクトリム処理
-    *  
-    * @param Request $request リクエスト
+    *
+    * @param array $forms タスク
     * @return array タスクを整理し内容を返却
     */
     public function trim(array $forms): array
@@ -31,13 +31,31 @@ class TaskService
                 $tasks[] = $task;
             }
         }
+        return $tasks;
+    }
 
+    /**
+     * 文字数オーバー処理
+     *
+     * @param array $tasks タスク
+     * @return array タスクを整理し内容を返却
+     */
+    function truncate(array $tasks): array
+    {
+        $length = 500;
+        $trimMarker = '…';
+//        Log::debug('文字数制限' . print_r($tasks, true));
+        foreach($tasks as $key => $task) {
+            if(mb_strlen($task['title'], 'UTF-8') > $length){
+                $tasks[$key]['title'] = mb_substr($task['title'], 0, $length - mb_strlen($trimMarker, 'UTF-8')) . $trimMarker;
+            }
+        }
         return $tasks;
     }
 
     /**
     * タスク新規登録処理
-    *  
+    *
     * @param array $forms タスク
     * @param string $mid mid
     * @return void 保存
@@ -46,12 +64,13 @@ class TaskService
     {
         // Log::debug('ストア' . print_r($forms, true));
         $tasks = $this->trim($forms);
-        $this->repository->store($tasks, $mid);
+        $clean_tasks = $this->truncate($tasks);
+        $this->repository->store($clean_tasks, $mid);
     }
 
     /**
     * タスク更新処理
-    *  
+    *
     * @param array $tasks タスク
     * @return void 更新
     */
@@ -64,7 +83,7 @@ class TaskService
 
     /**
     * 今日のタスク取得
-    *  
+    *
     * @param string $mid mid
     * @return array タスクを返却
     */
@@ -75,7 +94,7 @@ class TaskService
 
     /**
     * 過去のタスク取得
-    *  
+    *
     * @param string $mid mid
     * @return array タスクを返却
     */
@@ -86,19 +105,18 @@ class TaskService
 
     /**
     * doneの入れ替え
-    *  
-    * @param array $tasks タスク
+    *
     * @param int $id タスクid
-    * @return void
+    * @return array
     */
-    public function changeDone(int $id): void
+    public function changeDone(int $id): array
     {
-        $this->repository->changeDone($id);
+        return $this->repository->changeDone($id);
     }
 
     /**
     * タスク削除
-    *  
+    *
     * @param int $id タスクid
     * @param string $mid mid
     * @return void
@@ -107,5 +125,5 @@ class TaskService
     {
         $this->repository->delete($id, $mid);
     }
-    
+
 }

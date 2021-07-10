@@ -12,14 +12,14 @@ class TaskRepository
 {
     /**
     * タスク作成
-    *  
+    *
     * @param array $tasks タスク
     * @param string $mid mid
     * @return void タスクを保存
      */
     public function store(array $tasks, string $mid): void
     {
-        // Log::debug("レポジトリ" . print_r($tasks, true));
+         Log::debug("レポジトリ" . print_r($tasks, true));
         try {
             DB::beginTransaction();
 
@@ -28,8 +28,8 @@ class TaskRepository
                 $created->mid = $mid;
                 // $created->mid = isset($task["mid"]) ? $task["mid"] : "testtest";
                 $created->title = $task["title"];
-                $created->detail = isset($task["detail"]) ? $task["detail"] : "";
-                $created->done = isset($task["done"]) ? $task["done"] : false;
+                $created->detail = $task["detail"] ?? "";
+                $created->done = $task["done"] ?? false;
                 $created->save();
             }
 
@@ -42,7 +42,7 @@ class TaskRepository
 
     /**
     * タスク更新
-    *  
+    *
     * @param array $tasks タスク
     * @return void タスクを更新
      */
@@ -68,7 +68,7 @@ class TaskRepository
 
     /**
      * 今日のタスクを取得する
-     * 
+     *
      * @param string $mid
      * @return array
      */
@@ -84,7 +84,7 @@ class TaskRepository
 
     /**
      * 過去のタスクを取得する
-     * 
+     *
      * @param string $mid
      * @return array
      */
@@ -95,7 +95,7 @@ class TaskRepository
             ->where('created_at', '<', Carbon::today())
             ->whereNull('deleted_at')
             ->orderBy('created_at', 'desc')
-            ->paginate(30)
+            ->paginate(10)
             ->groupBy(function($date) {
                 return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by days
                 //return Carbon::parse($date->created_at)->format('m'); // grouping by months
@@ -105,30 +105,31 @@ class TaskRepository
 
     /**
      * doneを入れ替える
-     * 
+     *
      * @param int $id
-     * @return void
+     * @return array $task
      */
-    public function changeDone(int $id): void
+    public function changeDone(int $id): array
     {
         $task = Task::find($id);
-        $done = $task->done ? false : true;
+        $task->done = !$task->done;
 
         try {
             DB::beginTransaction();
 
-            Task::where('id', $id)->update(['done' => $done]);
+            Task::where('id', $id)->update(['done' => $task->done]);
 
             DB::commit();
         } catch (Exception $e) {
             Log::error('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
+        return $task->toArray();
     }
 
     /**
     * タスク削除
-    *  
+    *
     * @param int $id タスクid
     * @param string $mid mid
     * @return void
