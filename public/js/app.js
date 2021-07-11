@@ -5755,7 +5755,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -5821,10 +5820,17 @@ axios.defaults.headers.common = {
       return done ? "完了" : "未完了";
     },
     parentIcon: function parentIcon(tasks) {
-      // return tasks[0].done ? "mdi-arrow-right-circle" : "mdi-cards-heart"
-      var result = tasks.filter(function (value) {
-        return value.done === 0 || value.done === false;
-      });
+      var data = true;
+      return data ? "mdi-arrow-right-circle" : "mdi-cards-heart";
+      var result = 0;
+
+      for (key in tasks) {
+        // Bugsnag.notify(new Error(tasks[key]))
+        if (!tasks[key].done) {
+          result += 1;
+        }
+      }
+
       return result ? "mdi-arrow-right-circle" : "mdi-cards-heart";
     },
     changeDone: function changeDone(task) {
@@ -43683,18 +43689,16 @@ var render = function() {
                 attrs: { indeterminate: "", color: "green", size: 50 }
               }),
               _vm._v(" "),
-              _c("div", [_vm._v(_vm._s(_vm.text))]),
-              _vm._v(" "),
               _c(
                 "v-card",
                 [
                   _c(
                     "v-list",
-                    _vm._l(_vm.tasks, function(value, key, index) {
+                    _vm._l(_vm.tasks, function(dayTasks, key, index) {
                       return _c(
                         "v-list-group",
                         {
-                          key: value.id,
+                          key: dayTasks.id,
                           attrs: { color: "orange lighten-1", "no-action": "" },
                           scopedSlots: _vm._u(
                             [
@@ -43708,9 +43712,9 @@ var render = function() {
                                       [
                                         _c("v-icon", [
                                           _vm._v(
-                                            "\n                                    " +
-                                              _vm._s(_vm.parentIcon(value)) +
-                                              "\n                                "
+                                            "\n                                        " +
+                                              _vm._s(_vm.parentIcon(dayTasks)) +
+                                              "\n                                    "
                                           )
                                         ])
                                       ],
@@ -43740,10 +43744,10 @@ var render = function() {
                         },
                         [
                           _vm._v(" "),
-                          _vm._l(value, function(child) {
+                          _vm._l(dayTasks, function(task) {
                             return _c(
                               "v-list-item",
-                              { key: child.id },
+                              { key: task.id },
                               [
                                 _c(
                                   "v-list-item-content",
@@ -43759,14 +43763,14 @@ var render = function() {
                                             attrs: { cols: "auto" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.openTaskModal(child)
+                                                return _vm.openTaskModal(task)
                                               }
                                             }
                                           },
                                           [
                                             _vm._v(
                                               _vm._s(
-                                                _vm._f("truncate")(child.title)
+                                                _vm._f("truncate")(task.title)
                                               )
                                             )
                                           ]
@@ -43782,20 +43786,20 @@ var render = function() {
                                                 attrs: { small: "" },
                                                 on: {
                                                   click: function($event) {
-                                                    return _vm.changeDone(child)
+                                                    return _vm.changeDone(task)
                                                   }
                                                 }
                                               },
                                               [
                                                 _c("v-icon", [
                                                   _vm._v(
-                                                    "\n                                                " +
+                                                    "\n                                                    " +
                                                       _vm._s(
                                                         _vm.doneIconLeft(
-                                                          child.done
+                                                          task.done
                                                         )
                                                       ) +
-                                                      "\n                                            "
+                                                      "\n                                                "
                                                   )
                                                 ])
                                               ],
