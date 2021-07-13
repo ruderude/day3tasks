@@ -5820,12 +5820,9 @@ axios.defaults.headers.common = {
       return done ? "完了" : "未完了";
     },
     parentIcon: function parentIcon(tasks) {
-      var data = true;
-      return data ? "mdi-arrow-right-circle" : "mdi-cards-heart";
       var result = 0;
 
       for (key in tasks) {
-        // Bugsnag.notify(new Error(tasks[key]))
         if (!tasks[key].done) {
           result += 1;
         }
