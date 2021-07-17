@@ -15,43 +15,18 @@
                     :size="50"
                 ></v-progress-circular>
 
-                <div>{{text}}</div>
+<!--                <div>{{text}}</div>-->
 
                 <v-card>
                     <v-list>
-                        <v-list-group
-                            v-for="(value, key, index) in tasks"
-                            :key="value.id"
-                            :prepend-icon="'mdi-arrow-right-circle'"
-                            color="orange lighten-1"
-                            no-action
-                        >
-                            <template v-slot:activator>
-                                <v-list-item-content>
-                                    <v-list-item-title v-text="key"></v-list-item-title>
-                                </v-list-item-content>
-                            </template>
+                        <div v-for="(dayTasks, key) in tasks" :key="key">
+                            <Task
+                                @catchTask="openTaskModal"
+                                :taskCreatedDay="key"
+                                :dayTasks="dayTasks">
 
-                            <v-list-item
-                                v-for="child in value"
-                                :key="child.id"
-                            >
-                                <v-list-item-content>
-
-                                    <v-row>
-                                        <v-col cols="auto" class="text-subtitle-1 mr-auto" @click="openTaskModal(child)">{{ child.title | truncate }}</v-col>
-                                        <v-col cols="auto">
-                                            <v-btn small @click="changeDone(child)">
-                                                <v-icon>
-                                                    {{ doneIconLeft(child.done) }}
-                                                </v-icon>
-                                            </v-btn>
-                                        </v-col>
-                                    </v-row>
-                                </v-list-item-content>
-                            </v-list-item>
-
-                        </v-list-group>
+                            </Task>
+                        </div>
                     </v-list>
                 </v-card>
 
@@ -100,17 +75,18 @@
 
 <script>
 import Vue from 'vue'
-import Bugsnag from '@bugsnag/js'
-import BugsnagPluginVue from '@bugsnag/plugin-vue'
+// import Bugsnag from '@bugsnag/js'
+// import BugsnagPluginVue from '@bugsnag/plugin-vue'
 import liff from "@line/liff";
+import Task from './task/TaskComponent'
 
-Bugsnag.start({
-    apiKey: 'd96162df63a8803bcee425928dcd0f36',
-    plugins: [new BugsnagPluginVue()]
-})
-
-const bugsnagVue = Bugsnag.getPlugin('vue')
-bugsnagVue.installVueErrorHandler(Vue)
+// Bugsnag.start({
+//     apiKey: 'd96162df63a8803bcee425928dcd0f36',
+//     plugins: [new BugsnagPluginVue()]
+// })
+//
+// const bugsnagVue = Bugsnag.getPlugin('vue')
+// bugsnagVue.installVueErrorHandler(Vue)
 
 axios.defaults.headers.common = {
     "X-Requested-With": "XMLHttpRequest",
@@ -121,6 +97,9 @@ axios.defaults.headers.common = {
 
 export default {
     name: "History",
+    components: {
+        Task,
+    },
     props: {
         liffId: {
             type: String,
@@ -171,6 +150,18 @@ export default {
         doneText: function(done) {
             return done ? "完了" : "未完了"
         },
+        parentIcon: function(tasks) {
+            const data = true
+            return data ? "mdi-arrow-right-circle" : "mdi-cards-heart"
+            let result = 0
+            for( key in tasks ) {
+                // Bugsnag.notify(new Error(tasks[key]))
+                if(!tasks[key].done) {
+                    result += 1
+                }
+            }
+            return result ? "mdi-arrow-right-circle" : "mdi-cards-heart"
+        },
         changeDone: function(task) {
             this.overlay = true
             axios.post("/oldChangeDone", {
@@ -188,7 +179,7 @@ export default {
                     // console.log(err);
                     this.text = err
                     this.overlay = false
-                    Bugsnag.notify(new Error("/changeDone error"))
+                    // Bugsnag.notify(new Error("/changeDone error"))
                 })
         },
         async getTasks() {
@@ -235,7 +226,7 @@ export default {
                         // Bugsnag.notify(new Error(response.data))
                         // タスクセット
                         const tasks = response.data
-                        // this.text = tasks
+                        this.text = tasks
                         this.tasks = tasks
                         this.overlay = false
                         this.page += 1
@@ -244,13 +235,13 @@ export default {
                         // console.log(err);
                         this.text = err
                         this.overlay = false
-                        Bugsnag.notify(new Error("/v1/liff/oldTasks error"))
+                        // Bugsnag.notify(new Error("/v1/liff/oldTasks error"))
                     });
             })
             .catch(err => {
                 this.text = err
                 this.overlay = false
-                Bugsnag.notify(new Error(err))
+                // Bugsnag.notify(new Error(err))
             })
     },
     filters: {

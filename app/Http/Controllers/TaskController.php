@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\TaskService;
 use Illuminate\Support\Facades\Log;
 use App\Support\Line;
 use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\TaskUpdateRequest;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -91,13 +93,23 @@ class TaskController extends Controller
     */
     public function oldTasks(Request $request): array
     {
-         Log::debug('ゲットユーザー：' . print_r($request->all(), true));
+//         Log::debug('ゲットユーザー：' . print_r($request->all(), true));
         $access_token = $request->post('access_token');
         $user = Line::get_profile($access_token);
 //        Log::debug('ユーザー情報：' . print_r($user, true));
         $tasks = $this->service->getOldTasks($user["mid"]);
-        Log::debug('タスク情報：' . print_r($tasks, true));
+//        Log::debug('タスク情報：' . print_r($tasks, true));
         return $tasks;
+//        ブラウザデバッグ用（LIFFなしでの検証用）
+//        return Task::select()
+//            ->where('created_at', '<', Carbon::today())
+//            ->whereNull('deleted_at')
+//            ->orderBy('created_at', 'desc')
+//            ->paginate(10)
+//            ->groupBy(function($date) {
+//                return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by days
+//            })
+//            ->toArray();
     }
 
     /**
