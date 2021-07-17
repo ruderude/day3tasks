@@ -9,44 +9,40 @@
             </v-list-item-content>
         </template>
 
-        <v-list-item
+        <div
             v-for="task in dayTasks"
             :key="task.id"
         >
-            <v-list-item-content>
-
-                <v-row>
-                    <v-col cols="auto" class="text-subtitle-1 mr-auto" @click="openTaskModal(task)">{{ task.title | truncate }}</v-col>
-                    <v-col cols="auto">
-                        <v-btn small @click="changeDone(task)">
-                            <v-icon>
-                                {{ doneIconLeft(task.done) }}
-                            </v-icon>
-                        </v-btn>
-                    </v-col>
-                </v-row>
-            </v-list-item-content>
-        </v-list-item>
+            <ListBtn
+                @catchTask="openTaskModal"
+                :task="task"
+            ></ListBtn>
+        </div>
 
     </v-list-group>
 </template>
 
 <script>
 import Bugsnag from "@bugsnag/js";
+import ListBtn from './ListBtnComponent'
 
 export default {
     name: "TaskComponent.vue",
+    components: {
+        ListBtn,
+    },
     props: {
         taskCreatedDay: {
             type: String,
         },
         dayTasks: {
-            type: Array,
+            type: Object,
         },
     },
     data () {
         return {
-
+            taskCreatedDay: this.taskCreatedDay,
+            dayTasks: this.dayTasks,
         }
     },
     computed: {
@@ -56,37 +52,16 @@ export default {
             // console.log(unDone)
             // console.log(unDone.length ? 'mdi-arrow-right-circle' : 'mdi-cards-heart')
             return unDone.length ? 'mdi-arrow-right-circle' : 'mdi-cards-heart'
-        }
+        },
+        doneIcon: function () {
+            const done = this.dayTasks.done
+            return done ? "mdi-check" : "mdi-arrow-left-circle"
+
+        },
     },
     methods: {
         openTaskModal: function(task) {
             this.$emit('catchTask', task);
-            // this.postTask = task
-            // this.error = task
-            // this.showTaskModal = true
-        },
-        changeDone: function(task) {
-            this.overlay = true
-            axios.post("/oldChangeDone", {
-                access_token: this.accessToken,
-                id: task.id
-            })
-                .then(response => {
-                    // Bugsnag.notify(new Error(response.data))
-                    // タスクセット
-                    task.done = !!response.data.done
-                    // this.text = response.data
-                    this.overlay = false
-                })
-                .catch(err => {
-                    // console.log(err);
-                    this.text = err
-                    this.overlay = false
-                    Bugsnag.notify(new Error("/changeDone error"))
-                })
-        },
-        doneIconLeft: function(done) {
-            return done ? "mdi-check" : "mdi-arrow-left-circle"
         },
         filters: {
             truncate: function(value) {
@@ -99,7 +74,10 @@ export default {
             }
         },
 
-    }
+    },
+    created : function(){
+
+    },
 }
 </script>
 

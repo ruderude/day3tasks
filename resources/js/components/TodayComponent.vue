@@ -234,20 +234,20 @@
 
 <script>
 import Vue from "vue";
-// import Bugsnag from "@bugsnag/js";
-// import BugsnagPluginVue from "@bugsnag/plugin-vue";
+import Bugsnag from "@bugsnag/js";
+import BugsnagPluginVue from "@bugsnag/plugin-vue";
 import liff from "@line/liff";
 // import ApiHandler from '../lib/api';
 
 // import Modal from './ModalComponent'
 
-// Bugsnag.start({
-//     apiKey: "d96162df63a8803bcee425928dcd0f36",
-//     plugins: [new BugsnagPluginVue()]
-// });
+Bugsnag.start({
+    apiKey: "d96162df63a8803bcee425928dcd0f36",
+    plugins: [new BugsnagPluginVue()]
+});
 
-// const bugsnagVue = Bugsnag.getPlugin("vue");
-// bugsnagVue.installVueErrorHandler(Vue);
+const bugsnagVue = Bugsnag.getPlugin("vue");
+bugsnagVue.installVueErrorHandler(Vue);
 
 // const apiHandler = new ApiHandler()
 axios.defaults.headers.common = {
@@ -476,7 +476,7 @@ export default {
                     // console.log(err);
                     this.error = err
                     this.overlay = false
-                    // Bugsnag.notify(new Error("/changeDone error"));
+                    Bugsnag.notify(new Error("/changeDone error"));
                 });
         }
     },
@@ -510,13 +510,13 @@ export default {
                         // console.log(err);
                         this.error = err
                         this.overlay = false
-                        // Bugsnag.notify(new Error("/v1/liff/setTasks error"));
+                        Bugsnag.notify(new Error("/v1/liff/setTasks error"));
                     });
             })
             .catch(err => {
                 this.error = err
                 this.overlay = false
-                // Bugsnag.notify(new Error(err))
+                Bugsnag.notify(new Error(err))
             })
     }
 }

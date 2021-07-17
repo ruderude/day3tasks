@@ -30,39 +30,38 @@
                     </v-list>
                 </v-card>
 
-                <v-container class="mt-3">
-                    <v-dialog v-model="showTaskModal" width=600>
-                        <v-card>
-                            <v-card-title>タスク</v-card-title>
-                            <v-divider></v-divider>
-                            <v-card-text>
-                                <v-sheet class="pa-3">
-                                    <v-form ref="edit_form">
-                                        <v-row>
-                                            <v-col cols="12">
-                                                <div class="text-h6">{{postTask.title}}</div>
-                                            </v-col>
-                                            <v-col cols="12">
-                                                <div class="text-subtitle-1">{{postTask.detail}}</div>
-                                            </v-col>
-                                            <v-col cols="12">
-                                                <v-icon>{{doneIconRight(postTask.done)}}</v-icon>
-                                                <span>{{doneText(postTask.done)}}</span>
-                                            </v-col>
-                                        </v-row>
-                                    </v-form>
-                                </v-sheet>
-                            </v-card-text>
-                            <v-divider></v-divider>
-                            <v-layout justify-end>
-                                <v-flex shrink>
-                                    <v-btn class="ma-6" @click="closeModal">閉じる</v-btn>
-                                </v-flex>
-                            </v-layout>
+                <v-dialog v-model="showTaskModal" width=600>
+                    <v-card>
+                        <v-card-title>タスク</v-card-title>
+                        <v-divider></v-divider>
+                        <v-card-text>
+                            <v-sheet class="pa-3">
+                                <v-form ref="edit_form">
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <div class="text-h6">{{postTask.title}}</div>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <div class="text-subtitle-1">{{postTask.detail}}</div>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <v-icon>{{modalTaskIcon}}</v-icon>
+                                            <span>{{modalTaskText}}</span>
+                                        </v-col>
+                                    </v-row>
+                                </v-form>
+                            </v-sheet>
+                        </v-card-text>
+                        <v-divider></v-divider>
+                        <v-layout justify-end>
+                            <v-flex shrink>
+                                <v-btn class="ma-6" @click="closeModal">閉じる</v-btn>
+                            </v-flex>
+                        </v-layout>
 
-                        </v-card>
-                    </v-dialog>
-                </v-container>
+                    </v-card>
+                </v-dialog>
+
             </v-container>
 
             <v-overlay :value="overlay"></v-overlay>
@@ -75,18 +74,18 @@
 
 <script>
 import Vue from 'vue'
-// import Bugsnag from '@bugsnag/js'
-// import BugsnagPluginVue from '@bugsnag/plugin-vue'
+import Bugsnag from '@bugsnag/js'
+import BugsnagPluginVue from '@bugsnag/plugin-vue'
 import liff from "@line/liff";
 import Task from './task/TaskComponent'
 
-// Bugsnag.start({
-//     apiKey: 'd96162df63a8803bcee425928dcd0f36',
-//     plugins: [new BugsnagPluginVue()]
-// })
-//
-// const bugsnagVue = Bugsnag.getPlugin('vue')
-// bugsnagVue.installVueErrorHandler(Vue)
+Bugsnag.start({
+    apiKey: 'd96162df63a8803bcee425928dcd0f36',
+    plugins: [new BugsnagPluginVue()]
+})
+
+const bugsnagVue = Bugsnag.getPlugin('vue')
+bugsnagVue.installVueErrorHandler(Vue)
 
 axios.defaults.headers.common = {
     "X-Requested-With": "XMLHttpRequest",
@@ -120,7 +119,14 @@ export default {
         }
     },
     computed: {
-
+        modalTaskIcon: function () {
+            const done = this.postTask.done
+            return done ? 'mdi-cards-heart' : 'mdi-arrow-right-circle'
+        },
+        modalTaskText: function () {
+            const done = this.postTask.done
+            return done ? "完了" : "未完了"
+        }
     },
     methods: {
         setTaskDone: function(id) {
@@ -138,24 +144,17 @@ export default {
             this.showTaskModal = true
         },
         closeModal: function() {
-            this.postTask = []
             this.showTaskModal = false
-        },
-        doneIconRight: function(done) {
-            return done ? "mdi-check" : "mdi-arrow-right-circle"
+            this.postTask = []
         },
         doneIconLeft: function(done) {
             return done ? "mdi-check" : "mdi-arrow-left-circle"
-        },
-        doneText: function(done) {
-            return done ? "完了" : "未完了"
         },
         parentIcon: function(tasks) {
             const data = true
             return data ? "mdi-arrow-right-circle" : "mdi-cards-heart"
             let result = 0
             for( key in tasks ) {
-                // Bugsnag.notify(new Error(tasks[key]))
                 if(!tasks[key].done) {
                     result += 1
                 }
@@ -206,7 +205,7 @@ export default {
     created : function(){
         console.log('created')
 
-        },
+    },
     mounted: function() {
         window.onscroll = () => {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight == document.documentElement.offsetHeight
@@ -235,13 +234,13 @@ export default {
                         // console.log(err);
                         this.text = err
                         this.overlay = false
-                        // Bugsnag.notify(new Error("/v1/liff/oldTasks error"))
+                        Bugsnag.notify(new Error("/v1/liff/oldTasks error"))
                     });
             })
             .catch(err => {
                 this.text = err
                 this.overlay = false
-                // Bugsnag.notify(new Error(err))
+                Bugsnag.notify(new Error(err))
             })
     },
     filters: {
