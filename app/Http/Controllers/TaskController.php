@@ -129,7 +129,7 @@ class TaskController extends Controller
 
     /**
      * タスクの完了未完了入れ替え履歴用
-     * 今日のラスクを返却しない
+     * 今日のタスクを返却しない
      *
      * @param Request $request リクエスト
      * @return array 内容を返却
