@@ -16,7 +16,7 @@ class CreateFollowersTable extends Migration
         Schema::create("followers", function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("mid", 33)->index()->unique()->comment("LINEユーザーID");
-            $table->string("name", 20)->nullable(false)->default("")->comment("LINE名");
+            $table->string("name", 20)->nullable(false)->default("名無しのLINE")->comment("LINE名");
             $table->string("icon_url")->nullable(true)->comment("LINEアイコン画像");
             $table->dateTime("blocked_at")->nullable(true)->comment("ブロック日時");
             $table->dateTime("freeze_at")->nullable(true)->comment("凍結日時");

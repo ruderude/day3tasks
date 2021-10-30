@@ -25,7 +25,6 @@ class LineController extends Controller
      */
     public function entry(): Response
     {
-        // Log::debug('エントリー');
         // エンドポイントに届いた情報を取得
         $json = json_decode(file_get_contents("php://input"), true);
         if ($json == null) {
@@ -35,8 +34,6 @@ class LineController extends Controller
         if (count($json["events"]) === 0) {
             return response("", 200);
         }
-
-        // Log::debug(print_r($json,true));
 
         // 各パラメータを変数に代入
         $event = $json["events"][0];

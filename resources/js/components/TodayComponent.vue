@@ -4,252 +4,208 @@
             <div class="text-white text-h4 mx-auto">今日の三項目</div>
         </v-app-bar>
 
-        <v-main>
-            <v-container class="container mt-5">
+        <v-container class="container mt-16">
 
-                <v-progress-circular
-                    class="progress-circular"
-                    v-show="overlay"
-                    indeterminate
-                    color="green"
-                    :size="50"
-                ></v-progress-circular>
+            <v-progress-circular
+                class="progress-circular"
+                v-show="overlay"
+                indeterminate
+                color="green"
+                :size="50"
+            ></v-progress-circular>
 
-                <v-list v-if="isTasks">
-                    <v-list-group
-                        v-for="task in tasks"
-                        :key="task.id"
-                        :prepend-icon="doneIcon(task.done)"
-                        color="orange lighten-1"
-                        no-action
+            <v-list v-if="isTasks">
+                <v-list-group
+                    v-for="task in tasks"
+                    :key="task.id"
+                    :prepend-icon="doneIcon(task.done)"
+                    color="orange lighten-1"
+                    no-action
+                >
+                    <template v-slot:activator>
+                        <v-list-item-content>
+                            <v-list-item-title
+                                v-text="task.title"
+                            ></v-list-item-title>
+                        </v-list-item-content>
+                    </template>
+
+                    <v-list-item>
+                        <v-list-item-content>
+                            <v-container>
+                                <v-row>
+                                    <v-btn class="mr-2" @click="changeDone(task.id)">
+                                        <v-icon>
+                                            mdi-check-outline
+                                        </v-icon>
+                                    </v-btn>
+
+                                    <v-btn class="mr-2" @click="openEditModal(task)">
+                                        <v-icon>
+                                            mdi-square-edit-outline
+                                        </v-icon>
+                                    </v-btn>
+
+                                    <v-btn @click="openDeleteModal(task.id)">
+                                        <v-icon>
+                                            mdi-delete
+                                        </v-icon>
+                                    </v-btn>
+                                </v-row>
+                            </v-container>
+                            <div class="text-h6">
+                                {{task.title}}
+                            </div>
+                            <p class="text-justify text-subtitle-1">
+                                {{task.detail}}
+                            </p>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-group>
+            </v-list>
+
+            <v-form ref="store_form">
+                <v-row>
+                    <v-col
+                        v-for="form in forms"
+                        :key="form.id"
+                        class="mx-auto forms"
+                        cols="10"
                     >
-                        <template v-slot:activator>
-                            <v-list-item-content>
-                                <v-list-item-title
-                                    v-text="task.title"
-                                ></v-list-item-title>
-                            </v-list-item-content>
-                        </template>
+                        <v-text-field
+                            v-model="form.title"
+                            :label="form.label"
+                            :name="'new' + form.id"
+                            outlined
+                            color="orange lighten-1"
+                            dense
+                            :rules="[limit_length500]"
+                        ></v-text-field>
+                    </v-col>
 
-                        <v-list-item>
-                            <v-list-item-content>
-                                <div>
-                                    <v-container>
-                                        <v-layout wrap>
-                                            <v-flex>
-                                                <v-btn @click="changeDone(task.id)">
-                                                    <v-icon>
-                                                        mdi-check-outline
-                                                    </v-icon>
-                                                </v-btn>
-                                            </v-flex>
-                                            <v-flex>
-                                                <v-btn @click="openEditModal(task)">
-                                                    <v-icon>
-                                                        mdi-square-edit-outline
-                                                    </v-icon>
-                                                </v-btn>
-                                            </v-flex>
-                                            <v-flex>
-                                                <v-btn @click="openDeleteModal(task.id)">
-                                                    <v-icon>
-                                                        mdi-delete
-                                                    </v-icon>
-                                                </v-btn>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-container>
-                                </div>
-                                <div class="text-h6">
-                                    {{task.title}}
-                                </div>
-                                <p class="text-justify text-subtitle-1">
-                                    {{task.detail}}
-                                </p>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list-group>
-                </v-list>
-
-                <v-form ref="store_form">
-                    <v-row>
-                        <v-col
-                            v-for="form in forms"
-                            :key="form.id"
-                            class="mx-auto forms"
-                            cols="10"
+                    <v-col class="mx-auto" cols="10">
+                        <v-btn
+                            class="float-right"
+                            fab
+                            dark
+                            color="teal accent-3"
                         >
-                            <v-text-field
-                                v-model="form.title"
-                                :label="form.label"
-                                :name="'new' + form.id"
-                                outlined
-                                color="orange lighten-1"
-                                dense
-                                :rules="[limit_length500]"
-                            ></v-text-field>
-                        </v-col>
+                            <v-icon @click="addForm()" dark>
+                                mdi-plus
+                            </v-icon>
+                        </v-btn>
 
-                        <v-col class="mx-auto" cols="10">
-                            <v-btn
-                                class="float-right"
-                                fab
-                                dark
-                                color="teal accent-3"
-                            >
-                                <v-icon @click="addForm()" dark>
-                                    mdi-plus
-                                </v-icon>
-                            </v-btn>
+                        <v-btn
+                            class="float-right mr-3"
+                            fab
+                            dark
+                            color="teal accent-3"
+                        >
+                            <v-icon @click="removeForm()" dark>
+                                mdi-minus
+                            </v-icon>
+                        </v-btn>
+                    </v-col>
 
-                            <v-btn
-                                class="float-right mr-3"
-                                fab
-                                dark
-                                color="teal accent-3"
-                            >
-                                <v-icon @click="removeForm()" dark>
-                                    mdi-minus
-                                </v-icon>
-                            </v-btn>
-                        </v-col>
+                    <v-col class="mx-auto" cols="10">
+                        <div class="red--text">{{ error }}</div>
+                    </v-col>
 
-                        <v-col class="mx-auto" cols="10">
-                            <div class="red--text">{{ error }}</div>
-                        </v-col>
+                    <v-col class="mx-auto" cols="12">
+                        <v-btn
+                            @click="submitStoreForm()"
+                            color="text-white orange darken-1"
+                            block
+                        >
+                            決定!!
+                        </v-btn>
+                    </v-col>
 
-                        <v-col class="mx-auto" cols="12">
-                            <v-btn
-                                @click="submitStoreForm()"
-                                color="text-white orange darken-1"
-                                block
-                            >
-                                決定!!
-                            </v-btn>
-                        </v-col>
+                </v-row>
+            </v-form>
 
+            <v-dialog v-model="showEditModal" width=600>
+                <v-card>
+                    <v-card-title>タスク編集</v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text>
+                        <v-form ref="edit_form">
+                            <v-row>
+                                <v-col cols="12">
+                                    <v-text-field
+                                        v-model="postTask.title"
+                                        label="タスク"
+                                        name="title"
+                                        :value="postTask.title"
+                                        outlined
+                                        :rules="[required, limit_length500]"
+                                    ></v-text-field>
+                                </v-col>
+
+                                <v-col cols="12">
+                                    <v-textarea
+                                        v-model="postTask.detail"
+                                        outlined
+                                        name="detail"
+                                        label="タスク詳細"
+                                        :value="postTask.detail"
+                                        :rules="[limit_length1000]"
+                                    ></v-textarea>
+                                </v-col>
+
+                                <v-col class="mt-n10" cols="12">
+                                    <v-checkbox
+                                        v-model="postTask.done"
+                                        label="完了"
+                                        color="success"
+                                        :value="postTask.done"
+                                    ></v-checkbox>
+                                </v-col>
+
+                                <v-col class="mx-auto" cols="12">
+                                    <v-btn
+                                        @click="submitEditForm(postTask)"
+                                        color="text-white orange darken-1"
+                                        block
+                                    >
+                                        更新
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-form>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                    <v-row justify="end">
+                        <v-btn class="ma-6" @click="closeModal">閉じる</v-btn>
                     </v-row>
-                </v-form>
+                </v-card>
+            </v-dialog>
 
-                <v-container class="mt-3">
-                    <v-dialog v-model="showEditModal" width=600>
-                        <v-card>
-                            <v-card-title>タスク編集</v-card-title>
-                            <v-divider></v-divider>
-                            <v-card-text>
-                                <v-sheet class="pa-3">
-                                    <v-form ref="edit_form">
-                                        <v-row>
-                                            <v-col cols="12">
-                                                <v-text-field
-                                                    v-model="postTask.title"
-                                                    label="タスク"
-                                                    name="title"
-                                                    :value="postTask.title"
-                                                    outlined
-                                                    :rules="[required, limit_length500]"
-                                                ></v-text-field>
-                                            </v-col>
+            <v-dialog v-model="showDeleteModal" width=600>
+                <v-card>
+                    <v-card-title>本当に削除しますか？</v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text>
+                        <v-form>
+                            <v-row justify="end">
+                                <v-btn color="error" class="ma-6" @click="submitDeleteForm()">削除する</v-btn>
+                                <v-btn class="ma-6" @click="closeModal">キャンセル</v-btn>
+                            </v-row>
+                        </v-form>
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
 
-                                            <v-col cols="12">
-                                                <v-textarea
-                                                    v-model="postTask.detail"
-                                                    outlined
-                                                    name="detail"
-                                                    label="タスク詳細"
-                                                    :value="postTask.detail"
-                                                    :rules="[limit_length1000]"
-                                                ></v-textarea>
-                                            </v-col>
+        </v-container>
 
-                                            <v-col class="mt-n10" cols="12">
-                                                <v-checkbox
-                                                    v-model="postTask.done"
-                                                    label="完了"
-                                                    color="success"
-                                                    :value="postTask.done"
-                                                ></v-checkbox>
-                                            </v-col>
-
-                                            <v-col class="mx-auto" cols="12">
-                                                <v-btn
-                                                    @click="submitEditForm(postTask)"
-                                                    color="text-white orange darken-1"
-                                                    block
-                                                >
-                                                    更新
-                                                </v-btn>
-                                            </v-col>
-                                        </v-row>
-                                    </v-form>
-                                </v-sheet>
-                            </v-card-text>
-                            <v-divider></v-divider>
-                            <v-layout justify-end>
-                                <v-flex shrink>
-                                    <v-btn class="ma-6" @click="closeModal">閉じる</v-btn>
-                                </v-flex>
-                            </v-layout>
-
-                        </v-card>
-                    </v-dialog>
-                </v-container>
-
-                <v-container class="mt-3">
-                    <v-dialog v-model="showDeleteModal" width=600>
-                        <v-card>
-                            <v-card-title>本当に削除しますか？</v-card-title>
-                            <v-divider></v-divider>
-                            <v-card-text>
-                                <v-sheet class="pa-3">
-                                    <v-form>
-                                        <v-row>
-                                        <v-layout justify-end>
-                                            <v-flex shrink>
-                                                <v-btn color="error" class="ma-6" @click="submitDeleteForm()">削除する</v-btn>
-                                            </v-flex>
-                                        </v-layout>
-                                        <v-layout justify-end>
-                                            <v-flex shrink>
-                                                <v-btn class="ma-6" @click="closeModal">キャンセル</v-btn>
-                                            </v-flex>
-                                        </v-layout>
-                                        </v-row>
-                                    </v-form>
-                                </v-sheet>
-                            </v-card-text>
-
-                        </v-card>
-                    </v-dialog>
-                </v-container>
-
-            </v-container>
-
-            <v-overlay :value="overlay"></v-overlay>
-        </v-main>
-
-        <v-footer> </v-footer>
+        <v-overlay :value="overlay"></v-overlay>
     </v-app>
 </template>
 
 <script>
 import Vue from "vue";
-import Bugsnag from "@bugsnag/js";
-import BugsnagPluginVue from "@bugsnag/plugin-vue";
 import liff from "@line/liff";
-// import ApiHandler from '../lib/api';
 
-// import Modal from './ModalComponent'
-
-Bugsnag.start({
-    apiKey: "d96162df63a8803bcee425928dcd0f36",
-    plugins: [new BugsnagPluginVue()]
-});
-
-const bugsnagVue = Bugsnag.getPlugin("vue");
-bugsnagVue.installVueErrorHandler(Vue);
-
-// const apiHandler = new ApiHandler()
 axios.defaults.headers.common = {
     "X-Requested-With": "XMLHttpRequest",
     "X-CSRF-TOKEN": document
@@ -310,9 +266,8 @@ export default {
             }
         },
         removeForm: function() {
-            const num = this.forms.length - 1;
-            this.forms.splice(num, 1);
-            // console.log(this.forms)
+            const num = this.forms.length - 1
+            this.forms.splice(num, 1)
         },
         submitStoreForm: function() {
             if (this.$refs.store_form.validate()) {
@@ -461,7 +416,6 @@ export default {
                     id: id
                 })
                 .then(response => {
-                    // Bugsnag.notify(new Error(response.data))
                     // タスクセット
                     this.error = ""
                     const tasks = response.data
@@ -473,16 +427,13 @@ export default {
                     this.overlay = false
                 })
                 .catch(err => {
-                    // console.log(err);
                     this.error = err
                     this.overlay = false
-                    Bugsnag.notify(new Error("/changeDone error"));
                 });
         }
     },
     created: function() {
-        // alert(liff)
-        // Bugsnag.notify(new Error('Test error'))
+
     },
     mounted: function() {
         this.overlay = true
@@ -491,12 +442,10 @@ export default {
         })
             .then(() => {
                 this.accessToken = liff.getAccessToken()
-                // Bugsnag.notify(new Error(this.accessToken))
                 axios.post("/setTasks", {
                         access_token: this.accessToken
                     })
                     .then(response => {
-                        // Bugsnag.notify(new Error(response.data))
                         // タスクセット
                         const tasks = response.data
                         if (tasks.length <= 0) {
@@ -510,14 +459,15 @@ export default {
                         // console.log(err);
                         this.error = err
                         this.overlay = false
-                        Bugsnag.notify(new Error("/v1/liff/setTasks error"));
                     });
             })
             .catch(err => {
                 this.error = err
                 this.overlay = false
-                Bugsnag.notify(new Error(err))
             })
+
+        // LIFFを外した時用
+        // this.taskInit()
     }
 }
 </script>

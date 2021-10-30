@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import Bugsnag from "@bugsnag/js";
 
 export default {
     name: "ListBtnComponent.vue",
@@ -32,12 +31,12 @@ export default {
     },
     computed: {
         doneIcon: function () {
-            const done = this.task.done
-            return done ? "mdi-check" : "mdi-arrow-left-circle"
+            return this.task.done ? "mdi-check" : "mdi-arrow-left-circle"
 
         },
     },
     methods: {
+        
         openTaskModal: function(task) {
             this.$emit('catchTask', task);
         },
@@ -48,7 +47,6 @@ export default {
                 id: task.id
             })
                 .then(response => {
-                    // Bugsnag.notify(new Error(response.data))
                     // タスクセット
                     task.done = !!response.data.done
                     // this.text = response.data
@@ -58,9 +56,18 @@ export default {
                     // console.log(err);
                     this.text = err
                     this.overlay = false
-                    Bugsnag.notify(new Error("/changeDone error"))
                 })
         },
+    },
+    filters: {
+        truncate: function(value) {
+            var length = 12;
+            var ommision = "...";
+            if (value.length <= length) {
+                return value;
+            }
+            return value.substring(0, length) + ommision;
+        }
     },
 
 }

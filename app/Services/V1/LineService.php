@@ -29,12 +29,12 @@ class LineService
                 $this->unfollow($mid);
                 break;
             case "text":
-                Log::debug("switch通過");
-                $this->_text($mid, $data, $reply_token);
+                // Log::debug("switch通過");
+                $this->_text($mid, $data, $type, $reply_token);
                 break;
             case "image":
                 $data = $this->_get_content($data);
-                $this->_image($mid, $data, $reply_token);
+                $this->_image($mid, $data, $type, $reply_token);
                 break;
             case "postback":
                 // ポストバックデータを解析
@@ -65,29 +65,22 @@ class LineService
         curl_close($curl);
     }
 
-    private function _text(string $mid, string $data, string $reply_token): void
+    private function _text(string $mid, string $data, string $type, string $reply_token): void
     {
         Log::debug("text通過");
-        // $messages = [];
-        // $messages[] = [
-        //     "type" => "text",
-        //     "text" => $data,
-        // ];
-        // $this->_reply($messages, $reply_token);
-        if (isset($params["type"])) {
-            switch ($params["type"]) {
-                default:
-                    break;
-            }
-        }
-        else {
-            $this->messageRepository->receive($mid, config("define.line.message.type.text"), $data);
-        }
+        $messages = [];
+        $messages[] = [
+            "type" => "text",
+            "text" => $data,
+        ];
+
+        $this->_reply($messages, $reply_token);
+        $id = $this->messageRepository->receive($mid, $type, $data);
     }
 
-    private function _image(string $mid, string $data, string $reply_token): void
+    private function _image(string $mid, string $data, string $type, string $reply_token): void
     {
-        $id = $this->messageRepository->receive($mid, config("define.line.message.type.image"));
+        $id = $this->messageRepository->receive($mid, $type, $data);
         file_put_contents(storage_path("app/public/messages/$id.jpg"), $data);
     }
 
@@ -120,11 +113,8 @@ class LineService
         Log::debug('データ：' . print_r($data, true));
         $this->followerRepository->follow($mid, $data["displayName"], $data["pictureUrl"]);
 
-        // $data = [];
-
         // TODO
         // フォロー時の動作
-
         // $this->_reply($data, $reply_token);
     }
 

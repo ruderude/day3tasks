@@ -29,7 +29,7 @@ class TaskController extends Controller
     */
     public function store(TaskStoreRequest $request): array
     {
-//        Log::debug(print_r($request->all(), true));
+        Log::debug(print_r($request->all(), true));
 
         $forms = $request["forms"];
         $access_token = $request["access_token"];

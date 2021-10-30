@@ -19,14 +19,13 @@ class TaskRepository
      */
     public function store(array $tasks, string $mid): void
     {
-         Log::debug("レポジトリ" . print_r($tasks, true));
+        //  Log::debug("レポジトリ" . print_r($tasks, true));
         try {
             DB::beginTransaction();
 
             foreach ($tasks as $task) {
                 $created = Task::make();
                 $created->mid = $mid;
-                // $created->mid = isset($task["mid"]) ? $task["mid"] : "testtest";
                 $created->title = $task["title"];
                 $created->detail = $task["detail"] ?? "";
                 $created->done = $task["done"] ?? false;
