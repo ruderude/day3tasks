@@ -3206,6 +3206,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -3232,9 +3237,10 @@ axios.defaults.headers.common = {
       tasks: {},
       postTask: {},
       showTaskModal: false,
-      overlay: false,
       page: 1,
-      text: ""
+      taskExistence: false,
+      first_text: "",
+      last_text: ""
     };
   },
   computed: {
@@ -3255,8 +3261,6 @@ axios.defaults.headers.common = {
       this.postTask = [];
     },
     changeDone: function changeDone() {
-      var _this = this;
-
       var task = this.postTask;
       axios.post("/oldChangeDone", {
         access_token: this.accessToken,
@@ -3265,12 +3269,11 @@ axios.defaults.headers.common = {
         // タスクセット
         task.done = !!response.data.done;
       })["catch"](function (err) {
-        // console.log(err);
-        _this.text = err;
+        alert(err);
       });
     },
     getTasks: function getTasks() {
-      var _this2 = this;
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response, newTasks;
@@ -3278,79 +3281,66 @@ axios.defaults.headers.common = {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (_this2.overlay) {
-                  _context.next = 19;
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.post('/oldTasks?page=' + _this.page, {
+                  access_token: _this.accessToken
+                });
+
+              case 3:
+                response = _context.sent;
+                newTasks = response.data;
+
+                if (!(Object.keys(newTasks).length > 0)) {
+                  _context.next = 10;
                   break;
                 }
 
-                //読み込み中は読み込めないようにする
-                _this2.overlay = true;
-                _context.prev = 2;
-                _context.next = 5;
-                return axios.post('/oldTasks?page=' + _this2.page, {
-                  access_token: _this2.accessToken
-                });
-
-              case 5:
-                response = _context.sent;
-                // this.text = response.data
-                newTasks = response.data;
-                Object.assign(_this2.tasks, newTasks);
-                _this2.page += 1;
-                _context.next = 16;
+                Object.assign(_this.tasks, newTasks);
+                _this.taskExistence = true;
+                _context.next = 12;
                 break;
 
-              case 11:
-                _context.prev = 11;
-                _context.t0 = _context["catch"](2);
-                _this2.text = _context.t0.response;
-                _this2.load = false;
-                _this2.overlay = false;
+              case 10:
+                _this.last_text = "過去の履歴はありません。";
+                return _context.abrupt("return", false);
 
-              case 16:
-                _context.prev = 16;
-                _this2.overlay = false;
-                return _context.finish(16);
+              case 12:
+                _this.page += 1;
+                _context.next = 18;
+                break;
 
-              case 19:
+              case 15:
+                _context.prev = 15;
+                _context.t0 = _context["catch"](0);
+                alert(_context.t0);
+
+              case 18:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[2, 11, 16, 19]]);
+        }, _callee, null, [[0, 15]]);
       }))();
     }
   },
   created: function created() {},
   mounted: function mounted() {
-    var _this3 = this;
+    var _this2 = this;
 
     window.onscroll = function () {
       var bottomOfWindow = document.documentElement.scrollTop + window.innerHeight == document.documentElement.offsetHeight;
-      if (bottomOfWindow) _this3.getTasks();
+      if (bottomOfWindow) _this2.getTasks();
     };
 
-    this.overlay = true;
     _line_liff__WEBPACK_IMPORTED_MODULE_2___default.a.init({
       liffId: this.liffId
     }).then(function () {
-      _this3.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_2___default.a.getAccessToken();
-      axios.post("/oldTasks?page=" + _this3.page, {
-        access_token: _this3.accessToken
-      }).then(function (response) {
-        // タスクセット
-        var tasks = response.data;
-        _this3.text = tasks;
-        _this3.tasks = tasks;
-        _this3.overlay = false;
-        _this3.page += 1;
-      })["catch"](function (err) {
-        _this3.text = err;
-        _this3.overlay = false;
-      });
+      _this2.accessToken = _line_liff__WEBPACK_IMPORTED_MODULE_2___default.a.getAccessToken();
+
+      _this2.getTasks();
     })["catch"](function (err) {
-      _this3.text = err;
-      _this3.overlay = false;
+      alert(err);
     });
   }
 });
@@ -3970,7 +3960,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      taskCreatedDay: this.taskCreatedDay,
+      dayTasks: this.dayTasks
+    };
   },
   computed: {
     dayIcon: function dayIcon() {
@@ -41920,42 +41913,45 @@ var render = function () {
         "v-container",
         { staticClass: "container mt-16" },
         [
-          _c("v-progress-circular", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.overlay,
-                expression: "overlay",
-              },
-            ],
-            staticClass: "progress-circular",
-            attrs: { indeterminate: "", color: "green", size: 50 },
-          }),
-          _vm._v(" "),
-          _c(
-            "v-card",
-            [
-              _c(
-                "v-list",
-                _vm._l(_vm.tasks, function (dayTasks, key) {
-                  return _c(
-                    "div",
-                    { key: key },
-                    [
-                      _c("Task", {
-                        attrs: { taskCreatedDay: key, dayTasks: dayTasks },
-                        on: { catchTask: _vm.openTaskModal },
-                      }),
-                    ],
-                    1
-                  )
-                }),
-                0
+          _c("v-container", { staticClass: "text-center" }, [
+            _c("div", [
+              _vm._v(
+                "\n            下スクロールで履歴を取得します。\n            "
               ),
-            ],
-            1
-          ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _vm.taskExistence
+            ? _c(
+                "v-card",
+                [
+                  _c(
+                    "v-list",
+                    _vm._l(_vm.tasks, function (dayTasks, key) {
+                      return _c(
+                        "div",
+                        { key: key },
+                        [
+                          _c("Task", {
+                            attrs: { taskCreatedDay: key, dayTasks: dayTasks },
+                            on: { catchTask: _vm.openTaskModal },
+                          }),
+                        ],
+                        1
+                      )
+                    }),
+                    0
+                  ),
+                ],
+                1
+              )
+            : _c("v-container", { staticClass: "text-center mt-16" }, [
+                _c("div", { attrs: { id: "first_text" } }, [
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.first_text) + "\n            "
+                  ),
+                ]),
+              ]),
           _vm._v(" "),
           _c(
             "v-dialog",
@@ -42036,7 +42032,11 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("v-overlay", { attrs: { value: _vm.overlay } }),
+      _c("v-container", { staticClass: "text-center" }, [
+        _c("div", { staticClass: "mb-16", attrs: { id: "message" } }, [
+          _vm._v(_vm._s(_vm.last_text)),
+        ]),
+      ]),
     ],
     1
   )

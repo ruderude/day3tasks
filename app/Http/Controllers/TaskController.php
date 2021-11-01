@@ -27,7 +27,7 @@ class TaskController extends Controller
     * @param TaskStoreRequest $request リクエスト
     * @return array 保存し内容を返却
     */
-    public function store(TaskStoreRequest $request): array
+    public function store(TaskStoreRequest $request)
     {
         Log::debug(print_r($request->all(), true));
 
@@ -48,7 +48,7 @@ class TaskController extends Controller
     * @param TaskUpdateRequest $request リクエスト
     * @return array 更新し内容を返却
     */
-    public function update(TaskUpdateRequest $request): array
+    public function update(TaskUpdateRequest $request)
     {
         // Log::debug(print_r($request->all(), true));
         $tasks = $request["tasks"];
@@ -72,9 +72,8 @@ class TaskController extends Controller
     * ユーザー情報を取得して今日のタスクを取得
     *
     * @param Request $request リクエスト
-    * @return array 内容を返却
     */
-    public function setTasks(Request $request): array
+    public function setTasks(Request $request)
     {
         // Log::debug('ゲットユーザー：' . print_r($request->all(), true));
         $access_token = $request->post('access_token');
@@ -89,27 +88,16 @@ class TaskController extends Controller
     * ユーザー情報を取得して過去のタスクを取得
     *
     * @param Request $request リクエスト
-    * @return array 内容を返却
     */
-    public function oldTasks(Request $request): array
+    public function oldTasks(Request $request)
     {
-//         Log::debug('ゲットユーザー：' . print_r($request->all(), true));
         $access_token = $request->post('access_token');
+        Log::debug('初回トークン：' . print_r($access_token, true));
         $user = Line::get_profile($access_token);
-//        Log::debug('ユーザー情報：' . print_r($user, true));
+        Log::debug('アクセストークン：' . print_r($access_token, true));
         $tasks = $this->service->getOldTasks($user["mid"]);
-//        Log::debug('タスク情報：' . print_r($tasks, true));
+        Log::debug('タスク情報：' . print_r($tasks, true));
         return $tasks;
-//        ブラウザデバッグ用（LIFFなしでの検証用）
-//        return Task::select()
-//            ->where('created_at', '<', Carbon::today())
-//            ->whereNull('deleted_at')
-//            ->orderBy('created_at', 'desc')
-//            ->paginate(10)
-//            ->groupBy(function($date) {
-//                return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by days
-//            })
-//            ->toArray();
     }
 
     /**
@@ -118,7 +106,7 @@ class TaskController extends Controller
     * @param Request $request リクエスト
     * @return array 内容を返却
     */
-    public function changeDone(Request $request): array
+    public function changeDone(Request $request)
     {
         $id = $request->post('id');
         $access_token = $request->post('access_token');
@@ -134,7 +122,7 @@ class TaskController extends Controller
      * @param Request $request リクエスト
      * @return array 内容を返却
      */
-    public function oldChangeDone(Request $request): array
+    public function oldChangeDone(Request $request)
     {
 //        Log::debug('オールドDONE：' . print_r($request->all(), true));
         $id = $request->post('id');
@@ -148,7 +136,7 @@ class TaskController extends Controller
     * @param Request $request リクエスト
     * @return array 削除しタスクを返却
     */
-    public function delete(Request $request): array
+    public function delete(Request $request)
     {
         $id = $request->post('id');
         $access_token = $request->post('access_token');

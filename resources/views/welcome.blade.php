@@ -12,11 +12,11 @@
         <!-- Styles -->
     </head>
     <body>
-        <div class="containar">
+        <!-- <div class="containar">
             Hello World
             @foreach(ReplyList::REPLY_LIST as $reply)
                 <p>{{$reply}}</p>
             @endforeach
-        </div>
+        </div> -->
     </body>
 </html>

@@ -22,7 +22,7 @@ class TaskService
     * @param array $forms タスク
     * @return array タスクを整理し内容を返却
     */
-    public function trim(array $forms): array
+    public function trim(array $forms)
     {
         $tasks = [];
         foreach($forms as $task) {
@@ -40,7 +40,7 @@ class TaskService
      * @param array $tasks タスク
      * @return array タスクを整理し内容を返却
      */
-    function truncate(array $tasks): array
+    function truncate(array $tasks)
     {
         $length = 500;
         $trimMarker = '…';
@@ -85,9 +85,8 @@ class TaskService
     * 今日のタスク取得
     *
     * @param string $mid mid
-    * @return array タスクを返却
     */
-    public function getTodayTasks(string $mid): array
+    public function getTodayTasks(string $mid)
     {
         return $this->repository->getTodayTasks($mid);
     }
@@ -96,9 +95,8 @@ class TaskService
     * 過去のタスク取得
     *
     * @param string $mid mid
-    * @return array タスクを返却
     */
-    public function getOldTasks(string $mid): array
+    public function getOldTasks(string $mid)
     {
         return $this->repository->getOldTasks($mid);
     }
@@ -109,7 +107,7 @@ class TaskService
     * @param int $id タスクid
     * @return array
     */
-    public function changeDone(int $id): array
+    public function changeDone(int $id)
     {
         return $this->repository->changeDone($id);
     }

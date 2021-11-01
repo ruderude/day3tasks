@@ -69,16 +69,23 @@ class TaskRepository
      * 今日のタスクを取得する
      *
      * @param string $mid
-     * @return array
+     * @return
      */
-    public function getTodayTasks($mid): array
+    public function getTodayTasks(string $mid)
     {
-        return Task::select()
+        $columns = [
+            "id",
+            "mid",
+            "title",
+            "detail",
+            "done",
+            "created_at",
+        ];
+        return Task::select($columns)
             ->where("mid", "=", $mid)
             ->where('created_at', '>=', Carbon::today())
             ->whereNull('deleted_at')
-            ->get()
-            ->toArray();
+            ->get();
     }
 
     /**
@@ -87,17 +94,24 @@ class TaskRepository
      * @param string $mid
      * @return array
      */
-    public function getOldTasks($mid): array
+    public function getOldTasks(string $mid)
     {
+        $columns = [
+            "id",
+            "mid",
+            "title",
+            "detail",
+            "done",
+            "created_at",
+        ];
         return Task::select()
             ->where("mid", "=", $mid)
             ->where('created_at', '<', Carbon::today())
             ->whereNull('deleted_at')
             ->orderBy('created_at', 'desc')
-            ->paginate(10)
+            ->paginate(6)
             ->groupBy(function($date) {
                 return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by days
-                //return Carbon::parse($date->created_at)->format('m'); // grouping by months
             })
             ->toArray();
     }
@@ -108,7 +122,7 @@ class TaskRepository
      * @param int $id
      * @return array $task
      */
-    public function changeDone(int $id): array
+    public function changeDone(int $id)
     {
         $task = Task::find($id);
         $task->done = !$task->done;
@@ -123,7 +137,7 @@ class TaskRepository
             Log::error('タスクレポジトリ' . $e->getMessage());
             DB::rollBack();
         }
-        return $task->toArray();
+        return $task;
     }
 
     /**

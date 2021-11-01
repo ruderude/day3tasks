@@ -25,12 +25,13 @@ class Line
         curl_close($ch);
 
         $userdata = json_decode($response);
+        Log::debug('ユーザー情報：' . print_r($userdata, true));
+        // exit;
         $data = [
             "name" => $userdata->displayName,
             "mid" => $userdata->userId,
             "icon_url" => $userdata->pictureUrl,
         ];
-        // Log::debug('ユーザー情報：' . print_r($data, true));
 
         return $data;
     }

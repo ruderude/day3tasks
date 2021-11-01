@@ -6,26 +6,29 @@
 
         <v-container class="container mt-16">
 
-            <v-progress-circular
-                class="progress-circular"
-                v-show="overlay"
-                indeterminate
-                color="green"
-                :size="50"
-            ></v-progress-circular>
+            <v-container class="text-center">
+                <div>
+                下スクロールで履歴を取得します。
+                </div>
+            </v-container>
 
-            <v-card>
+            <v-card v-if="taskExistence">
                 <v-list>
                     <div v-for="(dayTasks, key) in tasks" :key="key">
                         <Task
                             @catchTask="openTaskModal"
                             :taskCreatedDay="key"
                             :dayTasks="dayTasks">
-
                         </Task>
                     </div>
                 </v-list>
             </v-card>
+
+            <v-container v-else class="text-center mt-16">
+                <div id="first_text">
+                {{first_text}}
+                </div>
+            </v-container>
 
             <v-dialog v-model="showTaskModal" width=600>
                 <v-card>
@@ -55,9 +58,11 @@
             </v-dialog>
 
         </v-container>
-
-        <v-overlay :value="overlay"></v-overlay>
-
+        
+        <v-container class="text-center">
+            <div id="message" class="mb-16">{{last_text}}</div>
+        </v-container>
+        
     </v-app>
 </template>
 
@@ -92,9 +97,10 @@ export default {
             tasks: {},
             postTask: {},
             showTaskModal: false,
-            overlay: false,
             page: 1,
-            text: ""
+            taskExistence: false,
+            first_text: "",
+            last_text: ""
         }
     },
     computed: {
@@ -125,28 +131,27 @@ export default {
                     task.done = !!response.data.done
                 })
                 .catch(err => {
-                    // console.log(err);
-                    this.text = err
+                    alert(err)
                 })
         },
         async getTasks() {
-            if (!this.overlay) { //読み込み中は読み込めないようにする
-                this.overlay = true
-                try {
-                    const response = await axios.post('/oldTasks?page=' + this.page, {
-                        access_token: this.accessToken
-                    })
-                    // this.text = response.data
-                    const newTasks = response.data
+            try {
+                const response = await axios.post('/oldTasks?page=' + this.page, {
+                    access_token: this.accessToken
+                })
+
+                const newTasks = response.data
+                if(Object.keys(newTasks).length > 0) {
                     Object.assign(this.tasks, newTasks)
-                    this.page += 1
-                } catch (e) {
-                    this.text = e.response
-                    this.load = false
-                    this.overlay = false
-                } finally {
-                    this.overlay = false
+                    this.taskExistence = true
+                } else {
+                    this.last_text = "過去の履歴はありません。"
+                    return false
                 }
+                
+                this.page += 1
+            } catch (e) {
+                alert(e)
             }
         },
     },
@@ -158,31 +163,16 @@ export default {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight == document.documentElement.offsetHeight
             if (bottomOfWindow) this.getTasks()
         }
-        this.overlay = true
+
         liff.init({
             liffId: this.liffId
         })
             .then(() => {
                 this.accessToken = liff.getAccessToken()
-                axios.post("/oldTasks?page=" + this.page, {
-                        access_token: this.accessToken
-                    })
-                    .then(response => {
-                        // タスクセット
-                        const tasks = response.data
-                        this.text = tasks
-                        this.tasks = tasks
-                        this.overlay = false
-                        this.page += 1
-                    })
-                    .catch(err => {
-                        this.text = err
-                        this.overlay = false
-                    });
+                this.getTasks()
             })
             .catch(err => {
-                this.text = err
-                this.overlay = false
+               alert(err)
             })
     },
 }

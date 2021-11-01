@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class MessageRepository
 {
-    public function index(): array
+    public function index()
     {
         $columns = [
             "users.id AS user_id",
@@ -25,8 +25,7 @@ class MessageRepository
             ->where("messages.dest", null)
             ->whereNotNull("messages.user_id")
             ->whereNull("messages.deleted_at")
-            ->get()
-            ->toArray();
+            ->get();
     }
 
     public function count(): int

@@ -40,7 +40,8 @@ export default {
     },
     data () {
         return {
-
+            taskCreatedDay: this.taskCreatedDay,
+            dayTasks: this.dayTasks,
         }
     },
     computed: {

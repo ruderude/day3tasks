@@ -5,6 +5,7 @@ namespace App\Services\V1;
 use App\Repositories\MessageRepository;
 use App\Repositories\FollowerRepository;
 use App\Support\Line;
+use App\Consts\ReplyList;
 use Illuminate\Support\Facades\Log;
 
 class LineService
@@ -46,10 +47,18 @@ class LineService
 
     private function _reply(array $messages, string $reply_token): void
     {
+        $reply_array = ReplyList::REPLY_LIST;
+        $key = array_rand($reply_array, 1);
+        $res[] = [
+            "type" => "text",
+            "text" => $reply_array[$key]
+        ];
         $data = [
             "replyToken" => $reply_token,
-            "messages" => $messages,
+            "messages" => $res,
         ];
+        Log::debug('メッセージ：' . print_r($messages, true));
+        Log::debug('送信データ：' . print_r($data, true));
 
         $json = json_encode($data);
         $curl = curl_init("https://api.line.me/v2/bot/message/reply");
@@ -67,7 +76,7 @@ class LineService
 
     private function _text(string $mid, string $data, string $type, string $reply_token): void
     {
-        Log::debug("text通過");
+        // Log::debug("text通過");
         $messages = [];
         $messages[] = [
             "type" => "text",
