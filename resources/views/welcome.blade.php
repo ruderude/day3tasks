@@ -12,6 +12,7 @@
         <!-- Styles -->
     </head>
     <body>
+    Hello World
         <!-- <div class="containar">
             Hello World
             @foreach(ReplyList::REPLY_LIST as $reply)
