@@ -16,4 +16,14 @@ class Follower extends Model
         "blocked_at",
         "freeze_at",
     ];
+
+    public function messages()
+    {
+        return $this->hasMany('\App\Models\Message', 'mid', 'mid');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany('\App\Models\Task', 'mid', 'mid');
+    }
 }

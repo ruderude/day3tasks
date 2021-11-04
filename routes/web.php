@@ -17,7 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/{any?}', function() {
+    return view('home');
+})->where('any', '.*');
 
 // LINE Messaging API / LINE Login
 Route::post("/v1/line/entry", "V1\\LineController@entry")->name("line.entry");
@@ -35,3 +38,6 @@ Route::post('/changeDone', 'TaskController@changeDone')->name('task.changeDone')
 Route::post('/delete', 'TaskController@delete')->name('task.delete');
 
 Route::post('/oldChangeDone', 'TaskController@oldChangeDone')->name('task.oldChangeDone');
+
+Route::get('/followers', 'FollowerController@getFollowers')->name('follower.followers');
+Route::get('/follower', 'FollowerController@getFollower')->name('follower.follower');
