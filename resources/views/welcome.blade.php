@@ -23,7 +23,7 @@
 		<v-app>
 		<v-main>
 			<v-container>
-			    <admin-other></admin-other>
+			    <admin-login></admin-login>
 			</v-container>
 		</v-main>
 		</v-app>

@@ -4,6 +4,24 @@
         <v-app-bar color="primary" dark app clipped-left>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>Day3tasks</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-title>{{ auth_name }}</v-toolbar-title>
+            <div class="pa-2">
+                <v-btn block v-on:click="logout">Logout</v-btn>
+                <form
+                    id="logout-form"
+                    action="/logout"
+                    method="POST"
+                    style="display: none"
+                >
+                    <input
+                        type="hidden"
+                        name="_token"
+                        :value="csrf_token"
+                    />
+                </form>
+            </div>
+
         </v-app-bar>
 
         <!-- 色付きドロワー -->
@@ -59,9 +77,9 @@ axios.defaults.headers.common = {
 };
 
 export default {
-    name: "AdminFooter",
+    name: "AdminHeader",
     props: {
-
+        auth_name: String,
     },
     data() {
         return {

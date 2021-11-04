@@ -27,35 +27,37 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import './bootstrap'
-import Vue from 'vue'
-import router from './router'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-import '@mdi/font/css/materialdesignicons.css'
-Vue.use(Vuetify);
-
-import AdminHeader from './components/admin/HeaderComponent'
-import AdminFooter from './components/admin/FooterComponent'
-import AdminHome from './components/admin/HomeComponent'
-import AdminOther from './components/admin/OtherComponent'
-import Today from './components/TodayComponent'
-import History from './components/HistoryComponent'
-
-
-const app = new Vue({
-    el: '#app',
-    router,
-    vuetify: new Vuetify({
-        iconfont: 'mdi',
-    }),
-    components: {
-        AdminHeader,
-        AdminFooter,
-        AdminHome,
-        AdminOther,
-        Today,
-        History,
-    },
-    
-})
+ import './bootstrap'
+ import Vue from 'vue'
+ import router from './router'
+ import Vuetify from 'vuetify'
+ import 'vuetify/dist/vuetify.min.css'
+ import '@mdi/font/css/materialdesignicons.css'
+ Vue.use(Vuetify);
+ 
+ import AdminHeader from './components/admin/HeaderComponent'
+ import AdminFooter from './components/admin/FooterComponent'
+ import AdminHome from './components/admin/HomeComponent'
+ import AdminLogin from './components/admin/LoginComponent'
+ import AdminOther from './components/admin/OtherComponent'
+ import Today from './components/TodayComponent'
+ import History from './components/HistoryComponent'
+ 
+ 
+ const app = new Vue({
+     el: '#app',
+     router,
+     vuetify: new Vuetify({
+         iconfont: 'mdi',
+     }),
+     components: {
+         AdminHeader,
+         AdminFooter,
+         AdminHome,
+         AdminLogin,
+         AdminOther,
+         Today,
+         History,
+     },
+     
+ })

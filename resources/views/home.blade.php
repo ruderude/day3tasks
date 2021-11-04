@@ -75,7 +75,7 @@
 		</header>
 
 		<v-app>
-		<admin-header></admin-header>
+		<admin-header auth_name="{{ Auth::user()->name }}"></admin-header>
 		<v-main>
 			<v-container>
 			    <router-view></router-view>
