@@ -1,7 +1,7 @@
 <template>
     <div class="mt-8">
         <h1>
-        Follower
+        Follower：{{follower.name}}
         </h1>
         <div>
             <v-data-table

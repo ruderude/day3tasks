@@ -12,12 +12,14 @@
                 >{{ item.name }}</router-link>
             </template>
             <template v-slot:item.icon_url="{ item }">
-                <v-img
-                    lazy-src=""
-                    max-height="80"
-                    max-width="100"
-                    :src="item.icon_url"
-                ></v-img>
+                <router-link :to="{ name: 'follower', params: {mid: item.mid } }">
+                    <v-img
+                        lazy-src=""
+                        max-height="80"
+                        max-width="100"
+                        :src="item.icon_url"
+                    ></v-img>
+                </router-link>
             </template>
             <template v-slot:item.blocked_at="{ item }">
                 <span v-if="item.blocked_at">ブロック中</span>
