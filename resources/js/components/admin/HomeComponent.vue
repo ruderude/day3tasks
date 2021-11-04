@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-6">
         <v-data-table
             :headers="headers"
             :items="followers"
