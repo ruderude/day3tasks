@@ -3,7 +3,11 @@
         <!-- Bars/App bars の v-app-bar -->
         <v-app-bar color="primary" dark app clipped-left>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title>Day3tasks</v-toolbar-title>
+            <v-toolbar-title>
+                <router-link :to="{ name: 'home'}" class="white--text">
+                    Day3tasks
+                </router-link>
+            </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-title>{{ auth_name }}</v-toolbar-title>
             <div class="pa-2">
