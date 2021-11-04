@@ -87,7 +87,7 @@ export default {
             items: [
                 { title: "Dashboard", icon: "mdi-view-dashboard", to: "/home" },
                 { title: "Oher", icon: "mdi-account-box", to: "/home/other" },
-                { title: "Test", icon: "mdi-gavel", to: "/home/other" },
+                { title: "Test", icon: "mdi-gavel", to: "/home/test" },
             ],
             csrf_token: document
                 .querySelector('meta[name="csrf-token"]')
