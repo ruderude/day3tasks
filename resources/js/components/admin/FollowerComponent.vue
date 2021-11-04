@@ -3,25 +3,60 @@
         <h1>
         Follower：{{follower.name}}
         </h1>
-        <div>
-            <v-data-table
-                :headers="tasks_headers"
-                :items="follower.tasks"
-                :items-per-page="10"
-                class="elevation-1"
+        <v-card>
+            <v-tabs
+            v-model="tab"
+            background-color="deep-purple accent-4"
+            centered
+            dark
+            icons-and-text
             >
-            </v-data-table>
-        </div>
-        <br>
-        <div class="my-8">
-            <v-data-table
-                :headers="messages_headers"
-                :items="follower.messages"
-                :items-per-page="10"
-                class="elevation-1"
-            >
-            </v-data-table>
-        </div>
+                <v-tabs-slider></v-tabs-slider>
+
+                <v-tab href="#tab-1">
+                    タスク
+                    <v-icon>mdi-panda</v-icon>
+                </v-tab>
+
+                <v-tab href="#tab-2">
+                    メッセージ
+                    <v-icon>mdi-content-paste</v-icon>
+                </v-tab>
+
+            </v-tabs>
+
+            <v-tabs-items v-model="tab">
+
+                <v-tab-item
+                    value="tab-1"
+                >
+                    <v-card flat>
+                        <v-data-table
+                            :headers="tasks_headers"
+                            :items="follower.tasks"
+                            :items-per-page="10"
+                            class="elevation-1"
+                        >
+                        </v-data-table>
+                    </v-card>
+                </v-tab-item>
+
+                <v-tab-item
+                    value="tab-2"
+                >
+                    <v-card flat>
+                        <v-data-table
+                            :headers="messages_headers"
+                            :items="follower.messages"
+                            :items-per-page="10"
+                            class="elevation-1"
+                        >
+                        </v-data-table>
+                    </v-card>
+                </v-tab-item>
+
+            </v-tabs-items>
+        </v-card>
         <br>
     </div>
 </template>
@@ -40,6 +75,7 @@ export default {
     data() {
         return {
             follower: null,
+            tab: null,
             tasks_headers: [
                 {
                     text: 'タスクID',
