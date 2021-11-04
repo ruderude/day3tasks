@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-8">
+    <div class="my-8">
         <h1>
         Follower：{{follower.name}}
         </h1>
@@ -12,7 +12,7 @@
             >
             </v-data-table>
         </div>
-        <div class="mt-6">
+        <div class="my-8">
             <v-data-table
                 :headers="messages_headers"
                 :items="follower.messages"
